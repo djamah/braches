@@ -30,6 +30,16 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.index);
+app.get('/all_breaches', function(req, res){
+    res.render('all_breaches', { title: 'braches'});
+});
+app.get('/form', function(req, res){
+    res.render('form', { title: 'braches'});
+});
+app.get('/breach', function(req, res){
+    res.render('breach', { title: 'braches'});
+});
+
 app.get('/users', user.list);
 
 http.createServer(app).listen(app.get('port'), function(){
