@@ -6,6 +6,6 @@
  * GET home page.
  */
 
-exports.breach = function(req, res){
+module.exports = function(req, res){
     res.render('index', { title: 'braches'});
 };

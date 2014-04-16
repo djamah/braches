@@ -6,6 +6,6 @@
  * GET home page.
  */
 
-exports.form = function(req, res){
-    res.render('index', { title: 'braches'});
+module.exports = function(req, res){
+    res.render('form', { title: 'breaches'});
 };
