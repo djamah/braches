@@ -1,118 +1,142 @@
-<div class="container content">
-    <form action="" class="form-horizontal well">
+<div class="container content" ng-app="app">
+
+    <form name="breachForm" ng-controller="breachCtrl" class="form-horizontal well">
         <div class="form-group">
-            <label for="" class="col-sm-4 control-label">Місто</label>
+            <label class="col-sm-4 control-label">Місто</label>
+
             <div class="col-sm-8">
-                <select name="" id="city" class="chosen-select form-control" data-placeholder="Оберіть місто...">
-                    <option></option>
-                    <option value="Одеса">Одеса</option>
-                    <option value="Київ">Київ</option>
-                    <option value="Чернівці">Чернівці</option>
-                    <option value="Чернівці">Кам'янець-Подільський</option>
+                <select ng-model="form.city.name" ng-options="c for c in options.cities"
+                        class="chosen-select form-control" data-placeholder="Оберіть місто..." required>
                 </select>
             </div>
         </div>
         <div class="form-group">
-            <label for="" class="col-sm-4 control-label">Назва ВНЗ</label>
+            <label class="col-sm-4 control-label">Назва ВНЗ</label>
+
             <div class="col-sm-8">
-                <select name="" id="study" class="chosen-select form-control" data-placeholder="Оберіть навчальний заклад...">
+                <select ng-model="form.university" ng-options="c for c in options.city[form.city.name]"
+                        class="chosen-select form-control" data-placeholder="Оберіть навчальний заклад..."
+                        required>
                     <option></option>
-                    <option value="Одеська національна академія зв'язку ім. О. С. Попова">Одеська національна академія зв'язку ім. О. С. Попова</option>
+                    <option value="Одеська національна академія зв'язку ім. О. С. Попова">Одеська національна
+                        академія зв'язку ім. О. С. Попова
+                    </option>
                 </select>
             </div>
         </div>
 
         <div class="form-group">
-            <label for="" class="col-sm-4 control-label">Рівень акредитації</label>
+            <label class="col-sm-4 control-label">Рівень акредитації</label>
+
             <div class="col-sm-8">
                 <label class="radio-inline">
-                    <input type="radio" name="optionsRadios" id="" value="option2">&#8545
+                    <input ng-model='form.level' type="radio" value="1">&#8545
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="optionsRadios" id="" value="option3">&#8546
+                    <input ng-model='form.level' type="radio" value="2">&#8546
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="optionsRadios" id="" value="option3">&#8547
+                    <input ng-model='form.level' type="radio" value="3">&#8547
                 </label>
             </div>
         </div>
         <div class="form-group">
-            <label for="" class="col-sm-4 control-label">Чи має ВНЗ статус національного</label>
+            <label class="col-sm-4 control-label">Чи має ВНЗ статус національного</label>
+
             <div class="col-sm-3">
                 <label class="radio-inline">
-                    <input type="radio" name="optionsRadios" id="" value="option1">Так
+                    <input ng-model="form.national" type="radio" value="true">Так
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="optionsRadios" id="" value="option2">Ні
+                    <input ng-model="form.national" type="radio" value="false">Ні
                 </label>
             </div>
         </div>
         <div class="form-group">
-            <label for="" class="col-sm-4 control-label">Чи має ВНЗ статус дослідницького</label>
+            <label class="col-sm-4 control-label">Чи має ВНЗ статус дослідницького</label>
+
             <div class="col-sm-4">
                 <label class="radio-inline">
-                    <input type="radio" name="optionsRadios" id="" value="option1">Так
+                    <input ng-model="form.research" type="radio" value="true">Так
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="optionsRadios" id="" value="option2">Ні
+                    <input ng-model="form.research" type="radio" value="false">Ні
                 </label>
             </div>
         </div>
         <div class="form-group">
-            <label for="" class="col-sm-4 control-label">Факультет (інститут), кафедра</label>
+            <label class="col-sm-4 control-label">Факультет (інститут), кафедра</label>
+
             <div class="col-sm-2">
-                <input type="text" size="50" class="form-control" placeholder="Назва факультету (інституту), назва кафедри"/>
+                <input ng-model="form.department" type="text" size="50" class="form-control"
+                       placeholder="Назва факультету (інституту), назва кафедри" required/>
             </div>
         </div>
         <div class="form-group">
-            <label for="" class="col-sm-4 control-label">Посада</label>
+            <label class="col-sm-4 control-label">Посада</label>
+
             <div class="col-sm-2">
-                <input type="text" size="50" class="form-control" placeholder="Посада"/>
+                <input ng-model="form.position" type="text" size="50" class="form-control" placeholder="Посада"
+                       required/>
             </div>
         </div>
         <div class="form-group">
-            <label for="" class="col-sm-4 control-label">Тематика</label>
+            <label class="col-sm-4 control-label">Тематика</label>
+
             <div class="col-sm-8">
-                <select name="" id="subjects" class="form-control chosen-select" data-placeholder="Оберіть тематику...">
-                    <option></option>
-                    <option value="">оплата праці</option>
-                    <option value="">побутові умови праці</option>
-                    <option value="">відпустка</option>
-                    <option value="">робочий час та норми навантаження</option>
-                    <option value="">вільний вибір методів та засобів навчання в межах затверджених навчальних планів</option>
-                    <option value="">наукова діяльність у вищих навчальних закладах</option>
-                    <option value="">забезпечення житлом та одержання службового житла</option>
-                    <option value="">пільгові кредити для індивідуального чи кооперативного житлового будівництва</option>
-                    <option value="">одержання державних стипендій</option>
-                    <option value="">підвищення кваліфікації</option>
-                    <option value="">інтелектуальна власність</option>
-                    <option value="">конкурс на заміщення посади та прийом на роботу</option>
-                    <option value="">участь у професійних спілках та у громадському самоврядуванні ВНЗ</option>
+                <select ng-model="form.subject" ng-options="c for c in options.subjects" id="subjects" class="form-control chosen-select"
+                        data-placeholder="Оберіть тематику...">
                 </select>
             </div>
         </div>
         <div class="form-group">
-            <label for="" class="col-sm-4 control-label">Опис факту порушення прав</label>
+            <label class="col-sm-4 control-label">Опис факту порушення прав</label>
+
             <div class="col-sm-8">
-                <textarea name="" id="" cols="90" rows="10" class="form-control"></textarea>
+                <textarea ng-models="form.description" cols="90" rows="10" class="form-control"
+                          required></textarea>
             </div>
         </div>
+        <!--<div class="form-group">-->
+        <!--<label for="" class="col-sm-4 control-label">Додати файл (pdf, doc, jpeg, tiff)</label>-->
+        <!--<div class="col-sm-6" style="padding-top: 10px">-->
+        <!--<div class="comment add_file"><i>додаткові матеріали<br/>(можна додати декілька файлів)</i></div>-->
+        <!--<input type="file" multiple/>-->
+        <!--</div>-->
+        <!--</div>-->
         <div class="form-group">
-            <label for="" class="col-sm-4 control-label">Додати файл (pdf, doc, jpeg, tiff)</label>
-            <div class="col-sm-6" style="padding-top: 10px">
-                <div class="comment add_file"><i>додаткові матеріали<br/>(можна додати декілька файлів)</i></div>
-                <input type="file" multiple/>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="" class="col-sm-4 control-label">Email</label>
+            <label class="col-sm-4 control-label">Email</label>
+
             <div class="col-sm-7">
                 <div class="comment email"><i>публікуватись<br/>не буде</i></div>
-                <input type="text" size="50" class="form-control" placeholder="Email"/>
+                <input ng-model="form.email" type="email" size="50" class="form-control" placeholder="Email"
+                       required/>
             </div>
         </div>
         <div class="center-block" style="margin-top: 50px">
-            <button type="submit" class="btn btn-lg btn-success center-block">Надіслати</button>
+            <button ng-click="submit()" class="btn btn-lg btn-success center-block">Надіслати</button>
         </div>
+
+        <div ng-switch on="status">
+            <div ng-switch-when="sending">
+                <p>
+                    <div class="progress progress-striped active">
+                        <div class="progress-bar"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                            <span class="sr-only"></span>
+                        </div>
+                    </div>
+                </p>
+            </div>
+            <div ng-switch-when="success">
+                <h3 class="well">Інформація про порушення успішно надіслана.</h3>
+            </div>
+            <div ng-switch-when="error">
+                <h3 class="well">Нажаль, сталася помилка, спробуйте ще раз.</h3>
+            </div>
+            <div ng-switch-default>
+            </div>
+        </div>
+
     </form>
+
 </div>

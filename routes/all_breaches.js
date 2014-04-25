@@ -4,5 +4,5 @@
  */
 
 module.exports = function(req, res){
-    res.render('index', { title: 'braches'});
+    res.render('all_breaches', { title: 'braches'});
 };

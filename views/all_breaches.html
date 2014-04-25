@@ -1,179 +1,120 @@
-<div class="container well">
-    <!--<i class="glyphicon glyphicon-filter"></i>-->
-    <div class="row filter">
-        <div class="col-lg-3">
-            <div class="form-group">
-                <div>Місто</div>
-                <select name="" id="cities" class="chosen-select form-control" data-placeholder="Оберіть міста..." multiple>
-                    <option></option>
-                    <option value="">Одеса</option>
-                    <option value="">Київ</option>
-                    <option value="">Ужгород</option>
-                    <option value="">Харків</option>
-                    <option value="">Дніпропетровськ</option>
-                </select>
+
+{{=<% %>=}}
+<div ng-app="app">
+    <div ng-controller="breachesListCtrl">
+
+        <div class="container well">
+            <i class="glyphicon glyphicon-filter"></i>
+
+            <div class="row filter">
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        <div>Місто</div>
+                        <select ng-model="f.city" ng-options="c for c in options.cities"
+                                data-placeholder="Оберіть міста...">
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <!--<div>Рівень акр.</div>-->
+                    <!--<input ng-modal="f.level" type="radio" value="2"/> &#8545-->
+                    <!--<input ng-modal="f.level" type="radio" value="3"/> &#8546-->
+                    <!--<input ng-modal="f.level" type="radio" value="4"/> &#8547-->
+                </div>
+                <div class="col-lg-2">
+                    <div>Статус</div>
+                    <input ng-model="f.national" type="checkbox"/> нац.
+                    <input ng-model="f.research" type="checkbox"/> досл.
+                </div>
+                <div class="col-lg-5">
+                    <div class="form-group">
+                        <div>Тематика</div>
+                        <select ng-model="f.subject" ng-options="c for c in options.subjects" data-placeholder="Оберіть тематики...">
+                            <!--<option></option>-->
+                            <!--<option value="оплата праці">оплата праці</option>-->
+                            <!--<option value="побутові умови праці">побутові умови праці</option>-->
+                            <!--<option value="відпустка">відпустка</option>-->
+                            <!--<option value="">робочий час та норми навантаження</option>-->
+                            <!--<option value="">вільний вибір методів та засобів навчання в межах затверджених навчальних-->
+                                <!--планів-->
+                            <!--</option>-->
+                            <!--<option value="">наукова діяльність у вищих навчальних закладах</option>-->
+                            <!--<option value="">забезпечення житлом та одержання службового житла</option>-->
+                        </select>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-lg-2">
-            <div>Рівень акр.</div>
-            <input type="checkbox"/> &#8545
-            <input type="checkbox"/> &#8546
-            <input type="checkbox"/> &#8547
-        </div>
-        <div class="col-lg-2">
-            <div>Статус</div>
-            <input type="checkbox"/> нац.
-            <input type="checkbox"/> досл.
-        </div>
-        <div class="col-lg-5">
-            <div class="form-group">
-                <div>Тематика</div>
-                <select name="" id="themes" class="chosen-select form-control" data-placeholder="Оберіть тематики..." multiple>
-                    <option></option>
-                    <option value="">оплата праці</option>
-                    <option value="">побутові умови праці</option>
-                    <option value="">відпустка</option>
-                    <option value="">робочий час та норми навантаження</option>
-                    <option value="">вільний вибір методів та засобів навчання в межах затверджених навчальних планів</option>
-                    <option value="">наукова діяльність у вищих навчальних закладах</option>
-                    <option value="">забезпечення житлом та одержання службового житла</option>
-                </select>
-            </div>
-        </div>
+        <section class="center-block">
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>Місто</th>
+                    <th>ВНЗ</th>
+                    <th>Рівень акр.</th>
+                    <th>Статус<br/>нац.</th>
+                    <th>Статус<br/>досл.</th>
+                    <th>Факультет (інститут), кафедра</th>
+                    <th>Тематика</th>
+                    <th>Опис факту порушення прав</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in list | filter: city | filter: f: strict">
+                    <td class="post_town"><span>{{item.city.name}}</span></td>
+                    <td class="post_university">
+                        <span data-toggle="tooltip" data-placement="top" title="{{ item.university }}">{{ item.university.substr(0,25) }}...</span>
+                    </td>
+                    <td class="post_level">
+                        <span ng-show="item.level===2">Ⅱ</span>
+                        <span ng-show="item.level===3">Ⅲ</span>
+                        <span ng-show="item.level===4">Ⅳ</span>
+                    </td>
+                    <td class="post_status">
+                        <div>
+                            <span>
+                                <i ng-show="item.national" class="glyphicon glyphicon-ok icons"></i>
+                                <i ng-show="!item.national" class="glyphicon glyphicon-remove icons"></i>
+                            </span>
+                        </div>
+                    </td>
+                    <td class="post_status">
+                        <div>
+                            <span>
+                                <i ng-show="item.research" class="glyphicon glyphicon-ok icons"></i>
+                                <i ng-show="!item.research" class="glyphicon glyphicon-remove icons"></i>
+                            </span>
+                        </div>
+                    </td>
+                    <td class="post_faculty">
+                        <span data-toggle="tooltip" data-placement="top"
+                                                   title="{{item.department}}">{{item.department.substr(0,30)}}...</span>
+                    </td>
+                    <td class="post_theme">
+                        <span data-toggle="tooltip" data-placement="top"
+                                                 title="{{item.subject}}">{{item.subject.substr(0,30)}}...</span>
+                    </td>
+                    <td class="post_description">
+                    <span>
+                        {{item.description.substr(0,30)}}
+                    </span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
     </div>
 </div>
-<section class="center-block">
-    <table class="table table-striped table-hover">
-        <thead>
-            <tr>
-                <th>Місто</th>
-                <th>ВНЗ</th>
-                <th>Рівень акр.</th>
-                <th>Статус<br/>нац.</th>
-                <th>Статус<br/>досл.</th>
-                <th>Факультет (інститут), кафедра</th>
-                <th>Тематика</th>
-                <th>Опис факту порушення прав</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td class="post_town"><span>Ужгород</span></td>
-                <td class="post_university"><span data-toggle="tooltip" data-placement="top" title="Ужгородський національний університет">Ужгородський національний...</span></td>
-                <td class="post_level"><span>Ⅳ</span></td>
-                <td class="post_status">
-                    <div><span><i class="glyphicon glyphicon-ok icons"></i></span></div>
-                </td>
-                <td class="post_status">
-                    <div><span><i class="glyphicon glyphicon-remove icons"></i></span></div>
-                </td>
-                <td class="post_faculty"><span data-toggle="tooltip" data-placement="top" title="Факультет суспільних наук, кафедра політології і державного управління">Факультет суспільних наук, кафедра політології...</span></td>
-                <td class="post_theme"><span data-toggle="tooltip" data-placement="top" title="Участь у професійних спілках та у громадському самоврядуванні ВНЗ">Участь у професійних спілках та у громадському...</span></td>
-                <td class="post_description">
-                    <span>
-                        Формування складу Вченої ради УжНУ в особистих...
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="post_town"><span>Дніпропетровськ</span></td>
-                <td class="post_university"><span>Одеська національна...</span></td>
-                <td class="post_level"><span>&#8546</span></td>
-                <td class="post_status">
-                    <div><span><i class="glyphicon glyphicon-ok icons"></i></span></div>
-                </td>
-                <td class="post_status">
-                    <div><span><i class="glyphicon glyphicon-remove icons"></i></span></div>
-                </td>
-                <td class="post_faculty"><span>Факультет інфокомунікацій</span></td>
-                <td class="post_theme"><span>Пільгові кредити для індивідуального...</span></td>
-                <td class="post_description">
-                    <span>
-                    Формування складу Вченої ради УжНУ в особистих...
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="post_town"><span>Дніпропетровськ</span></td>
-                <td class="post_university"><span>Одеська національна...</span></td>
-                <td class="post_level"><span>Ⅳ</span></td>
-                <td class="post_status">
-                    <div><span><i class="glyphicon glyphicon-ok icons"></i></span></div>
-                </td>
-                <td class="post_status">
-                    <div><span><i class="glyphicon glyphicon-remove icons"></i></span></div>
-                </td>
-                <td class="post_faculty"><span>Факультет інфокомунікацій</span></td>
-                <td class="post_theme"><span>Пільгові кредити для індивідуального...</span></td>
-                <td class="post_description">
-                    <span>
-                    Формування складу Вченої ради УжНУ в особистих...
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="post_town"><span>Дніпропетровськ</span></td>
-                <td class="post_university"><span>Одеська національна...</span></td>
-                <td class="post_level"><span>Ⅳ</span></td>
-                <td class="post_status">
-                    <div><span><i class="glyphicon glyphicon-remove icons"></i></span></div>
-                </td>
-                <td class="post_status">
-                    <div><span><i class="glyphicon glyphicon-remove icons"></i></span></div>
-                </td>
-                <td class="post_faculty"><span>Факультет інфокомунікацій</span></td>
-                <td class="post_theme"><span>Пільгові кредити для індивідуального...</span></td>
-                <td class="post_description">
-                    <span>
-                    Формування складу Вченої ради УжНУ в особистих...
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="post_town"><span>Дніпропетровськ</span></td>
-                <td class="post_university"><span>Одеська національна...</span></td>
-                <td class="post_level"><span>&#8546</span></td>
-                <td class="post_status">
-                    <div><span><i class="glyphicon glyphicon-remove icons"></i></span></div>
-                </td>
-                <td class="post_status">
-                    <div><span><i class="glyphicon glyphicon-ok icons"></i></span></div>
-                </td>
-                <td class="post_faculty"><span>Факультет інфокомунікацій</span></td>
-                <td class="post_theme"><span>Пільгові кредити для індивідуального...</span></td>
-                <td class="post_description">
-                    <span>
-                    Формування складу Вченої ради УжНУ в особистих...
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="post_town"><span>Дніпропетровськ</span></td>
-                <td class="post_university"><span>Одеська національна...</span></td>
-                <td class="post_level"><span>&#8546</span></td>
-                <td class="post_status">
-                    <div><span><i class="glyphicon glyphicon-ok icons"></i></span></div>
-                </td>
-                <td class="post_status">
-                    <div><span><i class="glyphicon glyphicon-remove icons"></i></span></div>
-                </td>
-                <td class="post_faculty"><span>Факультет інфокомунікацій</span></td>
-                <td class="post_theme"><span>Пільгові кредити для індивідуального...</span></td>
-                <td class="post_description">
-                    <span>
-                    Формування складу Вченої ради УжНУ в особистих...
-                    </span>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>
+
+<%={{ }}=%>
 
 <script>
-    $(function() {
+    $(function () {
+//        setTimeout(function(){
         $('body').tooltip({
             selector: "[data-toggle=tooltip]"
         });
         $(".chosen-select").chosen();
+//        }, 3000)
     });
 </script>
