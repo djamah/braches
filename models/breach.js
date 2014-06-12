@@ -1,13 +1,6 @@
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/breach');
+var db = require('./config').db;
 
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function callback () {
-    console.log('db connect');
-});
-
-var breachSchema = mongoose.Schema({
+var breachSchema = db.Schema({
     city: String,
     university: {
         name: String,
@@ -26,6 +19,6 @@ var breachSchema = mongoose.Schema({
     publish: Boolean
 });
 
-var Breach = mongoose.model('Breach', breachSchema);
+var Breach = db.model('Breach', breachSchema);
 
 module.exports = Breach;
