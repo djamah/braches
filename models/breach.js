@@ -8,11 +8,11 @@ db.once('open', function callback () {
 });
 
 var breachSchema = mongoose.Schema({
-    city: {
+    city: String,
+    university: {
         name: String,
-        geoPosition: String
+        geo: [Number, Number]
     },
-    university: String,
     level: Number,
     national: Boolean,
     research: Boolean,
@@ -22,26 +22,10 @@ var breachSchema = mongoose.Schema({
     description: String,
     email: String,
 
-    date: Date
+    date: Date,
+    publish: Boolean
 });
 
 var Breach = mongoose.model('Breach', breachSchema);
 
-
-Breach.schema.path('university').validate(function(value){
-    if(value.length != 0){
-        return true;
-    } else {
-        return false;
-    }
-}, 'invalid');
-Breach.schema.path('description').validate(function(value){
-    if(value.length != 0){
-        return true;
-    } else {
-        return false;
-    }
-}, 'invalid');
-
 module.exports = Breach;
-

@@ -1,30 +1,39 @@
+{{=<% %>=}}
 <div class="container content" ng-app="app">
 
-    <form name="breachForm" ng-controller="breachCtrl" class="form-horizontal well">
+    <form name="breachForm" ng-controller="breachFormCtrl" class="form-horizontal well">
         <div class="form-group">
             <label class="col-sm-4 control-label">Місто</label>
 
             <div class="col-sm-8">
-                <select ng-model="form.city.name" ng-options="c for c in options.cities"
-                        class="chosen-select form-control" data-placeholder="Оберіть місто..." required>
+                <select
+                        chosen
+                        ng-model="form.city"
+                        ng-options="c for c in options.cities"
+                        class="form-control"
+                        data-placeholder="Оберіть місто..."
+                        style="width: 100%;"
+                        required>
+                    <option></option>
                 </select>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-4 control-label">Назва ВНЗ</label>
 
-            <div class="col-sm-8">
-                <select ng-model="form.university" ng-options="c for c in options.city[form.city.name]"
-                        class="chosen-select form-control" data-placeholder="Оберіть навчальний заклад..."
+            <div class="col-sm-8" ng-init="form.university = {}">
+                <select
+                        chosen
+                        ng-model="form.university"
+                        ng-options="c.name for c in options.city[form.city]"
+                        class="form-control"
+                        data-placeholder="Оберіть навчальний заклад..."
+                        style="width: 100%;"
                         required>
                     <option></option>
-                    <option value="Одеська національна академія зв'язку ім. О. С. Попова">Одеська національна
-                        академія зв'язку ім. О. С. Попова
-                    </option>
                 </select>
             </div>
         </div>
-
         <div class="form-group">
             <label class="col-sm-4 control-label">Рівень акредитації</label>
 
@@ -44,9 +53,9 @@
             <label class="col-sm-4 control-label">Чи має ВНЗ статус національного</label>
 
             <div class="col-sm-3">
-                <label class="radio-inline">
+                <div class="radio-inline">
                     <input ng-model="form.national" type="radio" value="true">Так
-                </label>
+                </div>
                 <label class="radio-inline">
                     <input ng-model="form.national" type="radio" value="false">Ні
                 </label>
@@ -68,15 +77,23 @@
             <label class="col-sm-4 control-label">Факультет (інститут), кафедра</label>
 
             <div class="col-sm-2">
-                <input ng-model="form.department" type="text" size="50" class="form-control"
-                       placeholder="Назва факультету (інституту), назва кафедри" required/>
+                <input ng-model="form.department"
+                       type="text"
+                       size="50"
+                       class="form-control"
+                       placeholder="Назва факультету (інституту), назва кафедри"
+                       required/>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-4 control-label">Посада</label>
 
             <div class="col-sm-2">
-                <input ng-model="form.position" type="text" size="50" class="form-control" placeholder="Посада"
+                <input ng-model="form.position"
+                       type="text"
+                       size="50"
+                       class="form-control"
+                       placeholder="Посада"
                        required/>
             </div>
         </div>
@@ -84,8 +101,13 @@
             <label class="col-sm-4 control-label">Тематика</label>
 
             <div class="col-sm-8">
-                <select ng-model="form.subject" ng-options="c for c in options.subjects" id="subjects" class="form-control chosen-select"
-                        data-placeholder="Оберіть тематику...">
+                <select ng-model="form.subject"
+                        ng-options="c for c in options.subjects"
+                        id="subjects"
+                        class="form-control"
+                        data-placeholder="Оберіть тематику..."
+                        chosen>
+                    <option></option>
                 </select>
             </div>
         </div>
@@ -93,7 +115,10 @@
             <label class="col-sm-4 control-label">Опис факту порушення прав</label>
 
             <div class="col-sm-8">
-                <textarea ng-models="form.description" cols="90" rows="10" class="form-control"
+                <textarea ng-model="form.description"
+                          cols="90"
+                          rows="10"
+                          class="form-control"
                           required></textarea>
             </div>
         </div>
@@ -109,12 +134,18 @@
 
             <div class="col-sm-7">
                 <div class="comment email"><i>публікуватись<br/>не буде</i></div>
-                <input ng-model="form.email" type="email" size="50" class="form-control" placeholder="Email"
+                <input ng-model="form.email"
+                       type="email" size="50"
+                       class="form-control"
+                       placeholder="Email"
                        required/>
             </div>
         </div>
         <div class="center-block" style="margin-top: 50px">
-            <button ng-click="submit()" class="btn btn-lg btn-success center-block">Надіслати</button>
+            <button ng-click="submit()"
+                    class="btn btn-lg btn-success center-block">
+                Надіслати
+            </button>
         </div>
 
         <div ng-switch on="status">
@@ -140,3 +171,6 @@
     </form>
 
 </div>
+
+
+<%={{ }}=%>

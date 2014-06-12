@@ -2,12 +2,34 @@
 var options = {
     city: {
         'Одеса': [
-            "Одеська національна академія  ім. О. С. Попова",
-            "Одеський політехнічний університет"
+            {
+                name: 'Одеська національна академія  ім. О. С. Попова',
+                geo: []
+            },
+            {
+                name: "Одеський політехнічний університет",
+                geo: []
+            }
         ],
         'Київ': [
-            'Національний університет "Києво-Могилянська академія"',
-            'Національний університет ім. Т. Г. Шевченка'
+            {
+                name: 'Національний університет "Києво-Могилянська академія"',
+                geo: []
+            },
+            {
+                name: 'Національний університет ім. Т. Г. Шевченка',
+                geo: []
+            }
+        ],
+        'Чернігів': [
+            {
+                name: 'Чернігівський національний університет',
+                geo: []
+            },
+            {
+                name: 'Чернігівська академія',
+                geo: []
+            }
         ]
     },
     subjects: [
@@ -39,36 +61,90 @@ options.cities = (function(){
 
 
 
-var app = angular.module('app', []);
+var app = angular.module('app', ['localytics.directives']);
 
-app.controller('breachesListCtrl', function($scope, $http){
-    $http.post('/all_breaches_list', {})
-        .success(function(data){
-            $scope.list = data;
-        });
-    $scope.options = options;
-    setTimeout(function(){console.log($scope.color)}, 5000)
-});
+app
+    .controller('breachesListCtrl', function($scope, $http, $location){
+        $http.post('/all_breaches_list', {})
+            .success(function(data){
+                $scope.list = data;
+                console.log($scope.list);
+            });
+        $scope.options = options;
 
+        $scope.read_more = function(){
+            location.href = '/breach/'+this.item._id;
+        };
 
-app.controller('breachCtrl', function($scope, $http){
-    $scope.options = options;
+        $scope.filters = {
+            searchCityFilter: function(item){
+                if($scope.f){
+                    if( !$.isEmptyObject($scope.f.city) ){
+                        for(var i = 0; i < $scope.f.city.length; i++){
+                            if($scope.f.city[i] === item.city){
+                                return true;
+                            }
+                        }
+                    } else return true;
+                } else return true;
+            },
+            searchSubjectFilter: function(item){
+                if($scope.f){
+                    if( !$.isEmptyObject($scope.f.subject) ){
+                        for(var i = 0; i < $scope.f.subject.length; i++){
+                            if($scope.f.subject[i] === item.subject){
+                                return true;
+                            }
+                        }
+                    } else return true;
+                } else return true;
+            },
+            searchLevelFilter: function(item){
+                if($scope.f &&
+                    $scope.f.level &&
+                    ($scope.f.level.second || $scope.f.level.third || $scope.f.level.fourth ) ){
 
-    $scope.submit = function(){
-        if($scope.breachForm.$valid){
-            $scope.form.level = parseInt($scope.form.level);
-            $scope.form.national = ($scope.form.national === 'true');
-            $scope.form.research = ($scope.form.research === 'true');
-            $http.post('send_breach', $scope.form)
-                .success(function(data){
-                    console.log(data);
-                    $scope.status = 'success';
-                })
-                .error(function(){
-                    $scope.status = 'error';
-                });
-            console.log($scope);
-            $scope.status = 'sending';
+                    switch (item.level){
+                        case 2: if($scope.f.level.second) return true; break;
+                        case 3: if($scope.f.level.third) return true; break;
+                        case 4: if($scope.f.level.fourth) return true; break;
+                    }
+
+                } else return true;
+            },
+            searchNationalFilter: function(item){
+                if($scope.f && $scope.f.national){
+                    if( item.national ){
+                        return true;
+                    }
+                } else return true;
+            },
+            searchResearchFilter: function(item){
+                if($scope.f && $scope.f.research){
+                    if( item.research ){
+                        return true;
+                    }
+                } else return true;
+            }
         }
-    }
-});
+    })
+
+    .controller('breachFormCtrl', function($scope, $http){
+        $scope.options = options;
+        $scope.submit = function(){
+            if($scope.breachForm.$valid){
+                $scope.form.level = parseInt($scope.form.level);
+                $scope.form.national = ($scope.form.national === 'true');
+                $scope.form.research = ($scope.form.research === 'true');
+                console.log($scope.form);
+                $http.post('send_breach', $scope.form)
+                    .success(function(data){
+                        $scope.status = 'success';
+                    })
+                    .error(function(){
+                        $scope.status = 'error';
+                    });
+                $scope.status = 'sending';
+            }
+        };
+    });

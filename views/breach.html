@@ -1,12 +1,12 @@
 <div class="container">
     <article class="well">
-        <a href="all_breaches.html" class="glyphicon glyphicon-arrow-left"></a>
-        <h5>Участь у професійних спілках та у громадському самоврядуванні ВНЗ</h5>
+        <a href="/all_breaches" class="glyphicon glyphicon-arrow-left"></a>
+        <h5>{{item.subject}}</h5>
         <div class="post">
             <p>
-                Формування складу Вченої ради УжНУ в особистих інтересах ректора Ващука, без дотримання принципу виборності представників та представництва в складі Вченої ради всіх факультетів. Внаслідок чого, окремі члени Вченої ради була затверджена наказом ректора.
+                {{item.description}}
             </p>
-            <p class="author_name"><i>професор, завідувач кафедри, Ужгород</i></p>
+            <p class="author_name"><i>{{item.position}}, {{item.city}}</i></p>
         </div>
         <h5>Додаткові матеріали</h5>
         <div class="post">
@@ -16,15 +16,44 @@
         <div class="separator"></div>
         <div class="description row">
             <div class="col-lg-4">
-                <span>Ужгородський національний університет</span>
+                <span>{{item.university.name}}</span>
             </div>
             <div class="col-lg-4">
-                <span>Факультет суспільних наук, кафедра політології і державного управління</span>
+                <span>{{item.department}}</span>
             </div>
             <div class="col-lg-4">
-                <div><span>рівень акредитації: <span class="icons">&#8547</span></span></div>
-                <div><span>статус національного: <i class="glyphicon glyphicon-ok icons"></i></span></div>
-                <div><span>статус дослідницького: <i class="glyphicon glyphicon-remove icons"></i></span></div>
+                <div>
+                    <span>рівень акредитації:
+                        {{#item_level2}}
+                            <span class="icons">&#8545<!--2--></span>
+                        {{/item_level2}}
+                        {{#item_level3}}
+                            <span class="icons">&#8546<!--3--></span>
+                        {{/item_level3}}
+                        {{#item_level4}}
+                            <span class="icons">&#8547<!--4--></span>
+                        {{/item_level4}}
+                    </span></div>
+                <div>
+                    <span>статус національного:
+                        {{#item_national}}
+                            <i class="glyphicon glyphicon-ok icons"></i>
+                        {{/item_national}}
+                        {{^item_national}}
+                            <i class="glyphicon glyphicon-remove icons"></i>
+                        {{/item_national}}
+                    </span>
+                </div>
+                <div>
+                    <span>статус дослідницького:
+                        {{#item_research}}
+                            <i class="glyphicon glyphicon-ok icons"></i>
+                        {{/item_research}}
+                        {{^item_research}}
+                            <i class="glyphicon glyphicon-remove icons"></i>
+                        {{/item_research}}
+                    </span>
+                </div>
             </div>
         </div>
     </article>

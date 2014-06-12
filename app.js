@@ -39,7 +39,7 @@ app.get('/form', routes.form);
 app.get('/info', routes.info);
 app.get('/all_breaches', routes.all_breaches);
 app.post('/all_breaches_list', routes.all_breaches_list);
-app.get('/breach', routes.breach);
+app.get('/breach/:id', routes.breach);
 app.post('/send_breach', routes.send_breach);
 console.log(routes.send_breach);
 
