@@ -1,12 +1,20 @@
 <div class="container">
-    <article class="well">
-        <a href="/all_breaches" class="glyphicon glyphicon-arrow-left"></a>
-        <h5>{{item.subject}}</h5>
+    <article class="well breach_item" id="{{item.id}}">
+        <a href="/admin/list" class="glyphicon glyphicon-arrow-left"></a>
+        <!--<h5>{{item.subject}}</h5>-->
+        <a class="btn btn-lg btn-success center-block" id="update">Оновити</a>
+        <h5>
+            <input class="expand" id="subject" type="text" value="{{item.subject}}"/>
+        </h5>
         <div class="post">
             <p>
-                {{item.description}}
+                <textarea name="" id="description" cols="100" rows="10">{{item.description}}</textarea>
             </p>
             <p class="author_name"><i>{{item.position}}, {{item.city}}</i></p>
+        </div>
+        <div>
+            <input type="checkbox" id="publish"/>
+            <label for="publish">Опубліковано</label>
         </div>
         <h5>Додаткові матеріали</h5>
         <div class="post">
@@ -22,6 +30,7 @@
                 <span>{{item.department}}</span>
             </div>
             <div class="col-lg-4">
+
                 <div>
                     <span>Форма власності:
                         {{#item_level2}}
@@ -36,22 +45,24 @@
                     </span>
                 </div>
                 <div>
-                    <span>статус національного:
+                    <span>
+                        <label for="national">статус національного:</label>
                         {{#item_national}}
-                            <i class="glyphicon glyphicon-ok icons"></i>
+                            <input id="national" type="checkbox" checked/>
                         {{/item_national}}
                         {{^item_national}}
-                            <i class="glyphicon glyphicon-remove icons"></i>
+                            <input id="national" type="checkbox"/>
                         {{/item_national}}
                     </span>
                 </div>
                 <div>
-                    <span>статус дослідницького:
+                    <span>
+                        <label for="research">статус дослідницького:</label>
                         {{#item_research}}
-                            <i class="glyphicon glyphicon-ok icons"></i>
+                            <input id="research" type="checkbox" checked/>
                         {{/item_research}}
                         {{^item_research}}
-                            <i class="glyphicon glyphicon-remove icons"></i>
+                            <input id="research" type="checkbox"/>
                         {{/item_research}}
                     </span>
                 </div>
@@ -59,3 +70,21 @@
         </div>
     </article>
 </div>
+<script>
+    $(function(){
+        $('#update').click(function(){
+//            var data = ;
+            $.post('/update_post', {
+                id: $('.breach_item').attr('id'),
+                subject: $('#subject').val(),
+                description: $('#description').val(),
+                publish: $('#publish').is(':checked'),
+                national: $('#national').is(':checked'),
+                research: $('#research').is(':checked')
+            })
+                    .success(function(){
+                        alert('оновлено');
+                    });
+        });
+    });
+</script>

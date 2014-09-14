@@ -1,9 +1,9 @@
 
+
 <div ng-app="app">
     <div ng-controller="breachesListCtrl">
 
         {{>filter}}
-
 {{=<% %>=}}
         <section class="center-block">
             <table class="table table-striped table-hover">
@@ -21,7 +21,8 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="item in list | filter: filters.searchCityFilter | filter: filters.searchLevelFilter | filter: filters.searchNationalFilter | filter: filters.searchResearchFilter| filter: filters.searchSubjectFilter"
-                    ng-click="read_more()">
+                    ng-click="read_more()"
+                    ng-class="{publish: item.publish}">
                     <td class="post_town"><span>{{item.city}}</span></td>
                     <td class="post_university">
                         <span data-toggle="tooltip"
@@ -38,16 +39,14 @@
                     <td class="post_status">
                         <div>
                             <span>
-                                <i ng-show="item.national" class="glyphicon glyphicon-ok icons"></i>
-                                <i ng-hide="item.national" class="glyphicon glyphicon-remove icons"></i>
+                                <input ng-model="item.national" type="checkbox"/>
                             </span>
                         </div>
                     </td>
                     <td class="post_status">
                         <div>
                             <span>
-                                <i ng-show="item.research" class="glyphicon glyphicon-ok icons"></i>
-                                <i ng-hide="item.research" class="glyphicon glyphicon-remove icons"></i>
+                                <input ng-model="item.research" type="checkbox"/>
                             </span>
                         </div>
                     </td>
@@ -80,7 +79,7 @@
 
 <%={{ }}=%>
 <script>
-    var isAdmin = false;
+    var isAdmin = true;
 </script>
 <script>
     $(function () {

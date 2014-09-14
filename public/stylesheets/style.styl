@@ -16,7 +16,7 @@ html, body
   border-radius 0
 .collapse.navbar-collapse
   padding 0
-.form-control
+#send_breaches .form-control
   width auto
   max-width 580
 .small-input
@@ -79,6 +79,12 @@ article
 section
   padding 0 5%
   min-width 960px
+thead tr
+  cursor auto
+tr
+  cursor pointer
+  td
+    position relative
 th
   vertical-align middle !important
 .post_town
@@ -86,7 +92,7 @@ th
 .post_university
   width 15%
 .post_level
-  text-align center
+  text-align left
   width 60px
 .post_status
   text-align center
@@ -114,3 +120,37 @@ span[data-toggle="tooltip"]:hover
 
 select
   max-width 100%
+.expand
+  width 100%
+.admin-area-page
+  tr
+    &.publish
+      position relative
+      .post_town:before, .post_description:after
+        content ''
+        display inline-block
+        background-color lightgreen
+        height 30px
+        width 5px
+        position absolute
+        top 3px
+      .post_town:before
+        left 0
+      .post_description:after
+        right 0
+.admin-area
+  background-color lightcoral
+  color #ffffff
+  padding 1em
+  letter-spacing .6px
+  position fixed
+  top 0
+  left 0
+  width 100%
+  z-index 999
+  text-align right
+  a
+    color #ffffff
+    text-decoration underline
+label
+  font-weight 400

@@ -1,7 +1,8 @@
 var Breach = require('../models/breach');
 
 module.exports = function(req, res){
-    Breach.find({_id: req.param('id'), publish: true}, function(err, item){
+    Breach.find({_id: req.param('id')}, function(err, item){//publish: true
+        console.log(item);
         res.render('breach', {
             title: 'braches',
             item: item[0],

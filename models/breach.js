@@ -10,6 +10,7 @@ var breachSchema = db.Schema({
     national: Boolean,
     research: Boolean,
     department: String,
+    faculty: String,
     position: String,
     subject: String,
     description: String,
