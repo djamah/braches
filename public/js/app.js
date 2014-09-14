@@ -6356,7 +6356,7 @@ app
         $scope.$watch('f.level.fourth', rePaint);
         $scope.$watch('f.national', rePaint);
         $scope.$watch('f.research', rePaint);
-        $scope.$watch('f.subject.', rePaint);
+        $scope.$watch('f.subject', rePaint);
         function rePaint(){
             console.log('repaint');
             mapAvailable = true;
