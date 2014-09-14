@@ -6267,6 +6267,7 @@ app
 
         $scope.filters = {
             searchCityFilter: function(item){
+//                console.log('searchCityFilter');
                 if($scope.f){
                     if( !$.isEmptyObject($scope.f.city) ){
                         for(var i = 0; i < $scope.f.city.length; i++){
@@ -6278,6 +6279,7 @@ app
                 } else return true;
             },
             searchSubjectFilter: function(item){
+//                console.log('searchSubjectFilter');
                 if($scope.f){
                     if( !$.isEmptyObject($scope.f.subject) ){
                         for(var i = 0; i < $scope.f.subject.length; i++){
@@ -6289,6 +6291,7 @@ app
                 } else return true;
             },
             searchLevelFilter: function(item){
+//                console.log('searchLevelFilter');
                 if($scope.f &&
                     $scope.f.level &&
                     ($scope.f.level.second || $scope.f.level.third || $scope.f.level.fourth ) ){
@@ -6302,6 +6305,7 @@ app
                 } else return true;
             },
             searchNationalFilter: function(item){
+//                console.log('searchNationalFilter');
                 if($scope.f && $scope.f.national){
                     if( item.national ){
                         return true;
@@ -6309,6 +6313,7 @@ app
                 } else return true;
             },
             searchResearchFilter: function(item){
+//                console.log('searchResearchFilter');
                 if($scope.f && $scope.f.research){
                     if( item.research ){
                         return true;
@@ -6342,39 +6347,90 @@ app
 
         $('#map').height(parseInt($(window).height())-185);
 
-        ymaps.ready(init);
         var map;
+        var clusterer;
 
-        $scope.$watch('list', init);
+        $scope.$watch('f.city', rePaint);
+        $scope.$watch('f.level.second', rePaint);
+        $scope.$watch('f.level.third', rePaint);
+        $scope.$watch('f.level.fourth', rePaint);
+        $scope.$watch('f.national', rePaint);
+        $scope.$watch('f.research', rePaint);
+        $scope.$watch('f.subject.', rePaint);
+        function rePaint(){
+            console.log('repaint');
+            mapAvailable = true;
+            deleteMap();
+            init();
+        }
+        init();
+        setTimeout(init,500);
+        setTimeout(init,1000);
+        setTimeout(init,1500);
+        setTimeout(init,2000);
+        setTimeout(init,2500);
+        setTimeout(init,3000);
+        setTimeout(init,3500);
+        setTimeout(init,4000);
+        setTimeout(init,4500);
+        setTimeout(init,5000);
+        setTimeout(init,5500);
+        setTimeout(init,6000);
+        setTimeout(init,6500);
+        function deleteMap(){
+            if(map && map.destroy){
+                map.destroy();
+                $('#map').html('');
+            }
 
+        };
         function init(){
+            if(!mapAvailable || !ymaps.Map) return;
+            mapAvailable = false;
             map = new ymaps.Map("map", {
                 center: [48.384465, 31.176479],
                 zoom: 6,
-                controls:[],
+                controls:[]
             });
-            var collection = new ymaps.GeoObjectCollection({}, {
-                preset: 'twirl#redIcon', //все метки красные
-                draggable: true // и их можно перемещать
+            map.controls.add('zoomControl', {
+                position:{
+                    top: 160,
+                    left:20
+                }
             });
-            console.log($scope.list, '$scope.list');
+
+            var filteredData = [];
+
+            for(var j in $scope.list){
+                if($scope.filters.searchCityFilter($scope.list[j])){
+                    if($scope.filters.searchLevelFilter($scope.list[j])){
+                        if($scope.filters.searchNationalFilter($scope.list[j])){
+                            if($scope.filters.searchResearchFilter($scope.list[j])){
+                                if($scope.filters.searchSubjectFilter($scope.list[j])){
+                                    filteredData.push($scope.list[j]);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
             var geoObjects = [];
-            for(var i in $scope.list){
-                if(!$scope.list[i].university.geo[0]) continue;
-                console.log($scope.list[i].university.geo)
+
+            for(var i in filteredData){
+                if(!filteredData[i].university.geo[0]) continue;
                 geoObjects.push( new ymaps.GeoObject({
                     geometry: {
                         type: "Point",
-                        coordinates: $scope.list[i].university.geo
+                        coordinates: filteredData[i].university.geo
                     },
                     properties: {
-                        clusterCaption: $scope.list[i].subject,
-                        balloonContentBody: $scope.list[i].description+'<br/>'+'<a href="/breach/'+$scope.list[i]._id+'">детальніше</a>'
+                        clusterCaption: filteredData[i].subject,
+                        balloonContentBody: filteredData[i].description+'<br/>'+'<a href="/breach/'+filteredData[i]._id+'">детальніше</a>'
                     }
                 }) );
             }
-            console.log(geoObjects,'geoobjs')
-            var clusterer = new ymaps.Clusterer({clusterDisableClickZoom: true});
+            clusterer = new ymaps.Clusterer({clusterDisableClickZoom: true});
             clusterer.add(geoObjects);
             map.geoObjects.add(clusterer);
         }

@@ -1,4 +1,3 @@
-<script src="http://api-maps.yandex.ru/2.1/?lang=uk_UA" type="text/javascript"></script>
 <div ng-app="app"
      ng-controller="breachesListCtrl"
      ng-init="viewOptions={activeTab:'map'}"
@@ -33,3 +32,9 @@
 
 
 </div>
+<script src="http://api-maps.yandex.ru/2.1/?lang=uk_UA" type="text/javascript"></script>
+
+<script>
+    var mapAvailable;
+    ymaps.ready(function(){mapAvailable = true});
+</script>
