@@ -6340,6 +6340,8 @@ app
     .controller('mapCtrl', function($scope){
         console.log('mapCtrl init');
 
+        $('#map').height(parseInt($(window).height())-185);
+
         ymaps.ready(init);
         var map;
 
