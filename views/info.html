@@ -1,8 +1,9 @@
+<script src="http://api-maps.yandex.ru/2.1/?lang=uk_UA" type="text/javascript"></script>
 <div ng-app="app"
      ng-controller="breachesListCtrl"
      ng-init="viewOptions={activeTab:'map'}"
-     class="container">
-    <ul class="nav nav-tabs" role="tablist">
+     class="">
+    <ul class="nav nav-tabs container" role="tablist">
         <li ng-class="{active: viewOptions.activeTab === 'map'}">
             <a ng-click="viewOptions.activeTab = 'map'" href="#">Карта</a>
         </li>
@@ -11,7 +12,24 @@
         </li>
     </ul>
     <br/>
-    <div>
-        {{>filter}}
+    <div style="position: relative" ng-switch="viewOptions.activeTab">
+        <div ng-switch-when="map"
+             ng-controller="mapCtrl"
+             class="map-container">
+            <ul class="nav nav-tabs" role="tablist"><!--lust line--></ul>
+            <div id="map" style="width: 100%; height: 600px"></div>
+        </div>
+
+        <div>
+            <br ng-if="viewOptions.activeTab === 'map'"/>
+            {{>filter}}
+        </div>
+
+        <div ng-switch-default ng-controller="graphicsCtrl">
+            <div class="container">opop</div>
+        </div>
     </div>
+
+
+
 </div>

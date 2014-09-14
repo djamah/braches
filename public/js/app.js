@@ -6336,4 +6336,47 @@ app
                 $scope.status = 'sending';
             }
         };
+    })
+    .controller('mapCtrl', function($scope){
+        console.log('mapCtrl init');
+
+        ymaps.ready(init);
+        var map;
+
+        $scope.$watch('list', init);
+
+        function init(){
+            map = new ymaps.Map("map", {
+                center: [48.384465, 31.176479],
+                zoom: 6,
+                controls:[],
+            });
+            var collection = new ymaps.GeoObjectCollection({}, {
+                preset: 'twirl#redIcon', //все метки красные
+                draggable: true // и их можно перемещать
+            });
+            console.log($scope.list, '$scope.list');
+            var geoObjects = [];
+            for(var i in $scope.list){
+                if(!$scope.list[i].university.geo[0]) continue;
+                console.log($scope.list[i].university.geo)
+                geoObjects.push( new ymaps.GeoObject({
+                    geometry: {
+                        type: "Point",
+                        coordinates: $scope.list[i].university.geo
+                    },
+                    properties: {
+                        clusterCaption: $scope.list[i].subject,
+                        balloonContentBody: $scope.list[i].description+'<br/>'+'<a href="/breach/'+$scope.list[i]._id+'">детальніше</a>'
+                    }
+                }) );
+            }
+            console.log(geoObjects,'geoobjs')
+            var clusterer = new ymaps.Clusterer({clusterDisableClickZoom: true});
+            clusterer.add(geoObjects);
+            map.geoObjects.add(clusterer);
+        }
+    })
+    .controller('graphicsCtrl', function($scope){
+        console.log('graphicsCtrl init');
     });

@@ -1,4 +1,9 @@
-<div class="container well">
+<div ng-class="{
+        'bounceInRight': viewOptions.activeTab === 'map',
+        'bounceInLeft': viewOptions.activeTab !== 'map',
+        'filter-left': viewOptions.activeTab === 'map'
+    }"
+     class="container well animated" style="position: relative">
     <i class="glyphicon glyphicon-filter"></i>
 
     <div class="row filter">
