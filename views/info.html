@@ -1,3 +1,17 @@
-<div class="container">
-    <h1>Розділ відкриється трохи згодом</h1>
+<div ng-app="app"
+     ng-controller="breachesListCtrl"
+     ng-init="viewOptions={activeTab:'map'}"
+     class="container">
+    <ul class="nav nav-tabs" role="tablist">
+        <li ng-class="{active: viewOptions.activeTab === 'map'}">
+            <a ng-click="viewOptions.activeTab = 'map'" href="#">Карта</a>
+        </li>
+        <li ng-class="{active: viewOptions.activeTab !== 'map'}">
+            <a ng-click="viewOptions.activeTab = ''" href="#">Діаграми</a>
+        </li>
+    </ul>
+    <br/>
+    <div>
+        {{>filter}}
+    </div>
 </div>
