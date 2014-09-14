@@ -16,7 +16,8 @@ module.exports = function(req, res){
             item_level4: (item[0].level === 4),
             item_national: (item[0].national === true),
             item_research: (item[0].research === true),
-            admin: adminStatus
+            admin: adminStatus,
+            currentPage:{list:true}
         });
     })
 //    console.log(req.params('id'));

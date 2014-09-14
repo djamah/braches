@@ -33,20 +33,20 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                         {{#admin}}
-                        <li class="home"><a href="/"><i class="glyphicon glyphicon-home icons"></i></a></li>
-                        <li><a href="/form">Повідомити про порушення</a></li>
-                        <li><a href="/admin/list">Зареєстровані порушення</a></li>
-                        <li><a href="/info">Інфографіка</a></li>
-                        <li><a href="">Як захистити свої права</a></li>
-                        <li><a href="">Про проект</a></li>
+                        <li class="home {{#currentPage.home}}active{{/currentPage.home}}"><a href="/"><i class="glyphicon glyphicon-home icons"></i></a></li>
+                        <li class="{{#currentPage.form}}active{{/currentPage.form}}"><a href="/form">Повідомити про порушення</a></li>
+                        <li class="{{#currentPage.list}}active{{/currentPage.list}}"><a href="/admin/list">Зареєстровані порушення</a></li>
+                        <li class="{{#currentPage.info}}active{{/currentPage.info}}"><a href="/info">Інфографіка</a></li>
+                        <li class="{{#currentPage.content}}active{{/currentPage.content}}"><a href="">Як захистити свої права</a></li>
+                        <li class="{{#currentPage.about}}active{{/currentPage.about}}"><a href="">Про проект</a></li>
                         {{/admin}}
                         {{^admin}}
-                        <li class="home"><a href="/"><i class="glyphicon glyphicon-home icons"></i></a></li>
-                        <li><a href="/form">Повідомити про порушення</a></li>
-                        <li><a href="/all_breaches">Зареєстровані порушення</a></li>
-                        <li><a href="/info">Інфографіка</a></li>
-                        <li><a href="">Як захистити свої права</a></li>
-                        <li><a href="">Про проект</a></li>
+                        <li class="home {{#currentPage.home}}active{{/currentPage.home}}"><a href="/"><i class="glyphicon glyphicon-home icons"></i></a></li>
+                        <li class="{{#currentPage.form}}active{{/currentPage.form}}"><a href="/form">Повідомити про порушення</a></li>
+                        <li class="{{#currentPage.list}}active{{/currentPage.list}}"><a href="/all_breaches">Зареєстровані порушення</a></li>
+                        <li class="{{#currentPage.info}}active{{/currentPage.info}}"><a href="/info">Інфографіка</a></li>
+                        <li class="{{#currentPage.content}}active{{/currentPage.content}}"><a href="">Як захистити свої права</a></li>
+                        <li class="{{#currentPage.about}}active{{/currentPage.about}}"><a href="">Про проект</a></li>
                         {{/admin}}
                     </ul>
                 </div>

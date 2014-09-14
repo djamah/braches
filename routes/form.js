@@ -7,5 +7,12 @@
  */
 
 module.exports = function(req, res){
-    res.render('form', { title: 'breaches'});
+
+    if(req.user)
+        var adminStatus = req.user.level === 1;
+    res.render('form', {
+        title: 'breaches',
+        admin: adminStatus,
+        currentPage:{form:true}
+    });
 };

@@ -5,5 +5,10 @@ module.exports = function(req, res){
     if(!adminStatus){
         res.redirect('/');
     }
-    res.render('admin/list', { partials: {filter: 'partials/filter'}, title: 'braches', admin: adminStatus});
+    res.render('admin/list', {
+        partials: {filter: 'partials/filter'},
+        title: 'braches',
+        admin: adminStatus,
+        currentPage:{list:true}
+    });
 };
