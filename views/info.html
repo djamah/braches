@@ -1,6 +1,6 @@
 <div ng-app="app"
      ng-controller="breachesListCtrl"
-     ng-init="viewOptions={activeTab:'map'}"
+     ng-init="viewOptions={activeTab:''}"
      class="">
     <ul class="nav nav-tabs container" role="tablist">
         <li ng-class="{active: viewOptions.activeTab === 'map'}">
@@ -25,7 +25,15 @@
         </div>
 
         <div ng-switch-default ng-controller="graphicsCtrl">
-            <div class="container">opop</div>
+            <div class="container">
+                <div class="chart-regions-container">
+
+                    <div>
+                        <canvas piechart legend=true options="optionsRegions" data="chartReg" height="300" width=""></canvas>
+                    </div>
+
+                </div>
+            </div>
         </div>
     </div>
 
