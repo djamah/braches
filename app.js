@@ -47,17 +47,27 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/form', routes.form);
 app.get('/info', routes.info);
+app.get('/about', routes.about);
+
+app.get('/mechanism', routes.content.mechanism_category);
+app.get('/clarification', routes.content.clarification_category);
+app.get('/content/:id', routes.content.content_item);
+
 app.get('/all_breaches', routes.all_breaches);
 app.post('/all_breaches_list', routes.all_breaches_list);
 app.get('/breach/:id', routes.breach);
 app.post('/send_breach', routes.send_breach);
 
-
-
 app.get('/login', routes.admin.login);
 app.get('/admin/list', routes.admin.list);
 app.get('/admin/breach/:id', routes.admin.breach);
 
+app.get('/admin/mechanism', routes.admin.content.mechanism_category);
+app.get('/admin/clarification', routes.admin.content.clarification_category);
+app.get('/admin/content/:id', routes.admin.content.content_item);
+app.post('/admin/content/remove', routes.admin.content.remove_item);
+app.post('/admin/new_content', routes.admin.content.newcontent);
+app.post('/admin/update_content', routes.admin.content.updatecontent);
 
 passport.use(new LocalStrategy( routes.admin.verify));
 passport.serializeUser(function(user, done){
@@ -75,6 +85,7 @@ app.post('/login', passport.authenticate('local', {
     , failureRedirect: '/login'
 }));
 app.post('/update_post', routes.admin.update_breach);
+app.post('/remove_post', routes.admin.remove_breach);
 
 
 

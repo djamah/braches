@@ -2,6 +2,7 @@
     <article class="well breach_item" id="{{item.id}}">
         <a href="/admin/list" class="glyphicon glyphicon-arrow-left"></a>
         <!--<h5>{{item.subject}}</h5>-->
+        <a class="btn btn-lg btn-danger center-block" id="remove">Видалити</a>
         <a class="btn btn-lg btn-success center-block" id="update">Оновити</a>
         <h5>
             <input class="expand" id="subject" type="text" value="{{item.subject}}"/>
@@ -21,6 +22,15 @@
             {{/item.publish}}
             <label for="publish">Опубліковано</label>
         </div>
+        <div>
+            {{#item.fixed}}
+            <input type="checkbox" id="fixed" checked/>
+            {{/item.fixed}}
+            {{^item.fixed}}
+            <input type="checkbox" id="fixed"/>
+            {{/item.fixed}}
+            <label for="fixed">Порушення виправлено</label>
+        </div>
         <h5>Додаткові матеріали</h5>
         <div class="post">
             <a class="file_link" href=""><i class="glyphicon glyphicon-paperclip"></i> Заява.doc </a>
@@ -39,15 +49,15 @@
 
                 <div>
                     <span>Форма власності:
-                        {{#item_level2}}
+                        {{#item_gov}}
                             <span>державний<!--2--></span>
-                        {{/item_level2}}
-                        {{#item_level3}}
+                        {{/item_gov}}
+                        {{#item_com}}
                             <span>комунальний<!--3--></span>
-                        {{/item_level3}}
-                        {{#item_level4}}
+                        {{/item_com}}
+                        {{#item_private}}
                             <span>приватний<!--4--></span>
-                        {{/item_level4}}
+                        {{/item_private}}
                     </span>
                 </div>
                 <div>
@@ -86,10 +96,21 @@
                 description: $('#description').val(),
                 publish: $('#publish').is(':checked'),
                 national: $('#national').is(':checked'),
-                research: $('#research').is(':checked')
+                research: $('#research').is(':checked'),
+                fixed: $('#fixed').is(':checked')
             })
                     .success(function(){
                         alert('оновлено');
+                    });
+        });
+        $('#remove').click(function(){
+            if(!confirm('Впевнений?')) return;
+            $.post('/remove_post', {
+                id: $('.breach_item').attr('id')
+            })
+                    .success(function(){
+                        alert('видалено');
+                        location.pathname = '/admin/list';
                     });
         });
     });

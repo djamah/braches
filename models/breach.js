@@ -6,7 +6,7 @@ var breachSchema = db.Schema({
         name: String,
         geo: [Number, Number]
     },
-    level: Number,
+    owner: String,
     national: Boolean,
     research: Boolean,
     department: String,
@@ -17,7 +17,8 @@ var breachSchema = db.Schema({
     email: String,
 
     date: Date,
-    publish: Boolean
+    publish: Boolean,
+    fixed: Boolean
 });
 
 var Breach = db.model('Breach', breachSchema);

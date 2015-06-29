@@ -1,0 +1,100 @@
+<div class="container content single">
+    <input id="preview_img" placeholder="url заглавної картинки" type="text" value="{{item.preview_img}}"/>
+
+    <select id="category">
+        <option value="">-рубрика-</option>
+        <option value="mechanism"
+                {{#isMechanism}}selected="selected"{{/isMechanism}}>
+            Механізми захисту
+        </option>
+        <option value="clarification"
+                {{#isClarification}}selected="selected"{{/isClarification}}>
+            Роз'яснення норм
+        </option>
+    </select>
+    <select id="visual">
+        <option value="">-відображення-</option>
+        <option value="expand"
+                {{#isExpand}}selected="selected"{{/isExpand}}>
+            Виділити
+        </option>
+    </select>
+    <label for="show_main_page">Виводити на головну</label>
+    <input type="checkbox" id="show_main_page"
+           {{#item.show_main_page}}checked="checked"{{/item.show_main_page}}/>
+
+    <label for="publish">Опублікувати</label>
+    <input type="checkbox" id="publish"
+           {{#item.publish}}checked="checked"{{/item.publish}} />
+    <h1>
+        <input id="title" placeholder="Заголовок" type="text" value="{{item.title}}"/>
+    </h1>
+    <textarea name="preview" placeholder="Текст анонсу" id="preview" cols="150" rows="5">{{item.preview}}</textarea>
+    <textarea name="content" placeholder="Основний текст" id="content" cols="150" rows="20">{{item.content}}</textarea>
+    <a class="btn btn-lg btn-success center-block" id="update" style="margin: 1em 0">
+        {{#isNewPost}}
+        Створити
+        {{/isNewPost}}
+        {{^isNewPost}}
+        Оновити
+        {{/isNewPost}}
+    </a>
+
+    {{^isNewPost}}
+    <a class="btn btn-lg btn-danger center-block" id="remove" style="margin: 1em 0">Видалити</a>
+    {{/isNewPost}}
+</div>
+<script src="//cdn.ckeditor.com/4.4.5/standard/ckeditor.js"></script>
+<script>
+    var _id = "{{item._id}}";
+    $(function(){
+
+        CKEDITOR.replace( 'content' );
+
+
+        $('#update').click(function(){
+            if(!$('#category').val()){
+                alert('Треба вказати рубрику');
+                return;
+            }
+            var isNew = location.pathname === '/admin/content/new/';
+            var url = '/admin/update_content';
+            if(isNew){
+                url = '/admin/new_content';
+            }
+
+            var data = {
+                id:_id,
+                title: $('#title').val(),
+                content: CKEDITOR.instances.content.getData(),
+                publish: $('#publish').is(':checked'),
+                category: $('#category').val(),
+                visual: $('#visual').val(),
+                preview: $('#preview').val(),
+                preview_img: $('#preview_img').val(),
+                show_main_page: $('#show_main_page').is(':checked'),
+            };
+
+            $.post(url, data)
+                    .success(function(){
+                        alert('Збережено!');
+                    })
+                    .error(function(){
+                        alert('ой');
+                    });
+        });
+
+        $('#remove').click(function(){
+            if(confirm('Впевнений?')){
+                $.post('/admin/content/remove', {id:_id})
+                        .success(function(){
+                            alert('Видалено');
+                            location.pathname = '/';
+                        })
+                        .error(function(){
+                            alert('ой');
+                        });
+            }
+        })
+    });
+</script>

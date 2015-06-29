@@ -1,80 +1,33 @@
 <div class="jumbotron">
     <div class="container">
-        <h1>Profrights.org</h1>
+        <!--<h1>Profrights.org</h1>-->
+        <img src="/img/profrights_logo.png" alt="profrights logo"/>
+        <br/>
+        <br/>
         <p>
             Цей сайт створено для моніторингу реалізації Закону "Про вищу освіту" і захисту прав викладачів та студентів.
         </p>
         <p><a href="/form" class="btn btn-primary btn-lg">Повідомити про порушення »</a></p>
     </div>
 </div>
-<div class="container" style="margin-bottom: 40px">
+<div class="container content-wrap" style="margin-bottom: 40px">
     <!-- Example row of columns -->
     <div class="row">
-        <div class="col-md-4">
-            <h2>Аналітична стаття</h2>
+        {{#data}}
+
+        <div class="item">
+            <a href="/content/{{_id}}">
+                <img src="{{preview_img}}" alt="img"/>
+            </a>
+            <h2>
+                <a href="/content/{{_id}}">{{title}}</a>
+            </h2>
             <p>
-                Про неприпустимість примушення до праці студентів в якості дисциплінарних покарань.
+                {{preview}}
             </p>
-            <p><a class="btn btn-default" href="#" role="button">Детальніше »</a></p>
-        </div>
-        <div class="col-md-4">
-            <h2>Заголовок</h2>
-            <p>
-                Та короткий опис ще одного цікавого матеріалу правозахисної тематики гарно оформлений та проілюстрований.
-            </p>
-            <p><a class="btn btn-default" href="#" role="button">Детальніше »</a></p>
-        </div>
-        <div class="col-md-4">
-            <h2>Звіт</h2>
-            <p>
-                Про роботу за минулий 2013-й рік, та оголошення плану діяльності на наступний квартал.
-            </p>
-            <p><a class="btn btn-default" href="#" role="button">Детальніше »</a></p>
+            <p><a class="btn btn-default" href="/content/{{_id}}" role="button">Детальніше »</a></p>
         </div>
 
-        <div class="col-md-4">
-            <h2>Заголовок</h2>
-            <p>
-                Та короткий опис ще одного цікавого матеріалу правозахисної тематики гарно оформлений та проілюстрований.
-            </p>
-            <p><a class="btn btn-default" href="#" role="button">Детальніше »</a></p>
-        </div>
-
-
-        <div class="col-md-4">
-            <h2>Звіт</h2>
-            <p>
-                Про роботу за минулий 2013-й рік, та оголошення плану діяльності на наступний квартал.
-            </p>
-            <p><a class="btn btn-default" href="#" role="button">Детальніше »</a></p>
-        </div>
-        <div class="col-md-4">
-            <h2>Аналітична стаття</h2>
-            <p>
-                Про неприпустимість примушення до праці студентів в якості дисциплінарних покарань.
-            </p>
-            <p><a class="btn btn-default" href="#" role="button">Детальніше »</a></p>
-        </div>
-        <div class="col-md-4">
-            <h2>Аналітична стаття</h2>
-            <p>
-                Про неприпустимість примушення до праці студентів в якості дисциплінарних покарань.
-            </p>
-            <p><a class="btn btn-default" href="#" role="button">Детальніше »</a></p>
-        </div>
-        <div class="col-md-4">
-            <h2>Заголовок</h2>
-            <p>
-                Та короткий опис ще одного цікавого матеріалу правозахисної тематики гарно оформлений та проілюстрований.
-            </p>
-            <p><a class="btn btn-default" href="#" role="button">Детальніше »</a></p>
-        </div>
-        <div class="col-md-4">
-            <h2>Звіт</h2>
-            <p>
-                Про роботу за минулий 2013-й рік, та оголошення плану діяльності на наступний квартал.
-            </p>
-            <p><a class="btn btn-default" href="#" role="button">Детальніше »</a></p>
-        </div>
+        {{/data}}
     </div>
 </div>

@@ -37,16 +37,10 @@
         <div class="form-group">
             <label class="col-sm-4 control-label">Власність</label>
 
-            <div class="col-sm-8">
-                <label class="radio-inline">
-                    <input ng-model='form.level' type="radio" value="1"> державний
-                </label>
-                <label class="radio-inline">
-                    <input ng-model='form.level' type="radio" value="2"> комунальний
-                </label>
-                <label class="radio-inline">
-                    <input ng-model='form.level' type="radio" value="3"> приватний
-                </label>
+            <div class="col-sm-8" style="padding-top: 7px">
+                <span ng-if="getOwner()==='gov'">державна</span>
+                <span ng-if="getOwner()==='com'">комунальна</span>
+                <span ng-if="getOwner()==='private'">приватна</span>
             </div>
         </div>
         <div class="form-group">

@@ -9,6 +9,7 @@
             <table class="table table-striped table-hover">
                 <thead>
                 <tr>
+                    <th>Випра- влено</th>
                     <th>Область / Місто</th>
                     <th>ВНЗ</th>
                     <th>Власність</th>
@@ -20,8 +21,17 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="item in list | filter: filters.searchCityFilter | filter: filters.searchLevelFilter | filter: filters.searchNationalFilter | filter: filters.searchResearchFilter| filter: filters.searchSubjectFilter"
-                    ng-click="read_more()">
+                <tr ng-repeat="item in list | filter: filters.searchCityFilter | filter: filters.searchOwnerFilter | filter: filters.searchNationalFilter | filter: filters.searchResearchFilter| filter: filters.searchSubjectFilter| filter: filters.searchFixedFilter"
+                    ng-click="read_more()"
+                    ng-class="{success:item.fixed}">
+                    <td>
+                        <div>
+                            <span>
+                                <i ng-show="item.fixed" class="glyphicon glyphicon-ok icons"></i>
+                                <i ng-hide="item.fixed" class="glyphicon glyphicon-remove icons"></i>
+                            </span>
+                        </div>
+                    </td>
                     <td class="post_town"><span>{{item.city}}</span></td>
                     <td class="post_university">
                         <span data-toggle="tooltip"
@@ -31,9 +41,9 @@
                         </span>
                     </td>
                     <td class="post_level">
-                        <span ng-show="item.level===2">держ.</span>
-                        <span ng-show="item.level===3">ком.</span>
-                        <span ng-show="item.level===4">приват.</span>
+                        <span ng-if="item.owner==='gov'">державна</span>
+                        <span ng-if="item.owner==='com'">комунальна</span>
+                        <span ng-if="item.owner==='private'">приватна</span>
                     </td>
                     <td class="post_status">
                         <div>

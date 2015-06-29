@@ -1,3 +1,4 @@
+{{=<% %>=}}
 <div ng-class="{
         'bounceInRight': viewOptions.activeTab === 'map',
         'bounceInLeft': viewOptions.activeTab !== 'map',
@@ -24,16 +25,16 @@
         <div class="col-lg-2">
             <div>Власність</div>
             <span class="small-input">
-                <input ng-model="f.level.second" type="checkbox" name="level" value="2" id="id_level_2"/>
-                <label for="id_level_2">державний</label>
+                <input ng-model="f.owner.gov" type="checkbox" name="level" value="gov" id="id_owner_gov"/>
+                <label for="id_owner_gov">державний</label>
             </span><br/>
             <span class="small-input">
-                <input ng-model="f.level.third" type="checkbox" name="level" value="3" id="id_level_3"/>
-                <label for="id_level_3">комунальний</label>
+                <input ng-model="f.owner.com" type="checkbox" name="level" value="com" id="id_owner_com"/>
+                <label for="id_owner_com">комунальний</label>
             </span><br/>
             <span class="small-input">
-                <input ng-model="f.level.fourth" type="checkbox" name="level" value="4" id="id_level_4"/>
-                <label for="id_level_4">приватний</label>
+                <input ng-model="f.owner.private" type="checkbox" name="level" value="private" id="id_owner_private"/>
+                <label for="id_owner_private">приватний</label>
             </span>
         </div>
         <div class="col-lg-2">
@@ -45,6 +46,11 @@
             <span class="small-input">
                 <input ng-model="f.research" type="checkbox" id="id_research"/>
                 <label for="id_research">досл.</label>
+            </span>
+            <div>Поточний статус</div>
+            <span class="small-input">
+                <input ng-model="f.fixed" type="checkbox" id="id_fixed"/>
+                <label for="id_fixed">виправлено</label>
             </span>
         </div>
         <div class="col-lg-5">
@@ -61,3 +67,4 @@
         </div>
     </div>
 </div>
+<%={{ }}=%>

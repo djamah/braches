@@ -5,6 +5,7 @@ module.exports = function (req, res) {
     var breach = new Breach(req.body);
     breach.date = new Date();
     breach.publish = false;
+    breach.fixed = false;
     breach.save(function (err, item) {
         if (err) {
             console.log(err, 'errrr');

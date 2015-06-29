@@ -11,13 +11,13 @@ module.exports = function(req, res){
             title: 'braches',
             admin: adminStatus,
             item: item[0],
-            item_level2: (item[0].level === 2),
-            item_level3: (item[0].level === 3),
-            item_level4: (item[0].level === 4),
+            item_gov: (item[0].owner === 'gov'),
+            item_com: (item[0].owner === 'com'),
+            item_private: (item[0].owner === 'private'),
             item_national: (item[0].national === true),
             item_research: (item[0].research === true),
             currentPage:{list:true}
         });
-    })
+    });
 //    console.log(req.params('id'));
 };

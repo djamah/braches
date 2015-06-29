@@ -20,6 +20,15 @@ app
         };
 
         $scope.filters = {
+            searchFixedFilter: function(item){
+                if($scope.f){
+                    if($scope.f.fixed === true){
+                        if(item.fixed){
+                            return true;
+                        } else return false;
+                    } else return true;
+                } else return true;
+            },
             searchCityFilter: function(item){
 //                console.log('searchCityFilter');
                 if($scope.f){
@@ -44,16 +53,22 @@ app
                     } else return true;
                 } else return true;
             },
-            searchLevelFilter: function(item){
+            searchOwnerFilter: function(item){
+                //if(!$scope || !$scope.f || !$scope.f.level) return true;
+                //console.log($scope.f, '$scope.f.level');
+                //console.log(item, 'item');
+                //if($scope.f.level === item.level){
+                //    return true;
+                //} else return false;
 //                console.log('searchLevelFilter');
                 if($scope.f &&
-                    $scope.f.level &&
-                    ($scope.f.level.second || $scope.f.level.third || $scope.f.level.fourth ) ){
+                    $scope.f.owner &&
+                    ($scope.f.owner.gov || $scope.f.owner.com || $scope.f.owner.private ) ){
 
-                    switch (item.level){
-                        case 2: if($scope.f.level.second) return true; break;
-                        case 3: if($scope.f.level.third) return true; break;
-                        case 4: if($scope.f.level.fourth) return true; break;
+                    switch (item.owner){
+                        case 'gov': if($scope.f.owner.gov) return true; break;
+                        case 'com': if($scope.f.owner.com) return true; break;
+                        case 'private': if($scope.f.owner.private) return true; break;
                     }
 
                 } else return true;
@@ -79,9 +94,19 @@ app
 
     .controller('breachFormCtrl', function($scope, $http){
         $scope.options = options;
+        $scope.getOwner = function(){
+            var res = '';
+            for(var i in options.city[$scope.form.city]){
+                var item = options.city[$scope.form.city][i];
+                if(item.name === $scope.form.university.name){
+                    res = item.owner;
+                }
+            }
+            return res;
+        };
         $scope.submit = function(){
             if($scope.breachForm.$valid){
-                $scope.form.level = parseInt($scope.form.level);
+                $scope.form.owner = $scope.getOwner();
                 $scope.form.national = ($scope.form.national === 'true');
                 $scope.form.research = ($scope.form.research === 'true');
                 console.log($scope.form);
@@ -105,12 +130,13 @@ app
         var clusterer;
 
         $scope.$watch('f.city', rePaint);
-        $scope.$watch('f.level.second', rePaint);
-        $scope.$watch('f.level.third', rePaint);
-        $scope.$watch('f.level.fourth', rePaint);
+        $scope.$watch('f.owner.second', rePaint);
+        $scope.$watch('f.owner.third', rePaint);
+        $scope.$watch('f.owner.fourth', rePaint);
         $scope.$watch('f.national', rePaint);
         $scope.$watch('f.research', rePaint);
         $scope.$watch('f.subject', rePaint);
+        $scope.$watch('f.fixed', rePaint);
         function rePaint(){
             console.log('repaint');
             mapAvailable = true;
@@ -157,11 +183,13 @@ app
 
             for(var j in $scope.list){
                 if($scope.filters.searchCityFilter($scope.list[j])){
-                    if($scope.filters.searchLevelFilter($scope.list[j])){
+                    if($scope.filters.searchOwnerFilter($scope.list[j])){
                         if($scope.filters.searchNationalFilter($scope.list[j])){
                             if($scope.filters.searchResearchFilter($scope.list[j])){
                                 if($scope.filters.searchSubjectFilter($scope.list[j])){
-                                    filteredData.push($scope.list[j]);
+                                    if($scope.filters.searchFixedFilter($scope.list[j])){
+                                        filteredData.push($scope.list[j]);
+                                    }
                                 }
                             }
                         }
@@ -203,6 +231,7 @@ app
         $scope.$watch('f.national', toFilter);
         $scope.$watch('f.research', toFilter);
         $scope.$watch('f.subject', toFilter);
+        $scope.$watch('f.fixed', toFilter);
         $scope.$watch('list', toFilter);
 
         function toFilter(){
