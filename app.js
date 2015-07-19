@@ -16,6 +16,8 @@ var app = express();
 var passport = require('passport')
   , LocalStrategy = require('passport-local').Strategy;
 
+var multer  = require('multer');
+
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', './views');
@@ -38,6 +40,9 @@ app.use(express.session({ secret: 'keyboard cat' }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(app.router);
+
+app.use('/uploads', express.static(__dirname + "/uploads"));
+app.use(multer({dest: './uploads/'}));
 
 
 // development only

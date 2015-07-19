@@ -110,14 +110,40 @@ app
                 $scope.form.national = ($scope.form.national === 'true');
                 $scope.form.research = ($scope.form.research === 'true');
                 console.log($scope.form);
-                $http.post('send_breach', $scope.form)
-                    .success(function(data){
-                        $scope.status = 'success';
-                    })
-                    .error(function(){
-                        $scope.status = 'error';
-                    });
-                $scope.status = 'sending';
+
+
+                if($scope.form.files){
+                    var f = document.getElementById('file').files[0],
+                        r = new FileReader();
+                    r.onloadend = function(e){
+                        var data = e.target.result;
+
+
+                        //send you binary data via $http or $resource or do anything else with it
+
+                        $scope.form.files = data;
+                        $http.post('send_breach', $scope.form)
+                            .success(function(data){
+                                $scope.status = 'success';
+                            })
+                            .error(function(){
+                                $scope.status = 'error';
+                            });
+                        $scope.status = 'sending';
+                    };
+                    r.readAsArrayBuffer(f);
+                } else {
+                    $http.post('send_breach', $scope.form)
+                        .success(function(data){
+                            $scope.status = 'success';
+                        })
+                        .error(function(){
+                            $scope.status = 'error';
+                        });
+                    $scope.status = 'sending';
+                }
+
+
             }
         };
     })

@@ -2,6 +2,7 @@
 var Breach = require('../models/breach');
 
 module.exports = function (req, res) {
+    console.log(req.body, 'req');
     var breach = new Breach(req.body);
     breach.date = new Date();
     breach.publish = false;

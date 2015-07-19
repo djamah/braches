@@ -12,6 +12,7 @@
     "require-directory": "~1.2.0",
     "mongoose": "~3.8.8",
     "passport": "*",
-    "passport-local": "*"
+    "passport-local": "*",
+    "multer": "~0.1.8"
   }
 }
