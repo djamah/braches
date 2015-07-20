@@ -1,7 +1,22 @@
 
-var app = angular.module('app', ['localytics.directives', 'angles']);
+var app = angular.module('app', ['localytics.directives', 'angles', 'ngFileUpload']);
 
 app
+    .directive('fileModel', ['$parse', function ($parse) {
+        return {
+            restrict: 'A',
+            link: function(scope, element, attrs) {
+                var model = $parse(attrs.fileModel);
+                var modelSetter = model.assign;
+
+                element.bind('change', function(){
+                    scope.$apply(function(){
+                        modelSetter(scope, element[0].files[0]);
+                    });
+                });
+            }
+        };
+    }])
     .controller('breachesListCtrl', function($scope, $http, $location){
         $http.post('/all_breaches_list', {})
             .success(function(data){
@@ -111,29 +126,51 @@ app
                 $scope.form.research = ($scope.form.research === 'true');
                 console.log($scope.form);
 
+                var fd = new FormData();
+                fd.append('form', JSON.stringify($scope.form));
 
-                if($scope.form.files){
-                    var f = document.getElementById('file').files[0],
-                        r = new FileReader();
-                    r.onloadend = function(e){
-                        var data = e.target.result;
+                if($scope.File){
+                    console.log($scope.File,'$scope.File')
 
+                    fd.append('file', $scope.File);
 
-                        //send you binary data via $http or $resource or do anything else with it
-
-                        $scope.form.files = data;
-                        $http.post('send_breach', $scope.form)
-                            .success(function(data){
-                                $scope.status = 'success';
-                            })
-                            .error(function(){
-                                $scope.status = 'error';
-                            });
-                        $scope.status = 'sending';
-                    };
-                    r.readAsArrayBuffer(f);
+                    //for(var i in $scope.form){
+                    //    fd.append(i, $scope.form[i]);
+                    //}
+                    $http.post('send_breach', fd, {
+                        transformRequest: angular.identity,
+                        headers: {'Content-Type': undefined}
+                    })
+                        .success(function(){
+                            $scope.status = 'success';
+                        })
+                        .error(function(){
+                        });
+                    //$upload.
+                    //var f = document.getElementById('file').files[0],
+                    //    r = new FileReader();
+                    //r.onloadend = function(e){
+                    //    var data = e.target.result;
+                    //
+                    //
+                    //    //send you binary data via $http or $resource or do anything else with it
+                    //
+                    //    $scope.form.files = data;
+                    //    $http.post('send_breach', $scope.form)
+                    //        .success(function(data){
+                    //            $scope.status = 'success';
+                    //        })
+                    //        .error(function(){
+                    //            $scope.status = 'error';
+                    //        });
+                    //    $scope.status = 'sending';
+                    //};
+                    //r.readAsArrayBuffer(f);
                 } else {
-                    $http.post('send_breach', $scope.form)
+                    $http.post('send_breach', fd, {
+                        transformRequest: angular.identity,
+                        headers: {'Content-Type': undefined}
+                    })
                         .success(function(data){
                             $scope.status = 'success';
                         })

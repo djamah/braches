@@ -32,6 +32,7 @@ app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.static(path.join(__dirname, 'uploads')));
 
 app.use(express.cookieParser());
 app.use(express.bodyParser());
@@ -41,9 +42,23 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(app.router);
 
-app.use('/uploads', express.static(__dirname + "/uploads"));
-app.use(multer({dest: './uploads/'}));
+//app.use('/uploads', express.static(__dirname + "/uploads"));
 
+
+//app.use(multer({
+//    dest: './public/uploads/',
+//    rename: function (fieldname, filename) {
+//        return filename+Date.now();
+//    },
+//    onFileUploadStart: function (file) {
+//        console.log('start file up');
+//    },
+//    onFileUploadComplete: function (file) {
+//        console.log('end file up');
+//    }
+//}));
+
+//app.set('uploads', __dirname + '/public/uploads');
 
 // development only
 if ('development' == app.get('env')) {
@@ -61,7 +76,26 @@ app.get('/content/:id', routes.content.content_item);
 app.get('/all_breaches', routes.all_breaches);
 app.post('/all_breaches_list', routes.all_breaches_list);
 app.get('/breach/:id', routes.breach);
-app.post('/send_breach', routes.send_breach);
+
+app.set('uploads', __dirname + './uploads');
+var upload = multer({
+    dest: './uploads',
+    rename: function (fieldname, filename) {
+        return filename+Date.now();
+    },
+    onFileUploadStart: function (file) {
+        console.log(file.originalname + ' is starting ...')
+    },
+    onFileUploadComplete: function (file) {
+        console.log(file.fieldname + ' uploaded to  ' + file.path)
+        //done=true;
+    },
+    onError: function(){
+        console.log('oops');
+    }
+});
+//var upload = require('fileupload').createFileUpload('/uploadDir').middleware;
+app.post('/send_breach', upload, routes.send_breach);
 
 app.get('/login', routes.admin.login);
 app.get('/admin/list', routes.admin.list);

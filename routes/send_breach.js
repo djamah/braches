@@ -1,10 +1,26 @@
 
 var Breach = require('../models/breach');
+var fs = require('fs');
 
 module.exports = function (req, res) {
     console.log(req.body, 'req');
-    var breach = new Breach(req.body);
+    console.log(req.files.file, 'req');
+
+    var oldPath = req.files.file.path;
+    var newPath = 'public/uploads/'+Date.now()+req.files.file.originalFilename;
+
+    fs.readFile(oldPath , function(err, data) {
+        fs.writeFile(newPath, data, function(err) {
+            fs.unlink(oldPath, function(){
+                if(err) throw err;
+                res.send("File uploaded to: " + newPath);
+            });
+        });
+    });
+    var breach = new Breach(JSON.parse(req.body.form));
     breach.date = new Date();
+    breach.file = newPath.substr(6);
+    console.log(breach.file);
     breach.publish = false;
     breach.fixed = false;
     breach.save(function (err, item) {

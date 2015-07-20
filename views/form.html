@@ -75,8 +75,7 @@
                        type="text"
                        size="50"
                        class="form-control"
-                       placeholder="Назва факультету (інституту)"
-                       required/>
+                       placeholder="Назва факультету (інституту)"/>
             </div>
         </div>
         <div class="form-group">
@@ -87,8 +86,7 @@
                        type="text"
                        size="50"
                        class="form-control"
-                       placeholder="Назва кафедри"
-                       required/>
+                       placeholder="Назва кафедри"/>
             </div>
         </div>
         <div class="form-group">
@@ -99,8 +97,7 @@
                        type="text"
                        size="50"
                        class="form-control"
-                       placeholder="Посада"
-                       required/>
+                       placeholder="Посада"/>
             </div>
         </div>
         <div class="form-group">
@@ -131,8 +128,14 @@
         <div class="form-group">
             <label for="file" class="col-sm-4 control-label">Додати файл (pdf, doc, jpeg, tiff)</label>
             <div class="col-sm-6" style="padding-top: 10px">
-                <div class="comment add_file"><i>додаткові матеріали<br/>(можна додати декілька файлів)</i></div>
-                <input ng-model="form.files" style="width: 230px" id="file" type="file" multiple/>
+                <div class="comment add_file">
+                    <i>додаткові матеріали
+                    <!--<br/>(можна додати декілька файлів)-->
+                    </i>
+                </div>
+                <input file-model="File" style="width: 230px" id="file" type="file"/>
+                <!--<input ng-model="form.files" style="width: 230px" id="file" type="file" multiple/>-->
+                <!--<button id="file" class="btn btn-default" ng-file-select ng-file-change="upload($files)" ng-multiple="multiple">-->
             </div>
         </div>
         <div class="form-group">
