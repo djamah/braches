@@ -8,6 +8,11 @@ var express = require('express');
 var requireDirectory = require('require-directory');
 var routes = requireDirectory(module, './routes');
 
+var Mailgun = require('mailgun-js');
+var api_key = 'key-f12bbfd36a3aa991e1fb33419d68f7fc';
+var domain = 'sandbox63b10041169a4ec5b323d3b87877596b.mailgun.org';
+var from_who = 'sandbox <postmaster@sandbox63b10041169a4ec5b323d3b87877596b.mailgun.org>';
+
 var http = require('http');
 var path = require('path');
 
@@ -125,7 +130,8 @@ app.post('/login', passport.authenticate('local', {
 }));
 app.post('/update_post', routes.admin.update_breach);
 app.post('/remove_post', routes.admin.remove_breach);
-
+app.post('/accept_post', routes.admin.accept_breach);
+app.post('/decline_post', routes.admin.decline_breach);
 
 
 http.createServer(app).listen(app.get('port'), function(){

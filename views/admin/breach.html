@@ -13,7 +13,7 @@
             </p>
             <p class="author_name"><i>{{item.position}}, {{item.city}}</i></p>
         </div>
-        <div>
+     <!--   <div>
             {{#item.publish}}
             <input type="checkbox" id="publish" checked/>
             {{/item.publish}}
@@ -21,7 +21,7 @@
             <input type="checkbox" id="publish"/>
             {{/item.publish}}
             <label for="publish">Опубліковано</label>
-        </div>
+        </div>-->
         <div>
             {{#item.fixed}}
             <input type="checkbox" id="fixed" checked/>
@@ -84,6 +84,21 @@
                 </div>
             </div>
         </div>
+        <div>
+	      {{#item_accepted}}
+          <a class="btn btn-lg btn-success" disabled id="accept">Прийняти</a>
+          {{/item_accepted}}
+          {{^item_accepted}}
+          <a class="btn btn-lg btn-success" id="accept">Прийняти</a>
+          {{/item_accepted}}
+        
+          {{#item_declined}}
+          <a class="btn btn-lg btn-danger" disabled style="float:right" id="decline">Відхилити</a>
+          {{/item_declined}}
+          {{^item_declined}}
+          <a class="btn btn-lg btn-danger" style="float:right" id="decline">Відхилити</a>
+          {{/item_declined}}
+        </div>
     </article>
 </div>
 <script>
@@ -111,6 +126,25 @@
                     .success(function(){
                         alert('видалено');
                         location.pathname = '/admin/list';
+                    });
+        });
+               $('#accept').one("click", function(){
+            $.post('/accept_post', {
+                id: $('.breach_item').attr('id'),
+                state: 1,
+            })
+                    .success(function(){
+                        alert('Скаргу прийнято');
+                        
+                    });
+        });
+        $('#decline').one("click", function(){
+            $.post('/decline_post', {
+                id: $('.breach_item').attr('id'),
+                state: 2,
+            })
+                    .success(function(){
+                        alert('Скаргу відхилено');
                     });
         });
     });

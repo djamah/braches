@@ -21,7 +21,7 @@
                 <tbody>
                 <tr ng-repeat="item in list | filter: filters.searchCityFilter | filter: filters.searchOwnerFilter | filter: filters.searchNationalFilter | filter: filters.searchResearchFilter| filter: filters.searchSubjectFilter| filter: filters.searchFixedFilter"
                     ng-click="read_more()"
-                    ng-class="{publish: item.publish, success: item.fixed}">
+                    ng-class="{publish: item.state===1, success: item.fixed, decline: item.state===2}">
                     <td>
                         <div>
                             <span>

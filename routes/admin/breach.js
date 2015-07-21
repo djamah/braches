@@ -18,6 +18,8 @@ module.exports = function(req, res){
 
             item_national: (item[0].national === true),
             item_research: (item[0].research === true),
+            item_accepted: (item[0].state === 1),
+            item_declined: (item[0].state === 2),
             admin: adminStatus,
             currentPage:{list:true}
         });

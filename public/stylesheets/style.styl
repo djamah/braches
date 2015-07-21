@@ -127,6 +127,20 @@ select
   width 100%
 .admin-area-page
   tr
+    &.decline
+      position relative
+      .post_town:before, .post_description:after
+        content ''
+        display inline-block
+        background-color lightcoral
+        height 30px
+        width 5px
+        position absolute
+        top 3px
+      .post_town:before
+        left 0
+      .post_description:after
+        right 0
     &.publish
       position relative
       .post_town:before, .post_description:after

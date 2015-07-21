@@ -10,7 +10,7 @@ module.exports = function(req, res){
         })
     } else {
         if(1){
-            Breach.find({publish: true}, function(err, data){//
+            Breach.find({state: 1}, function(err, data){//
                 res.json(data);
             });
         } else {

@@ -18,7 +18,8 @@ var breachSchema = db.Schema({
 
     file: String,
     date: Date,
-    publish: Boolean,
+    state: Number, //1 - accepted, 2 - declined
+    //publish: Boolean,
     fixed: Boolean
 });
 
