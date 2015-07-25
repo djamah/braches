@@ -10,11 +10,11 @@
         <p><a href="/form" class="btn btn-primary btn-lg">Повідомити про порушення »</a></p>
     </div>
 </div>
-<div class="container content-wrap" style="margin-bottom: 40px">
+<div class="container" style="margin-bottom: 40px">
     <!-- Example row of columns -->
+
     <div class="row">
         {{#data}}
-
         <div class="item">
             <a href="/content/{{_id}}">
                 <img src="{{preview_img}}" alt="img"/>
@@ -27,7 +27,18 @@
             </p>
             <p><a class="btn btn-default" href="/content/{{_id}}" role="button">Детальніше »</a></p>
         </div>
-
         {{/data}}
+        {{^data}}
+        <img src="/img/info.png" />
+        {{/data}}
+    </div>
+    <div class="row">
+      {{^data}}
+      <div>
+      <p style="color: #134E84"><strong>Profrights.org не поширює інформацію з обмеженим доступом.</strong></p>
+      <p><strong>Profrights.org оцінює вірогідність причетності особи до правопорушення або неетичної поведінки і поширює відповідну інформацію лише у випадку,
+          коли така вірогідність, на думку Profrights.org, є високою і ґрунтується на фактичних даних, оприлюднених у достовірних джерелах.</strong></p>
+      {{/data}}
+    </div>
     </div>
 </div>
