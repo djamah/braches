@@ -91,7 +91,7 @@
           {{^item_accepted}}
           <a class="btn btn-lg btn-success" id="accept">Прийняти</a>
           {{/item_accepted}}
-        
+
           {{#item_declined}}
           <a class="btn btn-lg btn-danger" disabled style="float:right" id="decline">Відхилити</a>
           {{/item_declined}}
@@ -135,7 +135,7 @@
             })
                     .success(function(){
                         alert('Скаргу прийнято');
-                        
+
                     });
         });
         $('#decline').one("click", function(){
