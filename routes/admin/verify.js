@@ -2,12 +2,26 @@
  * Created by djamah on 6/13/14.
  */
 
-module.exports = function(username, password, done){
+var   user = require("../../models/user")
+    , passport = require('passport')
+    , bcrypt = require('bcrypt');
 
-    if(username==='admin'&&password==='password'){
-        return done(null, {level:1});
-    }
-    else
-        return done(null, false);
+module.exports = function (username, password, done) {
+    user.find({
+        username:username
+    }, function (err, items) {
+        if(err) throw err;
+        if(!items.length) return;
+        var item = items[0];
 
+        bcrypt.compare(password, item.password, function(err, res){
+            if(err) throw err;
+            if(res){
+                return done(null, item);
+            }else{
+                return done(null, false, {message:'invalid password'});
+            }
+        });
+    });
 };
+

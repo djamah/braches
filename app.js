@@ -113,7 +113,9 @@ app.post('/admin/content/remove', routes.admin.content.remove_item);
 app.post('/admin/new_content', routes.admin.content.newcontent);
 app.post('/admin/update_content', routes.admin.content.updatecontent);
 
-passport.use(new LocalStrategy( routes.admin.verify));
+
+
+passport.use( new LocalStrategy( routes.admin.verify ) );
 passport.serializeUser(function(user, done){
     done(null, user);
 });
