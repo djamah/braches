@@ -302,7 +302,7 @@ app
 
             for(var j in $scope.list){
                 if($scope.filters.searchCityFilter($scope.list[j])){
-                    if($scope.filters.searchLevelFilter($scope.list[j])){
+                    if($scope.filters.searchOwnerFilter($scope.list[j])){
                         if($scope.filters.searchNationalFilter($scope.list[j])){
                             if($scope.filters.searchResearchFilter($scope.list[j])){
                                 if($scope.filters.searchSubjectFilter($scope.list[j])){
