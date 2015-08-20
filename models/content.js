@@ -5,7 +5,6 @@ var contentSchema = db.Schema({
     content: String,
     date: Date,
     publish: Boolean,
-    category: String,
     visual: String,
     preview: String,
     preview_img: String,

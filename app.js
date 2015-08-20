@@ -37,7 +37,7 @@ app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
-//app.use(express.static(path.join(__dirname, 'uploads')));
+//app.use(express.static(path.join(__dirname, 'upl+*oads')));
 
 app.use(express.cookieParser());
 app.use(express.bodyParser());
@@ -74,8 +74,8 @@ app.get('/form', routes.form);
 app.get('/info', routes.info);
 app.get('/about', routes.about);
 
-app.get('/mechanism', routes.content.mechanism_category);
-app.get('/clarification', routes.content.clarification_category);
+app.get('/content', routes.content.all_content);
+//app.get('/clarification', routes.content.clarification_category);
 app.get('/content/:id', routes.content.content_item);
 
 app.get('/all_breaches', routes.all_breaches);
@@ -106,8 +106,8 @@ app.get('/login', routes.admin.login);
 app.get('/admin/list', routes.admin.list);
 app.get('/admin/breach/:id', routes.admin.breach);
 
-app.get('/admin/mechanism', routes.admin.content.mechanism_category);
-app.get('/admin/clarification', routes.admin.content.clarification_category);
+app.get('/admin/content', routes.admin.content.all_content);
+//app.get('/admin/clarification', routes.admin.content.clarification_category);
 app.get('/admin/content/:id', routes.admin.content.content_item);
 app.post('/admin/content/remove', routes.admin.content.remove_item);
 app.post('/admin/new_content', routes.admin.content.newcontent);

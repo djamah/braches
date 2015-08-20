@@ -25,8 +25,8 @@ module.exports = function(req, res){
                 currentPage:{content:true},
                 partials: {filter: 'partials/filter'},
                 item: items[0],
-                isClarification:items[0].category === 'clarification',
-                isMechanism: items[0].category === 'mechanism',
+                //isClarification:items[0].category === 'clarification',
+                //isMechanism: items[0].category === 'mechanism',
                 isExpand: items[0].visual === 'expand',
                 isNewPost: false
             });

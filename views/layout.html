@@ -35,7 +35,7 @@
         <nav class="navbar navbar-default">
             <div class="container">
                 <div class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav">
                         {{#admin}}
                         <li class="home {{#currentPage.home}}active{{/currentPage.home}}"><a href="/"><i class="glyphicon glyphicon-home icons"></i></a></li>
                         <li class="{{#currentPage.form}}active{{/currentPage.form}}"><a href="/form">Повідомити про порушення</a></li>
@@ -46,8 +46,7 @@
                                 Як захистити свої права <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu" style="width: 100%">
-                                <li><a href="/admin/mechanism/">Механізми захисту</a></li>
-                                <li><a href="/admin/clarification/">Роз'яснення норм</a></li>
+                                <li><a href="/admin/content/">Усі пости</a></li>
                                 <li><a href="/admin/content/new/">Новий пост</a></li>
                             </ul>
                         </li>
@@ -58,15 +57,7 @@
                         <li class="{{#currentPage.form}}active{{/currentPage.form}}"><a href="/form">Повідомити про порушення</a></li>
                         <li class="{{#currentPage.list}}active{{/currentPage.list}}"><a href="/all_breaches">Зареєстровані порушення</a></li>
                         <li class="{{#currentPage.info}}active{{/currentPage.info}}"><a href="/info">Інфографіка</a></li>
-                        <li class="dropdown {{#currentPage.content}}active{{/currentPage.content}}">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                Як захистити свої права <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu" role="menu" style="width: 100%">
-                                <li><a href="/mechanism/">Механізми захисту</a></li>
-                                <li><a href="/clarification/">Роз'яснення норм</a></li>
-                            </ul>
-                        </li>
+                        <li class="{{#currentPage.info}}active{{/currentPage.info}}"><a href="/content/">Як захистити свої права</a></li>
                         <li class="{{#currentPage.about}}active{{/currentPage.about}}"><a href="/about/">Про проект</a></li>
                         {{/admin}}
                     </ul>

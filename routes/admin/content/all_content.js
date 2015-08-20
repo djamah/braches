@@ -8,13 +8,15 @@ module.exports = function(req, res){
         res.redirect('/');
     }
 
-    Content.find({category: 'clarification'}, function(err, data){
+    Content.find({}, function(err, data){
+
+        console.log(data);
         data.forEach(function(item){
             if(item.visual === 'expand'){
                 item.isExpand = true;
             }
         });
-        res.render('admin/content/category', {
+        res.render('admin/content/all_content', {
             title: '',
             admin: adminStatus,
             currentPage:{content:true},

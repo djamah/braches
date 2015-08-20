@@ -1,17 +1,6 @@
 <div class="container content single">
     <input id="preview_img" placeholder="url заглавної картинки" type="text" value="{{item.preview_img}}"/>
 
-    <select id="category">
-        <option value="">-рубрика-</option>
-        <option value="mechanism"
-                {{#isMechanism}}selected="selected"{{/isMechanism}}>
-            Механізми захисту
-        </option>
-        <option value="clarification"
-                {{#isClarification}}selected="selected"{{/isClarification}}>
-            Роз'яснення норм
-        </option>
-    </select>
     <select id="visual">
         <option value="">-відображення-</option>
         <option value="expand"
@@ -53,10 +42,6 @@
 
 
         $('#update').click(function(){
-            if(!$('#category').val()){
-                alert('Треба вказати рубрику');
-                return;
-            }
             var isNew = location.pathname === '/admin/content/new/';
             var url = '/admin/update_content';
             if(isNew){
@@ -68,7 +53,6 @@
                 title: $('#title').val(),
                 content: CKEDITOR.instances.content.getData(),
                 publish: $('#publish').is(':checked'),
-                category: $('#category').val(),
                 visual: $('#visual').val(),
                 preview: $('#preview').val(),
                 preview_img: $('#preview_img').val(),
