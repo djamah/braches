@@ -11,7 +11,7 @@ module.exports = function(req, res){
 
 //    Content.find({publish: true, show_main_page: true}, function(err, data) {
         res.render('about', {
-            title: 'braches',
+            title: 'Про Profrights',
             admin: adminStatus,
             currentPage: {about:true}//,
 //            data: data

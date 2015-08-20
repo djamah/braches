@@ -8,7 +8,7 @@ module.exports = function(req, res){
     Breach.find({_id: req.param('id')}, function(err, item){//publish: true
         console.log(item);
         res.render('breach', {
-            title: 'braches',
+            title: "Profrights",
             admin: adminStatus,
             item: item[0],
             item_gov: (item[0].owner === 'gov'),

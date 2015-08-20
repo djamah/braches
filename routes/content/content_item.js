@@ -7,11 +7,11 @@ module.exports = function(req, res){
     Content.find({publish: true, _id: req.param('id')}, function(err, item){
         console.log(item);
         res.render('content/item', {
-            title: '',
             admin: adminStatus,
             currentPage:{content:true},
             partials: {filter: 'partials/filter'},
-            item: item[0]
+            item: item[0],
+            title: item[0].title,
         });
     });
 };

@@ -11,7 +11,7 @@ module.exports = function(req, res){
             }
         });
         res.render('content/all_content', {
-            title: '',
+            title: 'Захисти свої права',
             admin: adminStatus,
             currentPage:{content:true},
             partials: {filter: 'partials/filter'},
