@@ -121,6 +121,8 @@ span[data-toggle="tooltip"]:hover
 .chosen-container-multi .chosen-choices li.search-field input[type=text]
   height auto !important
 
+.table-striped > tbody > tr:nth-child(2n) > td 
+  background-color: #ffffff
 
 select
   max-width 100%
@@ -130,32 +132,16 @@ select
   tr
     &.decline
       position relative
-      .post_town:before, .post_description:after
-        content ''
-        display inline-block
-        background-color lightcoral
-        height 30px
-        width 5px
-        position absolute
-        top 3px
-      .post_town:before
-        left 0
-      .post_description:after
-        right 0
+      td:first-child
+        border-left: 8px solid lightcoral
+      td:last-child
+        border-right: 8px solid lightcoral
     &.publish
       position relative
-      .post_town:before, .post_description:after
-        content ''
-        display inline-block
-        background-color lightgreen
-        height 30px
-        width 5px
-        position absolute
-        top 3px
-      .post_town:before
-        left 0
-      .post_description:after
-        right 0
+      td:first-child
+        border-left: 8px solid lightgreen
+      td:last-child
+        border-right: 8px solid lightgreen
 .admin-area
   background-color lightcoral
   color #ffffff
