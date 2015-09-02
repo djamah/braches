@@ -14,6 +14,7 @@ var breachSchema = db.Schema({
     position: String,
     subject: String,
     description: String,
+    full_description: String,
     email: String,
 
     file: String,
