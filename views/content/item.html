@@ -4,12 +4,24 @@
         {{item.title}}
     </h1>
     {{{item.content}}}
-    <div class="share">
-		<p>Поділитись:</p> 
+    <div class="share" style="width:310px;margin:20px auto">
+		<p style="text-align: center;font-weight: 700">ПОДІЛИТИСЬ:</p> <span ng-bind="$location.path()"></span>
 		
-<a href="https://twitter.com/intent/tweet?url="+><i class='fa fa-twitter fa-3x '></i></a>     
-<a href="https://twitter.com/intent/tweet?url="><i class='fa fa-facebook fa-3x '></i></a>
-<a href="https://twitter.com/intent/tweet?url="><i class='fa fa-google-plus fa-3x '></i></a>
-<a href="https://twitter.com/intent/tweet?url="><i class='fa fa-vk fa-3x '></i></a>
+<a id="tw"><i class='fa fa-twitter fa-3x fa-border'></i></a>     
+<a id="fb" href="https://twitter.com/intent/tweet?url="><i class='fa fa-facebook fa-3x fa-border'></i></a>
+<a id="gp"  href="https://twitter.com/intent/tweet?url="><i class='fa fa-google-plus fa-3x fa-border'></i></a>
+<a id="vk"  href="https://twitter.com/intent/tweet?url="><i class='fa fa-vk fa-3x fa-border'></i></a>
     </div>
 </div>
+
+<script>
+   var href = window.location.href 
+   var tw = document.getElementById('tw');
+   tw.href = "https://twitter.com/intent/tweet?url="+href
+   var fb = document.getElementById('fb');
+   fb.href = "http://www.facebook.com/sharer/sharer.php?u="+href
+   var gp = document.getElementById('gp');
+   gp.href = "https://plus.google.com/share?url="+href
+   var vk = document.getElementById('vk');
+   vk.href = "http://vk.com/share.php?url="+href
+</script>
