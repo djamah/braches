@@ -22,10 +22,13 @@
         <div>
             <br ng-if="viewOptions.activeTab === 'map'"/>
             {{>filter}}
+            
         </div>
 
         <div ng-switch-default ng-controller="graphicsCtrl">
+
             <div class="container">
+					<p>Зареєстровано порушень: <span ng-bind="filteredData.length"></span></p>		
                 <div class="chart-regions-container">
 
                     <div>
