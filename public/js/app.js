@@ -259,6 +259,8 @@ app
                     }
                 }
             }
+            
+            $scope.filteredData = filteredData;
 
             var geoObjects = [];
 

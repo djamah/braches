@@ -15,6 +15,8 @@
         <div ng-switch-when="map"
              ng-controller="mapCtrl"
              class="map-container">
+             					<div style="width:980px;margin:auto"><p>Зареєстровано порушень: <span ng-bind="filteredData.length"></span></p>	</div>	
+
             <ul class="nav nav-tabs" role="tablist"><!--lust line--></ul>
             <div id="map" style="width: 100%;"></div>
         </div>
@@ -27,7 +29,7 @@
 
         <div ng-switch-default ng-controller="graphicsCtrl">
 
-            <div class="container">
+            <div class="container" >
 					<p>Зареєстровано порушень: <span ng-bind="filteredData.length"></span></p>		
                 <div class="chart-regions-container">
 
