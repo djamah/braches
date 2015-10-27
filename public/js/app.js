@@ -336,9 +336,7 @@ app
         }
         function renderChartReg(){
             $('.pie-legend').remove();
-            console.log('render chart');
             var dataRegions = [];
-            console.log($scope.filteredData, '$scope.filteredData')
             for(var i in $scope.filteredData){
                 var index = in_array($scope.filteredData[i].city, 'label', dataRegions);
                 if(index===false){
