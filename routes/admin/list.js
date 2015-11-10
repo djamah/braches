@@ -7,7 +7,7 @@ module.exports = function(req, res){
     }
     res.render('admin/list', {
         partials: {filter: 'partials/filter'},
-        title: 'braches',
+        title: 'breaches',
         admin: adminStatus,
         currentPage:{list:true}
     });

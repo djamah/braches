@@ -17,6 +17,14 @@ app
             }
         };
     }])
+    .controller("monitCtrl", function($scope, $http){
+        $http.post('/admin/all_reports_list', {})
+            .success(function(data){
+                $scope.reports = data;
+                console.log($scope.reports);
+            });	
+
+})
     .controller('breachesListCtrl', function($scope, $http, $location){
         $http.post('/all_breaches_list', {})
             .success(function(data){
@@ -24,7 +32,7 @@ app
                 console.log($scope.list);
             });
         $scope.options = options;
-
+        
         $scope.read_more = function(){
             if(!isAdmin){
                 location.href = '/breach/'+this.item._id;
@@ -354,4 +362,5 @@ app
             $scope.chartReg = dataRegions;
         };
 
-    });
+    })    
+

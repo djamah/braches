@@ -1,0 +1,9 @@
+<div class="container" ng-app="app" >
+	<div ng-controller="monitCtrl">
+
+  {{=<% %>=}}
+	<div ng-repeat="report in reports"><p ng-show="report.accepted"><a href={{report.url}}>{{report.title}}</a> <span>Wrong</span></p></div>
+    </div>
+    <button>Clear all</button>
+  <%={{ }}=%>
+</div>

@@ -114,6 +114,9 @@ app.post('/admin/new_content', routes.admin.content.newcontent);
 app.post('/admin/update_content', routes.admin.content.updatecontent);
 
 
+app.get('/admin/monit', routes.admin.monit);
+app.post('/admin/all_reports_list', routes.admin.all_reports_list);
+
 
 passport.use( new LocalStrategy( routes.admin.verify ) );
 passport.serializeUser(function(user, done){
