@@ -1,9 +1,37 @@
 <div class="container" ng-app="app" >
-	<div ng-controller="monitCtrl">
+  <div ng-controller="monitCtrl" ng-init="tab=1">
 
   {{=<% %>=}}
-	<div ng-repeat="report in reports"><p ng-show="report.accepted"><a href={{report.url}}>{{report.title}}</a> <span>Wrong</span></p></div>
+
+    <ul class="reps" style="list-style:none">
+      <li ng-class="{act:tab===1}"><a href ng-click="tab=1">Accepted</a></li>
+	  <li ng-class="{act:tab===2}" style="margin-left:15px;margin-bottom:20px"><a href ng-click="tab=2">Rejected</a></li>
+    </ul>
+    <div ng-show="tab===1" style="clear:both;">
+	  <div ng-repeat="report in reports">
+	    <p ng-show="report.accepted"><a ng-class="{wrong : report.wrong}" href={{report.url}}>{{report.title}}</a> 
+	    <span ng-hide="report.wrong" class="miss" ng-click="updrpt([report._id, report.accepted], $index)">Wrong</span></p>
+      </div>
     </div>
+    <div ng-show="tab===2" style="clear:both">
+	  <div ng-repeat="report in reports">
+	    <p ng-hide="report.accepted"><a ng-class="{wrong : report.wrong}" href={{report.url}}>{{report.title}}</a> 
+	    <span ng-hide="report.wrong" class="miss" ng-click="updrpt([report._id, report.accepted], $index)">Wrong</span></p>
+      </div>
+    </div>
+
     <button>Clear all</button>
   <%={{ }}=%>
+  </div>
 </div>
+<style>
+  .wrong {color: #F38181}
+  ul li { float: left}
+  .reps li a {
+	  font-weight: 700;
+	  font-size:20px
+  }
+  .act a {color:#F38181}
+  .miss { cursor: pointer }
+  .miss:hover {color:#F38181}
+</style>

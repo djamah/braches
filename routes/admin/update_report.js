@@ -9,20 +9,12 @@ module.exports = function(req, res){
     }
     
 
-Report.findById(req.param('id'), function(err, report) {
-  if (err) throw err;
+    Report.update({_id: req.body.id}, {$set:req.body}, function (err, numberAffected, data) {
 
-  if (report.accepted) {
-	  report.accepted = false
-  } else {
-	  report.accepted = true
-  }
- 
-  report.save(function(err) {
-    if (err) throw err;
+        if (err) throw err;
 
-    console.log('Report successfully updated!');
-  });
-
-})
+        res.json({status: 'ok'});
+        console.log('OOOOOOOOOOK');
+        console.log(data);
+    })
 }

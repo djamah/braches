@@ -6,7 +6,9 @@ var reportSchema = db.Schema({
     edu: String,
     porush: String,
     accepted: Boolean,
-    url: String
+    url: String, 
+    wrong: Boolean,
+    checked: Boolean
     
 });
 

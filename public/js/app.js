@@ -21,9 +21,11 @@ app
         $http.post('/admin/all_reports_list', {})
             .success(function(data){
                 $scope.reports = data;
-                console.log($scope.reports);
             });	
-
+         $scope.updrpt = function(val, index) {
+			 $http.post('/admin/update_report', { id: val[0], accepted: !val[1], wrong: true });
+			 $scope.reports[index].wrong = true
+		 }
 })
     .controller('breachesListCtrl', function($scope, $http, $location){
         $http.post('/all_breaches_list', {})

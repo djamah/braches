@@ -112,7 +112,7 @@ app.get('/admin/content/:id', routes.admin.content.content_item);
 app.post('/admin/content/remove', routes.admin.content.remove_item);
 app.post('/admin/new_content', routes.admin.content.newcontent);
 app.post('/admin/update_content', routes.admin.content.updatecontent);
-
+app.post('/admin/update_report', routes.admin.update_report);
 
 app.get('/admin/monit', routes.admin.monit);
 app.post('/admin/all_reports_list', routes.admin.all_reports_list);
