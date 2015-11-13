@@ -5,7 +5,7 @@ module.exports = function(req, res){
         var adminStatus = req.user.level === 1;
 
     if(adminStatus){
-        Report.find({}, function(err, data){
+        Report.find({checked: false}, function(err, data){
             res.json(data);
         })
     } 

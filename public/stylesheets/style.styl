@@ -2,170 +2,177 @@
 @import 'animate.css'
 hack = ''
 
+@-ms-viewport
+   width device-width
+
+
+*, *:before, *:after
+   box-sizing inherit
+   -moz-box-sizing inherit
+   -webkit-box-sizing inherit
 html, body
   height 100%
   padding 0
-  margin 0
-  font-family "Helvetica Neue", Helvetica, Arial, sans-serif
-.container
-  width 980px
-.wrap
-  min-height 100%
-  height auto !important
-  height 100%
-  padding-bottom 50px
-.navbar-default
-  box-shadow none
-  background-image none
-  border-radius 0
-  background-color #3276B1
-.navbar-default .navbar-nav > li > a
-  color white
-  font-weight 700
-.navbar-default .navbar-nav > li > a:hover
-  background-color: #e7e7e7
-.collapse.navbar-collapse
-  padding 0
-.nav li.home:first-child a 
-  padding 0 5px 0 0
-#send_breaches .form-control
-  width auto
-  max-width 580px
-.small-input
-  margin-right .7em
-textarea
-  max-width 100%
-a.chosen-single, .chosen-default
-  height 34px !important
-  padding 4px 12px 6px 12px !important
-  font-size 14px !important
-  div
-    b
-      margin-top 5px !important
-div#city_chosen
-  width 250px !important
-div#study_chosen
-  width 430px !important
-div#subjects_chosen
-  width 580px !important
-.comment
-  float right
-  font-size 12px
-  color #777777
-  &.email
-    padding-right 40px
-  &.add_file
-    padding-right 10px
-footer
-  height 75px
-  margin-top -50px
+  font-family "Open Sans", sans-serif
+  box-sizing border-box
+  -moz-box-sizing border-box
+  -webkit-box-sizing border-box
+html
+  background linear-gradient(rgba(0, 0, 0, 0.5),rgba(0, 0, 0, 0.5)), url('/img/Untitled.png') no-repeat
+  -webkit-background-size cover
+  -moz-background-size cover
+  -o-background-size cover
+  background-size cover
+  background-color #007fcb
+  margin -5px
 
-
-a.glyphicon.glyphicon-arrow-left
-  font-size 24px
-  color #777
+a
   text-decoration none
-  &:hover
-    color #333
-article
-  position relative
-  .author_name
-    text-align right
-  .post
-    color #000000
-    padding 0px 150px
-  h5
-    font-weight 700
-  .description
-    margin-top 10px
-    text-align right
-.icons
-  display inline-block
-  width 1em
-.file_link
-  margin-right 1em
-.separator
-  margin-top 10px
-  border-bottom 1px solid #afafaf
-section
-  padding 0 5%
-  min-width 980px
-thead tr
-  cursor auto
-tr
-  cursor pointer
-  td
-    position static
-    padding 6px
-th
-  vertical-align middle !important
-.post_town
-  width 10%
-.post_university
-  width 15%
-.post_level
-  text-align left
-  width 60px
-.post_status
+.wrapper
+  margin-left 120px
+  margin-right 120px
+.container
+  width 100%
+  padding 0
   text-align center
-  width 60px
-.post_faculty
-  width 25%
-.post_theme
-  width 25%
-.post_description
-  width 25%
-span[data-toggle="tooltip"]:hover
-  cursor pointer
-.glyphicon-filter
-  font-size 16px
-  color #777777
-  &:hover
-    cursor pointer
-    color black
+  height 1820px
+  overflow hidden
+header
+  margin-top 15px
+header a
+  color white
+  font-size 14px
+.logo-text
+  display inline-block
+  width 220px
+  vertical-align top
+  margin-left 10px
+.logo-subtitle
+  font-size 12px
+  display block
+  margin-top -9px
+.logo-title
+  font-size 25px
+  font-weight 700
+  display block
+  margin-top 12px
+  letter-spacing -0.4px
+.top-menu
+  list-style none
+  position relative
+  margin 0
+  padding-left 0
+  display flex
+  justify-content space-between
+.top-menu li
+  float left
+.top-menu li:first-child
+  padding-right 30px
+.top-menu li:not(:first-child)
+  margin-top: 10px
+.top-menu li:not(:first-child) a
+  padding 10px
+  display block
+.top-menu li:last-child a
+  border 1px solid #00c0ff
+  border-radius 3px
+.container
+  min-height 100%
 
-.chosen-container-multi .chosen-choices li.search-field input[type=text]
-  height auto !important
+.main-title, .main-subtitle
+  color white
+.main-title
+  font-size 3em
+  font-weight 700
+  margin-top 120px
+  margin-bottom 0
+.main-subtitle
+  font-size 2.5em
+  font-weight 300
+.reg_main-button section
+  float: left
+  color white
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+.reg_main-button
+  border 3px solid #5bc626;
+  width 50%
+  margin auto
+  height 190px
+  margin-top 80px
+.reg
+  width 40%
+  margin-left -55px
+  background-color #003F65
+  padding 20px 0
+.reg span:first-child
+  font-size 1.5em
+.reg span:last-child
+  font-size 1em
+  letter-spacing 2px
+.por-num
+  font-size 2.25em
+.arrow-down
+  margin-top 40px
 
-.table-striped > tbody > tr:nth-child(2n) > td 
-  background-color: #ffffff
+.main-button
+  width 63%
+  padding-left 20px
+.main-button span
+  position relative
+  padding 20px
+  font-size 18px
+  font-weight 700
+  color white
+  text-align center
+  text-shadow 0 1px 2px rgba(0, 0, 0, 0.25)
+  background #5bc626
+  border: 0
+  cursor: pointer
+  -webkit-box-shadow 7px 7px 0px 0px rgba(52,134,11,1)
+  -moz-box-shadow 7px 7px 0px 0px rgba(52,134,11,1)
+  box-shadow 7px 7px 0px 0px rgba(52,134,11,1)
+  border-radius 3px
+.main-button span:active
+  top: 1px;
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+.main-button img
+  vertical-align:middle
+  padding-left 10px
+  padding-bottom 5px
 
-select
-  max-width 100%
-.expand
-  width 100%
-.admin-area-page
-  tr
-    &.decline
-      position relative
-      td:first-child
-        border-left: 8px solid lightcoral
-      td:last-child
-        border-right: 8px solid lightcoral
-    &.publish
-      position relative
-      td:first-child
-        border-left: 8px solid lightgreen
-      td:last-child
-        border-right: 8px solid lightgreen
-.admin-area
-  background-color lightcoral
-  color #ffffff
-  padding 1em
-  letter-spacing .6px
-  position fixed
-  top 0
-  left 0
-  width 100%
-  z-index 999
-  text-align right
-  a
-    color #ffffff
-    text-decoration underline
-label
-  font-weight 400
+footer, .push
+  height 280px
+footer
+  background white
+.footer-top
+  height 200px
+  background-color #f1f1f1
+  text-align center
+
+.footer-top h4
+  color #9e9e9e
+  text-align center
+  font-size 14px
+  padding 30px
+  letter-spacing 3px
+.row-of-supporters
+  display flex
+  justify-content space-between
 
 
+@media only screen and (min-width: 1250px) and (max-width: 1395px)
+  .wrapper
+    margin-left 50px
+    margin-right 50px
+
+@media only screen and (max-width: 1250px)
+  .wrapper
+    margin-left 10px
+    margin-right 10px
 
 @import '_content'
 @import '_info'

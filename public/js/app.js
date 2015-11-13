@@ -26,6 +26,17 @@ app
 			 $http.post('/admin/update_report', { id: val[0], accepted: !val[1], wrong: true });
 			 $scope.reports[index].wrong = true
 		 }
+		 $scope.clearall = function(){
+			 $http.post('/admin/clear_reports', {})
+			    .success(function(data){
+                $scope.reports = [];
+            });	
+		 }
+
+})
+
+    .controller('mainCtrl', function($scope, $http){
+		$scope.test = "TEST"
 })
     .controller('breachesListCtrl', function($scope, $http, $location){
         $http.post('/all_breaches_list', {})

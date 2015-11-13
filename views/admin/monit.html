@@ -5,7 +5,7 @@
 
     <ul class="reps" style="list-style:none">
       <li ng-class="{act:tab===1}"><a href ng-click="tab=1">Accepted</a></li>
-	  <li ng-class="{act:tab===2}" style="margin-left:15px;margin-bottom:20px"><a href ng-click="tab=2">Rejected</a></li>
+	  <li ng-class="{act:tab===2}" style="margin-left:25px;margin-bottom:20px"><a href ng-click="tab=2">Rejected</a></li>
     </ul>
     <div ng-show="tab===1" style="clear:both;">
 	  <div ng-repeat="report in reports">
@@ -20,7 +20,7 @@
       </div>
     </div>
 
-    <button>Clear all</button>
+    <button ng-click="clearall()" id="clearall">Clear all</button>
   <%={{ }}=%>
   </div>
 </div>
@@ -31,7 +31,8 @@
 	  font-weight: 700;
 	  font-size:20px
   }
-  .act a {color:#F38181}
+  .act a {color:#F38181; cursor:default}
   .miss { cursor: pointer }
   .miss:hover {color:#F38181}
 </style>
+
