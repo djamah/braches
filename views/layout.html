@@ -30,7 +30,9 @@
 
 </script>
 </head>
-<body >
+<body>
+  <div class="common"></div>
+  
 <div class="container">
   <div class="wrapper">
   <header>
@@ -51,41 +53,21 @@
       <li class="{{#currentPage.form}}active{{/currentPage.form}}"><a  href="/form">ПОВІДОМИТИ ПРО ПОРУШЕННЯ</a></li>
     </ul>
   </header>
-  <div id="content" ng-app="app">
-    <h1 class="main-title">САЙТ ДЛЯ МОНІТОРИНГУ ПОРУШЕНЬ</h1>
-    <h3 class="main-subtitle">прав викладачів та студентів</h3>
-    <div class="reg_main-button" ng-controller="mainCtrl">
-
-      <section class="reg"><span>ВЖЕ ЗАРЕЄСТРОВАНО</span><br /><span class="por-num">1000</span><br />
-        <span>порушень</span></section>
-      <section class="main-button"><span>ПОВІДОМИТИ ПРО ПОРУШЕННЯ<img src="/img/circle-check.png"/>
-</span></section>
-
-    </div>
-    <img class="arrow-down" src="/img/arrow-down.png"/>
-  </div>
-
+{{{ yield }}}
 <div class="push"></div>
 </div>
-</div>
-<footer>
-  <section class="footer-top">
-
-    <h4>ПРОЕКТ ПІДТРИМАЛИ</h4>
-    <div class="row-of-supporters wrapper">
-      <a href="http://vnz.org.ua/"><img src="/img/sup-1.png" /></a>
-      <a href="http://lovi-moment.com.ua"><img src="/img/sup-2.png" /></a>
-      <a href="http://osvita.ua"><img src="/img/sup-4.png" /></a>
-      <a href="http://www.rbc.ua/"><img src="/img/sup-5.png" /></a>
-      <a href="http://studway.com.ua/"><img src="/img/sup-6.png" /></a>
-      <a href="http://parta.ua/"><img src="/img/sup-7.png" /></a>
-      <a href="http://www.business.ua/"><img src="/img/sup-8.png" /></a>
-      <a href="http://www.facenews.ua/"><img src="/img/sup-9.png" /></a>
-    </div>
-  </section>
-  <section class="footer-bottom">
+<footer class="layout">
+  <section class="footer-bottom wrapper">
+    <span style="font-size 14px;padding:10px">@2015 Profrights.org</span>
+    <a href="http://www.cedos.org.ua"><img src="/img/cedos_small.png" height="29"/></a>
+    <a href="http://ned.org."><img src="/img/ned_small.png" height="29"/></a>
+    <a style="padding:10px">Політика конфіденційності</a>
+    <span style="padding:10px">Ми в соціальних мережах: <a href="https://www.facebook.com/Profrights.org">
+      <i class="fa fa-facebook fa-lg"></a></i><a href="https://vk.com/profrights"><i style="padding-left:10px" class="fa fa-vk fa-lg"></i></a></span>
+    <a class="got-q">Виникли питання?</a>
   </section>
 </footer>
 <script src="/js/app.js"></script>
 </body>
 </html>
+<script>

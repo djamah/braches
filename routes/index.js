@@ -15,6 +15,7 @@ module.exports = function(req, res){
     Content.find({publish: true, show_main_page: true}, function(err, data) {
         res.render('index', {
             title: 'profrights',
+            layout: false,
             admin: adminStatus,
             currentPage: {home:true},
             data: data

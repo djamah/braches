@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>{{ title }}</title>
+    <script type="text/javascript" src="/libs/jquery.min.js"></script>
+    <script src="/libs/angular.min.js"></script>
+
+    <link rel="stylesheet" href="/libs/normalize.css"/>
+    <link rel="stylesheet" href="/stylesheets/chosen/chosen.min.css"/>
+    <script src="/libs/chosen.jquery.min.js"></script>
+    <script src="/libs/ng-file-upload/ng-file-upload.min.js"></script>
+    <script src="/libs/chosen.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.1-beta.2/Chart.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300,400italic&subset=latin,cyrillic-ext' rel='stylesheet' type='text/css'>
+    <script src="/libs/angles.js"></script>
+    <script src="/js/options.js"></script>
+    <script src="/libs/modernizr-custom.js"></script>
+    <link rel="stylesheet" href="/stylesheets/style.css"/>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-37877049-4', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</head>
+<body class="index">
+<div class="container">
+  <div class="wrapper">
+  <header class="front">
+    <ul class="top-menu">
+      <li class="home {{#currentPage.home}}active{{/currentPage.home}}">
+        <a href="/" >
+          <img src="/img/logo-small.png" width="45"/>
+          <span class="logo-text">
+            <span class="logo-title">PROFRIGHTS.ORG</span>
+            <span class="logo-subtitle">правозахист викладачів та студентів</span>
+          </span>
+         </a>
+      </li>
+      <li class="{{#currentPage.list}}active{{/currentPage.list}}"><a href="/all_breaches">Зареєстровані порушення</a></li>
+      <li class="{{#currentPage.info}}active{{/currentPage.info}}"><a href="/info">Інфографіка</a></li>
+      <li class="{{#currentPage.content}}active{{/currentPage.content}}"><a href="/content/">Як захистити свої права</a></li>
+      <li class="{{#currentPage.about}}active{{/currentPage.about}}"><a href="/about/">Про проект</a></li>
+      <li class="{{#currentPage.form}}active{{/currentPage.form}}"><a  href="/form">ПОВІДОМИТИ ПРО ПОРУШЕННЯ</a></li>
+    </ul>
+  </header>
+  <div id="content" ng-app="app">
+    <h1 class="main-title">САЙТ ДЛЯ МОНІТОРИНГУ ПОРУШЕНЬ</h1>
+    <h3 class="main-subtitle">прав викладачів та студентів</h3>
+    <div class="reg_main-button" ng-controller="mainCtrl">
+
+      <section class="reg"><span>ЗАРЕЄСТРОВАНО</span><br /><span class="por-num">1000</span><br />
+        <span>порушень</span></section>
+      <section class="main-button"><a href="/form"><span>ПОВІДОМИТИ ПРО ПОРУШЕННЯ<img src="/img/circle-check.png"/>
+</span></a></section>
+
+    </div>
+    <img class="arrow-down to-deets" src="/img/arrow-down.png"/>
+    <p class="to-deets">детальніше про ресурс</p>
+  </div>
+<section>
+<h4 class="how-subtitle">СХЕМА ОБРОБКИ ПОВІДОМЛЕНЬ</h4>
+<h2 class="how-title">ЯК ЦЕ ПРАЦЮЄ?</h2>
+<img id="how-image" style="margin-top: 80px" src="/img/51-layers.png" width="885"/>
+</div>
+<div class="obmezh"><img src="/img/bell.png" /><span class="obmezh-prof">Profrights.org</span><span style="color: #293842"> не поширює інформацію з обмеженим доступом</span></div>
+</div>
+</div>
+<footer class="front">
+  <section class="footer-top">
+    <h4>ПРОЕКТ ПІДТРИМАЛИ</h4>
+    <div class="row-of-supporters wrapper">
+      <a href="http://vnz.org.ua/"><img src="/img/sup-1.png" /></a>
+      <a href="http://lovi-moment.com.ua"><img src="/img/sup-2.png" /></a>
+      <a href="http://osvita.ua"><img src="/img/sup-4.png" /></a>
+      <a href="http://www.rbc.ua/"><img src="/img/sup-5.png" /></a>
+      <a href="http://studway.com.ua/"><img src="/img/sup-6.png" /></a>
+      <a href="http://parta.ua/"><img src="/img/sup-7.png" /></a>
+      <a href="http://www.business.ua/"><img src="/img/sup-8.png" /></a>
+      <a href="http://www.facenews.ua/"><img src="/img/sup-9.png" /></a>
+    </div>
+  </section>
+  <section class="footer-bottom wrapper">
+    <span style="font-size 14px;padding:10px">@2015 Profrights.org</span>
+    <a href="http://www.cedos.org.ua"><img src="/img/cedos_small.png" height="29"/></a>
+    <a href="http://ned.org."><img src="/img/ned_small.png" height="29"/></a>
+    <a style="padding:10px">Політика конфіденційності</a>
+    <span style="padding:10px">Ми в соціальних мережах: <a href="https://www.facebook.com/Profrights.org">
+      <i class="fa fa-facebook fa-lg"></a></i><a href="https://vk.com/profrights"><i style="padding-left:10px" class="fa fa-vk fa-lg"></i></a></span>
+    <a class="got-q">Виникли питання?</a>
+  </section>
+</footer>
+<script src="/js/app.js"></script>
+</body>
+</html>
+<script>
+$(".to-deets").click(function() {
+    $('html, body').animate({
+        scrollTop: $("#how-image").offset().top
+    }, 900);
+});
+</script>
