@@ -2,38 +2,39 @@
      ng-controller="breachesListCtrl"
      ng-init="viewOptions={activeTab:''}"
      class="">
-    <ul class="nav nav-tabs container" role="tablist">
-        <li ng-class="{active: viewOptions.activeTab === 'map'}">
-            <a ng-click="viewOptions.activeTab = 'map'" href="#">Карта</a>
-        </li>
-        <li ng-class="{active: viewOptions.activeTab !== 'map'}">
-            <a ng-click="viewOptions.activeTab = ''" href="#">Діаграми</a>
-        </li>
-    </ul>
-    <br/>
-    <div style="position: relative" ng-switch="viewOptions.activeTab">
+
+     <div>
+         <br ng-if="viewOptions.activeTab === 'map'"/>
+         {{>filter}}
+     </div>
+     <ul class="tablist" role="tablist">
+         <li ng-class="{active: viewOptions.activeTab === 'map'}">
+             <a class="info-switch"  ng-click="viewOptions.activeTab = 'map'" href="#"><img src="/img/diag.png" />Карта</a>
+         </li>
+         <li ng-class="{active: viewOptions.activeTab !== 'map'}">
+             <a class="info-switch" style="margin-left:10px" ng-click="viewOptions.activeTab = ''" href="#"><img src="/img/map.png" />Діаграми</a>
+         </li>
+     </ul>
+    <div style="position: relative; clear:both" ng-switch="viewOptions.activeTab">
         <div ng-switch-when="map"
              ng-controller="mapCtrl"
-             class="map-container">
-             					<div style="width:980px;margin:auto"><p>Зареєстровано порушень: <span ng-bind="filteredData.length"></span></p>	</div>	
+             class="map-container wrapper" style="text-align:center">
+             	<p style="padding:30px 0"><strong>Зареєстровано порушень: <span style="color: #2aa2ff;" ng-bind="filteredData.length"></span></strong></p>
 
             <ul class="nav nav-tabs" role="tablist"><!--lust line--></ul>
             <div id="map" style="width: 100%;"></div>
         </div>
 
-        <div>
-            <br ng-if="viewOptions.activeTab === 'map'"/>
-            {{>filter}}
-            
-        </div>
+
+
 
         <div ng-switch-default ng-controller="graphicsCtrl">
 
-            <div class="container" >
-					<p>Зареєстровано порушень: <span ng-bind="filteredData.length"></span></p>		
-                <div class="chart-regions-container">
+            <div class="wrapper" style="text-align:center">
+					<p style="padding:30px 0"><strong>Зареєстровано порушень: <span style="color: #2aa2ff;" ng-bind="filteredData.length"></span></strong></p>
+                <div class="chart-regions-container" style="text-align:left">
 
-                    <div>
+                    <div >
                         <canvas piechart legend=true options="optionsRegions" data="chartReg" height="300" width=""></canvas>
                     </div>
 
