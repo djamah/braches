@@ -2,167 +2,143 @@
 <div id="send_breaches" class="container content" ng-app="app">
   <h3>Зареєструвати порушення</h3>
   <p style="color: #84898c;font-size:14px">Заповніть форму, щоб зареєструвати порушення</p>
-    <form name="breachForm" ng-controller="breachFormCtrl" class="form-horizontal well">
-        <div class="form-group">
+  <form name="breachForm" ng-controller="breachFormCtrl" class="form-horizontal well">
+    <div class="form-group" style="text-align:left">
+      <div class="hello">
+        <select
+           chosen
+           ng-model="form.city"
+           ng-options="c for c in options.cities"
+           class="form-control"
+           data-placeholder="Область/місто *"
+           style="width: 95%;"
+           required>
+           <option></option>
+         </select>
+       </div>
+       <div ng-init="form.university = {}">
+         <select
+             chosen
+             ng-model="form.university"
+             ng-options="c.name for c in options.city[form.city]"
+             class="form-control"
+             data-placeholder="Вищий навчальний заклад *"
+             style="width: 95%;"
+             required>
+             <option></option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group" style="text-align: left">
+      <div>
+        <label >Власність</label>
+        <div style="padding-left: 17px; display:inline-block">
+            <span ng-if="getOwner()==='gov'">державна</span>
+            <span ng-if="getOwner()==='com'">комунальна</span>
+            <span ng-if="getOwner()==='private'">приватна</span>
+        </div>
+      </div>
+    </div>
+    <div class="form-group" style="text-align:left">
+      <div>
+        <label>Ваш ВНЗ має статус національного</label>
+        <div style="display:inline">
+            <label class="radio-inline">
+                <input ng-model="form.national" type="radio" value="true"><span style="padding:0 15px">Так</span>
+            </label>
+            <label class="radio-inline">
+                <input ng-model="form.national" type="radio" value="false"><span style="padding:0 15px">Ні</span>
+            </label>
+        </div>
+      </div>
+      <div>
+         <label>Ваш ВНЗ має статус дослідницького</label>
+          <div style="display:inline">
+              <label class="radio-inline">
+                  <input ng-model="form.research" type="radio" value="true"><span style="padding:0 15px">Так</span>
+              </label>
+              <label class="radio-inline">
+                  <input ng-model="form.research" type="radio" value="false"><span style="padding:0 15px">Ні</span>
+              </label>
+          </div>
+      </div>
+    </div>
+      <div class="form-group">
             <div>
-                <select
-                        chosen
-                        ng-model="form.city"
-                        ng-options="c for c in options.cities"
-                        class="form-control"
-                        data-placeholder="Оберіть місто..."
-                        style="width: 90%;"
-                        required>
-                    <option></option>
-                </select>
-            </div>
-            <div ng-init="form.university = {}">
-                <select
-                        chosen
-                        ng-model="form.university"
-                        ng-options="c.name for c in options.city[form.city]"
-                        class="form-control"
-                        data-placeholder="Оберіть навчальний заклад..."
-                        style="width: 90%;"
-                        required>
-                    <option></option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-4 control-label">Власність</label>
-
-            <div class="col-sm-8" style="padding-top: 7px">
-                <span ng-if="getOwner()==='gov'">державна</span>
-                <span ng-if="getOwner()==='com'">комунальна</span>
-                <span ng-if="getOwner()==='private'">приватна</span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-4 control-label">Чи має ВНЗ статус національного</label>
-
-            <div class="col-sm-3">
-                <div class="radio-inline">
-                    <input ng-model="form.national" type="radio" value="true">Так
-                </div>
-                <label class="radio-inline">
-                    <input ng-model="form.national" type="radio" value="false">Ні
-                </label>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-4 control-label">Чи має ВНЗ статус дослідницького</label>
-
-            <div class="col-sm-4">
-                <label class="radio-inline">
-                    <input ng-model="form.research" type="radio" value="true">Так
-                </label>
-                <label class="radio-inline">
-                    <input ng-model="form.research" type="radio" value="false">Ні
-                </label>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-4 control-label">Факультет (інститут)</label>
-
-            <div class="col-sm-2">
                 <input ng-model="form.department"
                        type="text"
-                       size="50"
+                       style="width: 95%;"
                        class="form-control"
                        placeholder="Назва факультету (інституту)"/>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-4 control-label">Кафедра</label>
 
-            <div class="col-sm-2">
+            <div>
                 <input ng-model="form.faculty"
                        type="text"
-                       size="50"
+                       style="width: 95%;"
                        class="form-control"
                        placeholder="Назва кафедри"/>
             </div>
-        </div>
+      </div>
         <div class="form-group">
-            <label class="col-sm-4 control-label">Ваша посада</label>
-
-            <div class="col-sm-2">
+            <div>
                 <input ng-model="form.position"
                        type="text"
-                       size="50"
+                       style="width: 95%;"
                        class="form-control"
-                       placeholder="Посада"/>
+                       placeholder="Ваша посада"/>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-4 control-label">Тематика</label>
-
-            <div class="col-sm-8">
+            <div>
                 <select ng-model="form.subject"
                         ng-options="c for c in options.subjects"
                         id="subjects"
+                        style="width: 95%;"
                         class="form-control"
-                        data-placeholder="Оберіть тематику..."
+                        data-placeholder="Тематика"
                         chosen>
                     <option></option>
                 </select>
             </div>
-        </div>
-        <h4>Опис факту порушення прав:</h4>
-        <div class="form-group">
-            <label class="col-sm-4 control-label">Короткий опис (буде доступний користувачам сайту Profrights) <span style="color:red">*</span></label>
-
-            <div class="col-sm-8">
+      </div>
+        <h4 style="clear:both;text-align:left;margin: 1.5em 0;color: #535556;font-weight:700;font-size:14px">Опис факту порушення прав</h4>
+        <div class="form-row" style="text-align:left">
                 <textarea ng-model="form.description"
-                          cols="90"
-                          rows="10"
+                          style="width: 97%;"
                           class="form-control"
+                          placeholder="Короткий опис (буде доступний користувачам сайту Profrights) *"
                           required></textarea>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-4 control-label">Повний опис (всі деталі та файли доступні лише адміністраторам сайту) <span style="color:red">*</span></label>
-
-            <div class="col-sm-8">
                 <textarea ng-model="form.full_description"
-                          cols="90"
-                          rows="10"
+                          style="width: 97%;"
+                          placeholder="Повний опис (усі деталі та файли доступні лише адміністраторам сайту) *"
                           class="form-control"
                           required></textarea>
+        </div>
+        <div class="form-row" style="text-align:left;margin:10px 0">
+            <label for="file" style="color: #535556;font-size:14px; cursor:pointer" >Додати файл (pdf, doc, jpeg, tiff)
+              <img style="vertical-align:middle;padding-left:10px" src="/img/paper-clip.png" />
+            </label>
+            <div class="file-upload" style="padding-top: 10px">
+                <input file-model="File" id="file" type="file"/>
             </div>
         </div>
         <div class="form-group">
-            <label for="file" class="col-sm-4 control-label">Додати файл (pdf, doc, jpeg, tiff)</label>
-            <div class="col-sm-6" style="padding-top: 10px">
-                <div class="comment add_file">
-                    <i>додаткові матеріали
-                    <!--<br/>(можна додати декілька файлів)-->
-                    </i>
-                </div>
-                <input file-model="File" style="width: 230px" id="file" type="file"/>
-                <!--<input ng-model="form.files" style="width: 230px" id="file" type="file" multiple/>-->
-                <!--<button id="file" class="btn btn-default" ng-file-select ng-file-change="upload($files)" ng-multiple="multiple">-->
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-4 control-label">Email (публікуватись не буде) <span style="color:red">*</span></label>
-
-            <div class="col-sm-7">
+            <div class="email">
                 <input ng-model="form.email"
-                       type="email" size="50"
+                       type="email"
                        class="form-control"
-                       placeholder="електронна пошта"
+                       style="width: 97%;"
+                       placeholder="Електронна пошта (публікуватись не буде) *"
                        required/>
             </div>
         </div>
-        <div class="center-block" style="margin-top: 50px">
-			<p style="color:red">* зірочкою позначені обов’язкові поля</p>
-            <button ng-click="submit()"
-                    class="btn btn-lg btn-success center-block">
-                Надіслати
-            </button>
+        <div style="clear:both; text-align:left;margin-top: 50px">
+			    <p style="color: #0069a8;">* зірочкою позначені обов’язкові поля</p>
         </div>
+        <div>
+            <button class="send-form" ng-click="submit()">
+                НАДІСЛАТИ ПОВІДОМЛЕННЯ
+            </button>
+       </div>
 
         <div ng-switch on="status">
             <div ng-switch-when="sending">
@@ -192,3 +168,10 @@
 
 
 <%={{ }}=%>
+<script>
+window.addEventListener("resize", function() {
+    $('.chosen-container').innerWidth($('.hello').innerWidth()-15);
+    $('.chosen-search input').innerWidth($('.hello').innerWidth()-15);
+    $('.chosen-drop').innerWidth($('.hello').innerWidth()-2);
+}, false);
+</script>

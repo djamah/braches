@@ -270,9 +270,20 @@ h2.how-title
   width 90%
 .form-group
   clear both
+  text-align: left
 .form-group>div
   float left
   width 50%
+  margin-bottom 20px
+.form-group input[type='text'],.form-group input[type='email']
+  margin 0
+  height 45px
+  border 1px solid #ccc
+  border-radius 0
+  font-size 13px
+  padding-left 7px
+.chosen-container-single .chosen-single
+  box-shadow none !important
 #send_breaches form
   margin-top 30px
 .chosen-container-single .chosen-single
@@ -285,6 +296,44 @@ h2.how-title
   padding-top: 10px
 .chosen-container-single .chosen-single div b
   margin-top: 10px
+.radio-inline
+  padding 0 15px
+
+.form-row textarea
+  margin 10px 0
+  padding 7px
+  border 1px solid #ccc
+.form-row textarea:first-child
+  height 90px
+.form-row textarea:last-child
+  height 150px
+.file-upload input
+  display none
+.email ::-webkit-input-placeholder
+    color #0069a8
+.email :-moz-placeholder
+    color #0069a8
+.email ::-moz-placeholder
+    color #0069a8
+.email  :-ms-input-placeholder
+    color #0069a8
+.send-form
+  background-color #007fcb
+  padding 20px 100px
+  color white
+  text-decoration underline
+  text-decoration-style dashed
+  margin 20px 0
+  display inline-block
+  border-radius 3px
+  -webkit-box-shadow 5px 5px 0px 0px rgba(0,105,168,1)
+  -moz-box-shadow 5px 5px 0px 0px rgba(0,105,168,1)
+  box-shadow 5px 5px 0px 0px rgba(0,105,168,1)
+  cursor pointer
+  border 0
+#send_breaches  h3.well
+  font-weight normal
+  font-size 26px
 
 @media only screen and (min-width: 1250px) and (max-width: 1395px)
   .wrapper
