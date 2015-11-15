@@ -32,7 +32,19 @@
 
 </script>
 </head>
-<body>
+{{#admin}}
+<body class="admin-area-page">
+{{/admin}}
+{{^admin}}
+<body class="">
+{{/admin}}
+
+{{#admin}}
+<div class="admin-area">
+    Ви в адмінці, <a href="/logout">вийти</a><a href="/admin/monit" style="margin-left: 15px">Почухати павучка</a>
+</div>
+<div style="height: 48px"></div>
+{{/admin}}
   <div class="common"></div>
   <div class="contain">
   <header class="wrapper">

@@ -42,13 +42,15 @@ app
         $http.post('/all_breaches_list', {})
             .success(function(data){
                 $scope.list = data;
-                console.log($scope.list);
             });
         $scope.options = options;
         
-        $scope.read_more = function(){
+        $scope.read_more = function(index){
+			if (typeof($scope.list[index].display)==="undefined"){
+				$scope.list[index].display=false
+			}
             if(!isAdmin){
-                location.href = '/breach/'+this.item._id;
+                $scope.list[index].display = $scope.list[index].display === false ? true : false;
             } else {
                 location.href = '/admin/breach/'+this.item._id;
             }
