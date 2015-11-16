@@ -95,13 +95,6 @@ app
                 } else return true;
             },
             searchOwnerFilter: function(item){
-                //if(!$scope || !$scope.f || !$scope.f.level) return true;
-                //console.log($scope.f, '$scope.f.level');
-                //console.log(item, 'item');
-                //if($scope.f.level === item.level){
-                //    return true;
-                //} else return false;
-//                console.log('searchLevelFilter');
                 if($scope.f &&
                     $scope.f.owner &&
                     ($scope.f.owner.gov || $scope.f.owner.com || $scope.f.owner.private ) ){
@@ -132,6 +125,12 @@ app
             }
         }
     })
+    
+    .controller('questionCtrl', function($scope, $http){
+		$scope.submit = function(){
+			console.log("Hello")
+		}
+	})
 
     .controller('breachFormCtrl', function($scope, $http){
         $scope.options = options;
@@ -160,9 +159,6 @@ app
 
                     fd.append('file', $scope.File);
 
-                    //for(var i in $scope.form){
-                    //    fd.append(i, $scope.form[i]);
-                    //}
                     $http.post('send_breach', fd, {
                         transformRequest: angular.identity,
                         headers: {'Content-Type': undefined}
@@ -172,26 +168,6 @@ app
                         })
                         .error(function(){
                         });
-                    //$upload.
-                    //var f = document.getElementById('file').files[0],
-                    //    r = new FileReader();
-                    //r.onloadend = function(e){
-                    //    var data = e.target.result;
-                    //
-                    //
-                    //    //send you binary data via $http or $resource or do anything else with it
-                    //
-                    //    $scope.form.files = data;
-                    //    $http.post('send_breach', $scope.form)
-                    //        .success(function(data){
-                    //            $scope.status = 'success';
-                    //        })
-                    //        .error(function(){
-                    //            $scope.status = 'error';
-                    //        });
-                    //    $scope.status = 'sending';
-                    //};
-                    //r.readAsArrayBuffer(f);
                 } else {
                     $http.post('send_breach', fd, {
                         transformRequest: angular.identity,

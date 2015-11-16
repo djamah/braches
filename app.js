@@ -138,7 +138,7 @@ app.post('/update_post', routes.admin.update_breach);
 app.post('/remove_post', routes.admin.remove_breach);
 app.post('/accept_post', routes.admin.accept_breach);
 app.post('/decline_post', routes.admin.decline_breach);
-
+app.post('/send_question', routes.send_question);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
