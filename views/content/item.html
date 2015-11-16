@@ -1,21 +1,22 @@
-<div class="container content single">
-    <img style="width: 50%; margin-right: 20px; margin-bottom: 0px; float: left" src="{{item.preview_img}}" alt="img"/>
-    <h1>
+<div class="wrapper content single" style="width:60%;margin: 40px auto 0 auto">
+    <h1 style="color:#007FCB; font-weight:700;font-size:28px;line-height:30px">
         {{item.title}}
     </h1>
+    <img style="width: 20%; margin-right: 20px; margin-bottom: 0px;float:left" src="{{item.preview_img}}" alt="img"/>
+
     {{{item.content}}}
     <div class="share" style="width:310px;margin:20px auto">
 		<p style="text-align: center;font-weight: 700">ПОДІЛИТИСЬ:</p> <span ng-bind="$location.path()"></span>
-		
-<a id="tw"><i class='fa fa-twitter fa-3x fa-border'></i></a>     
-<a id="fb" href="https://twitter.com/intent/tweet?url="><i class='fa fa-facebook fa-3x fa-border'></i></a>
-<a id="gp"  href="https://twitter.com/intent/tweet?url="><i class='fa fa-google-plus fa-3x fa-border'></i></a>
-<a id="vk"  href="https://twitter.com/intent/tweet?url="><i class='fa fa-vk fa-3x fa-border'></i></a>
+
+<a class="share" id="tw"><i class='fa fa-twitter fa-3x fa-border'></i></a>
+<a class="share" id="fb" href="https://twitter.com/intent/tweet?url="><i class='fa fa-facebook fa-3x fa-border'></i></a>
+<a class="share" id="gp"  href="https://twitter.com/intent/tweet?url="><i class='fa fa-google-plus fa-3x fa-border'></i></a>
+<a class="share" id="vk"  href="https://twitter.com/intent/tweet?url="><i class='fa fa-vk fa-3x fa-border'></i></a>
     </div>
 </div>
 
 <script>
-   var href = window.location.href 
+   var href = window.location.href
    var tw = document.getElementById('tw');
    tw.href = "https://twitter.com/intent/tweet?url="+href
    var fb = document.getElementById('fb');

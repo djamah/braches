@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html style="height:100%">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -37,7 +37,7 @@
 <body class="admin-area-page">
 {{/admin}}
 {{^admin}}
-<body class="">
+<body class="" style="height:100%">
 {{/admin}}
 
 {{#admin}}
@@ -46,7 +46,7 @@
 </div>
 {{/admin}}
   <div class="common"></div>
-  <div class="contain">
+  <div class="contain" style="margin-bottom:-80px;height: auto !important;min-height:100%">
   <header class="wrapper">
     <ul class="top-menu">
       {{#admin}}
