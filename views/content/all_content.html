@@ -7,17 +7,22 @@
       <a style="display:block" href="/content/{{_id}}">
         <section style="background: rgba(0, 0, 0, 0) linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)) repeat scroll 0 0;position: absolute;
         height:99%;top:0;width:100%;text-align:left">
-        <p style="color:white;width:70%;margin-left:35px;margin-top:25%;font-size:38px;font-weight:700">{{title}}</p>
+        <div style="border: 1px solid white;margin:40px 15px 15px 15px">
+          <p style="color:white;width:70%;margin-left:40px;margin-top:25%;font-size:38px;font-weight:700">{{title}}</p>
+          <p style="margin-left:40px;color:white;font-size:14px"><i class="fa fa-calendar"></i> 15 жовтня 2015</p>
+        </div>
         </section>
       </a>
     </div>
     {{/first_data}}
     {{#data}}
+
     <section class="article-container">
-      <img width="100%" src="{{preview_img}}" alt="img"/>
-      <p>{{title}}</p>
+    <a href="/content/{{_id}}">  <img width="100%" src="{{preview_img}}" alt="img"/></a>
+      <p><a style="color: #293842;" href="/content/{{_id}}">{{title}} <i style="color: #5bc626;font-weight:normal;padding-left:5px" class="fa fa-arrow-right"></i></a></p>
       <span>{{preview}}</span>
     </section>
+
     {{/data}}
   </div>
   <div class="content-right" style="float:right;width:25%">
