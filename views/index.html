@@ -12,6 +12,7 @@
     <script src="/libs/chosen.jquery.min.js"></script>
     <script src="/libs/ng-file-upload/ng-file-upload.min.js"></script>
     <script src="/libs/chosen.js"></script>
+    <script src="/libs/jquery.colorbox-min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.1-beta.2/Chart.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300,400italic&subset=latin,cyrillic-ext' rel='stylesheet' type='text/css'>
@@ -19,6 +20,7 @@
     <script src="/js/options.js"></script>
     <script src="/libs/modernizr-custom.js"></script>
     <link rel="stylesheet" href="/stylesheets/style.css"/>
+    <link rel="stylesheet" href="/stylesheets/colorbox.css"/>
     <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -47,6 +49,30 @@
   <div class="wrapper">
   <header class="front">
     <ul class="top-menu">
+      {{#admin}}
+      <li class="home {{#currentPage.home}}active{{/currentPage.home}}">
+        <a href="/" >
+          <img src="/img/logo-small.png" width="45"/>
+          <span class="logo-text">
+            <span class="logo-title">PROFRIGHTS.ORG</span>
+            <span class="logo-subtitle">правозахист викладачів та студентів</span>
+          </span>
+         </a>
+      </li>
+                        <li class="{{#currentPage.list}}active{{/currentPage.list}}"><a href="/admin/list">Зареєстровані порушення</a></li>
+                        <li class="{{#currentPage.info}}active{{/currentPage.info}}"><a href="/info">Інфографіка</a></li>
+                        <li style="position: relative" class="dropdown {{#currentPage.content}}active{{/currentPage.content}}">
+                            <a class="dropdown-toggle"  href="#">
+                                Як захистити свої права ></a>
+                            <ul class="dropdown-menu" role="menu" style="width: 100%">
+                                <li><a style="color:#515151" href="/admin/content/">Усі пости</a></li>
+                                <li><a style="color:#515151" href="/admin/content/new/">Новий пост</a></li>
+                            </ul>
+                        </li>
+                        <li class="{{#currentPage.about}}active{{/currentPage.about}}"><a href="/about/">Про проект</a></li>
+                        <li class="{{#currentPage.form}}active{{/currentPage.form}}"><a href="/form">ПОВІДОМИТИ ПРО ПОРУШЕННЯ</a></li>
+                        {{/admin}}
+                        {{^admin}}
       <li class="home {{#currentPage.home}}active{{/currentPage.home}}">
         <a href="/" >
           <img src="/img/logo-small.png" width="45"/>
@@ -61,6 +87,7 @@
       <li class="{{#currentPage.content}}active{{/currentPage.content}}"><a href="/content/">Як захистити свої права</a></li>
       <li class="{{#currentPage.about}}active{{/currentPage.about}}"><a href="/about/">Про проект</a></li>
       <li class="{{#currentPage.form}}active{{/currentPage.form}}"><a  href="/form">ПОВІДОМИТИ ПРО ПОРУШЕННЯ</a></li>
+    {{/admin}}
     </ul>
   </header>
   <div id="content" ng-app="app">
@@ -103,16 +130,30 @@
     <span style="font-size 14px;padding:10px">@2015 Profrights.org</span>
     <a href="http://www.cedos.org.ua"><img src="/img/cedos_small.png" height="29"/></a>
     <a href="http://ned.org."><img src="/img/ned_small.png" height="29"/></a>
-    <a style="padding:10px">Політика конфіденційності</a>
+    <a class="inline cboxElement" href="#inline-content" style="padding:10px;color: #293842;">Політика конфіденційності</a>
     <span style="padding:10px">Ми в соціальних мережах: <a href="https://www.facebook.com/Profrights.org">
       <i class="fa fa-facebook fa-lg"></a></i><a href="https://vk.com/profrights"><i style="padding-left:10px" class="fa fa-vk fa-lg"></i></a></span>
     <a class="got-q">Виникли питання?</a>
   </section>
 </footer>
+<div style="display: none">
+<div id="inline-content" style="padding:20px; background-color:white">
+  <h3 style="text-align:center;font-size:30px">Політика конфіденційності</h3>
+<p style="margin-top:25px"><strong>Profrights.org</strong> оцінює вірогідність причетності особи до
+правопорушення або неетичної поведінки і поширює
+відповідну інформацію лише у випадку, коли така вірогідність,
+на думку <strong>Profrights.org</strong>, є високою і ґрунтується на
+фактичних даних, оприлюднених у достовірних джерелах.</p>
+</div></div>
+
 <script src="/js/app.js"></script>
 </body>
 </html>
 <script>
+$(".inline").colorbox({inline:true, width:"40%"});
+$(".dropdown-toggle").on("click", function(){
+  $(".dropdown-menu").toggle();
+})
 $(".to-deets").click(function() {
     $('html, body').animate({
         scrollTop: $("#how-image").offset().top
