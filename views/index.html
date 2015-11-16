@@ -133,10 +133,20 @@
     <a class="inline cboxElement" href="#inline-content" style="padding:10px;color: #293842;">Політика конфіденційності</a>
     <span style="padding:10px">Ми в соціальних мережах: <a href="https://www.facebook.com/Profrights.org">
       <i class="fa fa-facebook fa-lg"></a></i><a href="https://vk.com/profrights"><i style="padding-left:10px" class="fa fa-vk fa-lg"></i></a></span>
-    <a class="got-q">Виникли питання?</a>
+    <a class="got-q inline2 cboxElement" href="#inline_questions">Виникли питання?</a>
   </section>
 </footer>
 <div style="display: none">
+  <div id="inline_questions" class="inlined" style="text-align:center">
+    <h3>Виникли питання чи пропозиції?</h3>
+    <p>Заповніть форму нижче, і ми зв'яжемося з вами (усі поля обов'язкові)</p>
+    <form name="questionForm" ng-controller="questionCtrl" style="margin:auto" novalidate>
+      <input class="q-name " type="text" placeholder="Ім'я" /><br/>
+      <input class="q-email" type="email" placeholder="Email" /><br/>
+      <textarea class="q-message" placeholder="Повідомлення"></textarea><br/>
+      <span class="got-q" id="send-q">ВІДПРАВИТИ ПОВІДОМЛЕННЯ</span>
+    </form>
+  </div>
 <div id="inline-content" style="padding:20px; background-color:white">
   <h3 style="text-align:center;font-size:30px">Політика конфіденційності</h3>
 <p style="margin-top:25px"><strong>Profrights.org</strong> оцінює вірогідність причетності особи до
@@ -150,6 +160,24 @@
 </body>
 </html>
 <script>
+$("#send-q").on("click", function(){
+  if ( $('.q-name').val()==null || $('.q-name').val()=="" || $('.q-email').val()==null || $('.q-email').val()=="" ||
+        $('.q-message').val()==null || $('.q-message').val()==""  )
+  {
+          alert ("Заповніть всі поля, будь ласка")
+        } else {
+           $.post('/send_question', {
+               name: $('.q-name').val(),
+               email: $('.q-email').val(),
+               message: $('.q-message').val(),
+           })
+           .success(function(){
+    $("#inline_questions").empty().html("<p>Повідомлення надіслано</p>")
+
+});
+}
+})
+$(".inline2").colorbox({inline:true, width:"30%"});
 $(".inline").colorbox({inline:true, width:"40%"});
 $(".dropdown-toggle").on("click", function(){
   $(".dropdown-menu").toggle();
