@@ -1,17 +1,18 @@
-<div class="container">
+<div class="wrapper">
     <article class="well">
-        <a href="/all_breaches" class="glyphicon glyphicon-arrow-left"></a>
+        <a href="/all_breaches"></a>
         <h5>{{item.subject}}</h5>
         <div class="post">
             <p>
                 {{item.description}}
             </p>
-            <p class="author_name"><i>{{item.position}}, {{item.city}}</i></p>
+            <p class="author_name"><i>{{#item.position}}<span>{{item.position}},</span>{{/item.position}} {{item.city}}</i></p>
         </div>
+        {{#item.file}}
         <h5>Додаткові матеріали</h5>
+        {{/item.file}}
         <div class="post">
-            <a target="_blank" class="file_link" href="{{item.file}}"><i class="glyphicon glyphicon-paperclip"></i>{{item.file}}</a>
-            <!--<a class="file_link" href=""><i class="glyphicon glyphicon-paperclip"></i> Заява2.doc </a>-->
+            <a target="_blank" class="file_link" href="{{item.file}}"><i class="fa fa-paperclip"></i>{{item.file}}</a>
         </div>
         <div class="separator"></div>
         <div class="description row">
@@ -19,7 +20,7 @@
                 <span>{{item.university.name}}</span>
             </div>
             <div class="col-lg-4">
-                <span>{{item.department}}</span>,
+                <span>{{item.department}}</span>{{#item.department}},{{/item.department}}
                 <span>{{item.faculty}}</span>
             </div>
             <div class="col-lg-4">
@@ -39,20 +40,20 @@
                 <div>
                     <span>статус національного:
                         {{#item_national}}
-                            <i class="glyphicon glyphicon-ok icons"></i>
+                            <i class="fa fa-check"></i>
                         {{/item_national}}
                         {{^item_national}}
-                            <i class="glyphicon glyphicon-remove icons"></i>
+                            <i class="fa fa-times"></i>
                         {{/item_national}}
                     </span>
                 </div>
                 <div>
                     <span>статус дослідницького:
                         {{#item_research}}
-                            <i class="glyphicon glyphicon-ok icons"></i>
+                            <i class="fa fa-check"></i>
                         {{/item_research}}
                         {{^item_research}}
-                            <i class="glyphicon glyphicon-remove icons"></i>
+                            <i class="fa fa-times"></i>
                         {{/item_research}}
                     </span>
                 </div>
