@@ -49,11 +49,11 @@ app
         $scope.options = options;
         
         $scope.read_more = function(index){
-			if (typeof($scope.list[index].display)==="undefined"){
-				$scope.list[index].display=false
+			if (typeof(this.item.display)==="undefined"){
+				this.item.display=false
 			}
             if(!isAdmin){
-                $scope.list[index].display = $scope.list[index].display === false ? true : false;
+                this.item.display = this.item.display === false ? true : false;
             } else {
                 location.href = '/admin/breach/'+this.item._id;
             }
