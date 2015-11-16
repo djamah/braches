@@ -36,7 +36,10 @@ app
 })
 
     .controller('mainCtrl', function($scope, $http){
-		$scope.test = "TEST"
+		$http.post('/all_breaches_list', {})
+            .success(function(data){
+                $scope.count = data.length;
+         });
 })
     .controller('breachesListCtrl', function($scope, $http, $location){
         $http.post('/all_breaches_list', {})

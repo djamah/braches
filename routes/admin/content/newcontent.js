@@ -2,7 +2,7 @@ var Content = require('../../../models/content');
 
 module.exports = function (req, res) {
     var content = new Content(req.body);
-    content.date = new Date();
+    content.date = new Date().toLocaleDateString("uk")
 //    breach.publish = false;
     content.save(function (err, item) {
         if (err) {

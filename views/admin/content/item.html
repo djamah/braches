@@ -1,31 +1,31 @@
-<div class="container content single">
+<div class="wrapper content single" style="margin-top:20px">
     <input id="preview_img" placeholder="url заглавної картинки" type="text" value="{{item.preview_img}}"/>
 
-    <select id="visual">
+    <select style="margin-left:20px" id="visual">
         <option value="">-відображення-</option>
         <option value="expand"
                 {{#isExpand}}selected="selected"{{/isExpand}}>
             Виділити
         </option>
     </select>
-    <label for="show_main_page">Виводити на головну</label>
-    <input type="checkbox" id="show_main_page"
+    <label style="margin-left:20px" for="show_main_page">Виводити на головну</label>
+    <input style="margin-left:10px" type="checkbox" id="show_main_page"
            {{#item.show_main_page}}checked="checked"{{/item.show_main_page}}/>
 
-    <label for="publish">Опублікувати</label>
-    <input type="checkbox" id="publish"
+    <label style="margin-left:20px" for="publish">Опублікувати</label>
+    <input style="margin-left:10px" type="checkbox" id="publish"
            {{#item.publish}}checked="checked"{{/item.publish}} />
-    <h1>
-        <input id="title" placeholder="Заголовок" type="text" value="{{item.title}}"/>
+    <h1 style="margin:20px 0;width:100%">
+        <input style="width:100%" id="title" placeholder="Заголовок" type="text" value="{{item.title}}"/>
     </h1>
-    <textarea name="preview" placeholder="Текст анонсу" id="preview" cols="150" rows="5">{{item.preview}}</textarea>
-    <textarea name="content" placeholder="Основний текст" id="content" cols="150" rows="20">{{item.content}}</textarea>
+    <textarea style="width:100%" name="preview" placeholder="Текст анонсу" id="preview" cols="150" rows="5">{{item.preview}}</textarea>
+    <textarea style="width:100%;margin:20px 0" name="content" placeholder="Основний текст" id="content" cols="150" rows="20">{{item.content}}</textarea>
     <a class="btn btn-lg btn-success center-block" id="update" style="margin: 1em 0">
         {{#isNewPost}}
-        Створити
+        <span class="green-button">Створити</span>
         {{/isNewPost}}
         {{^isNewPost}}
-        Оновити
+        <span class="green-button">Оновити</span>
         {{/isNewPost}}
     </a>
 

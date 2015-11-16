@@ -63,16 +63,16 @@ header.front a
   padding-left 0
   display flex
   justify-content space-between
-.top-menu li
+.top-menu>li
   float left
-.top-menu li:first-child
+.top-menu>li:first-child
   padding-right 30px
-.top-menu li:not(:first-child)
+.top-menu>li:not(:first-child)
   margin-top: 10px
-.top-menu li:not(:first-child) a
+.top-menu>li:not(:first-child) a
   padding 10px
   display block
-.top-menu li:last-child a
+.top-menu>li:last-child a
   border 1px solid #00c0ff
   border-radius 3px
 .container
@@ -101,10 +101,11 @@ header.front a
   height 190px
   margin-top 80px
 .reg
-  width 40%
-  margin-left -55px
-  background-color #003D62
+  margin-left -20px
+  background-color #0069A8
   padding 20px 0
+  width: 25%
+  text-align center
 .reg span:first-child
   font-size 1.5em
 .reg span:last-child
@@ -116,7 +117,7 @@ header.front a
   margin-top 40px
 
 .main-button
-  width 60%
+  width 75%
   padding-left 15px
 .main-button span
   position relative
@@ -414,6 +415,36 @@ table tr td, table tr th
 .tablist li img
   vertical-align: middle
   padding-right 10px
+.dropdown-menu
+  display: none;
+  font-size: 14px;
+  list-style: outside none none;
+  margin: 2px 0 0;
+  padding: 5px 0;
+  z-index: 1000;
+  position absolute
+  top 70%
+  left 0
+  background-color white
+  border 1ps solid #666
+  box-shadow 0 6px 12px rgba(0, 0, 0, 0.176)
+.admin-area-page .common
+  display none
+#cke_content
+  width 100%
+  margin 30px 0 30px -8px
+.article-container
+  float left
+  width 45%
+  margin-top 30px
+  height 365px
+.article-container:nth-child(2n)
+  float right
+.article-container span
+  font-size 14px
+.article-container p
+  font-size 16px
+  font-weight 700
 
 
 @media only screen and (min-width: 1250px) and (max-width: 1395px)
@@ -425,12 +456,15 @@ table tr td, table tr th
   .wrapper
     margin-left 10px
     margin-right 10px
-
-@media only screen and (max-width: 1095px)
+  .reg
+    background: none
+    margin-left 10px
   .main-button img
     display none
   .main-button span
     padding 15px
+  .main-button
+    margin-right -30px
 
 
 @import '_content'

@@ -68,7 +68,7 @@
     <h3 class="main-subtitle">прав викладачів та студентів</h3>
     <div class="reg_main-button" ng-controller="mainCtrl">
 
-      <section class="reg"><span>ЗАРЕЄСТРОВАНО</span><br /><span class="por-num">1000</span><br />
+      <section ng-controller="mainCtrl" class="reg"><span>ЗАРЕЄСТРОВАНО</span><br /><span ng-bind="count" class="por-num"></span><br />
         <span>порушень</span></section>
       <section class="main-button"><a href="/form"><span>ПОВІДОМИТИ ПРО ПОРУШЕННЯ<img src="/img/circle-check.png"/>
 </span></a></section>

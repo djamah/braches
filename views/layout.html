@@ -12,6 +12,7 @@
     <script src="/libs/chosen.jquery.min.js"></script>
     <script src="/libs/ng-file-upload/ng-file-upload.min.js"></script>
     <script src="/libs/chosen.js"></script>
+    <script src="/libs/unslider-min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.1-beta.2/Chart.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300,400italic&subset=latin,cyrillic-ext' rel='stylesheet' type='text/css'>
@@ -43,12 +44,35 @@
 <div class="admin-area">
     Ви в адмінці, <a href="/logout">вийти</a><a href="/admin/monit" style="margin-left: 15px">Почухати павучка</a>
 </div>
-<div style="height: 48px"></div>
 {{/admin}}
   <div class="common"></div>
   <div class="contain">
   <header class="wrapper">
     <ul class="top-menu">
+      {{#admin}}
+      <li class="home {{#currentPage.home}}active{{/currentPage.home}}">
+        <a href="/" >
+          <img src="/img/logo-small.png" width="45"/>
+          <span class="logo-text">
+            <span class="logo-title">PROFRIGHTS.ORG</span>
+            <span class="logo-subtitle">правозахист викладачів та студентів</span>
+          </span>
+         </a>
+      </li>
+                        <li class="{{#currentPage.list}}active{{/currentPage.list}}"><a href="/admin/list">Зареєстровані порушення</a></li>
+                        <li class="{{#currentPage.info}}active{{/currentPage.info}}"><a href="/info">Інфографіка</a></li>
+                        <li style="position: relative" class="dropdown {{#currentPage.content}}active{{/currentPage.content}}">
+                            <a class="dropdown-toggle"  href="#">
+                                Як захистити свої права ></a>
+                            <ul class="dropdown-menu" role="menu" style="width: 100%">
+                                <li><a href="/admin/content/">Усі пости</a></li>
+                                <li><a href="/admin/content/new/">Новий пост</a></li>
+                            </ul>
+                        </li>
+                        <li class="{{#currentPage.about}}active{{/currentPage.about}}"><a href="/about/">Про проект</a></li>
+                        <li class="{{#currentPage.form}}active{{/currentPage.form}}"><a href="/form">ПОВІДОМИТИ ПРО ПОРУШЕННЯ</a></li>
+                        {{/admin}}
+                        {{^admin}}
       <li class="home {{#currentPage.home}}active{{/currentPage.home}}">
         <a href="/" >
           <img src="/img/logo-small.png" width="45"/>
@@ -63,6 +87,7 @@
       <li class="{{#currentPage.content}}active{{/currentPage.content}}"><a href="/content/">Як захистити свої права</a></li>
       <li class="{{#currentPage.about}}active{{/currentPage.about}}"><a href="/about/">Про проект</a></li>
       <li class="{{#currentPage.form}}active{{/currentPage.form}}"><a  href="/form">ПОВІДОМИТИ ПРО ПОРУШЕННЯ</a></li>
+       {{/admin}}
     </ul>
   </header>
 {{{ yield }}}
@@ -83,3 +108,7 @@
 </body>
 </html>
 <script>
+$(".dropdown-toggle").on("click", function(){
+  $(".dropdown-menu").toggle();
+})
+</script>
