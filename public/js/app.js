@@ -2,6 +2,27 @@
 var app = angular.module('app', ['localytics.directives', 'angles', 'ngFileUpload']);
 
 app
+  .directive('modalDialog',  function() {
+  return {
+    restrict: 'E',
+    scope: {
+      show: '='
+    },
+    replace: true, 
+    transclude: true, 
+    link: function(scope, element, attrs) {
+      scope.dialogStyle = {};
+      if (attrs.width)
+        scope.dialogStyle.width = attrs.width;
+      if (attrs.height)
+        scope.dialogStyle.height = attrs.height;
+      scope.hideModal = function() {
+        location.href = '/';
+      };
+    },
+    template: "<div class='ng-modal' ng-show='show'><div class='ng-modal-overlay'></div><div class='ng-modal-dialog' ng-style='dialogStyle'><div class='ng-modal-close' ng-click='hideModal()'><img src='/img/controls.png' /></div><div class='ng-modal-dialog-content' ng-transclude></div></div></div>"
+  };
+})
     .directive('fileModel', ['$parse', function ($parse) {
         return {
             restrict: 'A',
@@ -133,7 +154,8 @@ app
 	})
 
     .controller('breachFormCtrl', function($scope, $http){
-        $scope.options = options;
+		  $scope.modalShown = false;
+   $scope.options = options;
         $scope.getOwner = function(){
             var res = '';
             for(var i in options.city[$scope.form.city]){
@@ -164,9 +186,12 @@ app
                         headers: {'Content-Type': undefined}
                     })
                         .success(function(){
-                            $scope.status = 'success';
+							$scope.status = "success";
+                            $scope.modalShown = !$scope.modalShown;
                         })
                         .error(function(){
+							$scope.status = "error"
+							$scope.modalShown = !$scope.modalShown;
                         });
                 } else {
                     $http.post('send_breach', fd, {
@@ -174,10 +199,12 @@ app
                         headers: {'Content-Type': undefined}
                     })
                         .success(function(data){
-                            $scope.status = 'success';
+							$scope.status = "success";
+                            $scope.modalShown = !$scope.modalShown;
                         })
                         .error(function(){
                             $scope.status = 'error';
+                            $scope.modalShown = !$scope.modalShown;
                         });
                     $scope.status = 'sending';
                 }

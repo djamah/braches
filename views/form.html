@@ -1,7 +1,10 @@
 {{=<% %>=}}
-<div class="wrapper" id="send_breaches" class="container content" ng-app="app">
+<div class="wrapper" id="send_breaches" class="container content" ng-app="app" ng-init="modalShown=false">
   <h3>Зареєструвати порушення</h3>
-  <p style="color: #84898c;font-size:14px">Заповніть форму, щоб зареєструвати порушення</p>
+  <p style="color: #84898c;font-size:14px;text-align:center">Заповніть форму, щоб зареєструвати порушення</p>
+  <div style="clear:both; text-align:left;margin-top: 10px">
+    <p style="color: #0069a8;font-weight:700">* зірочкою позначені обов’язкові поля</p>
+  </div>
   <form name="breachForm" ng-controller="breachFormCtrl" class="form-horizontal well" novalidate>
     <div class="form-group" >
       <div class="hello">
@@ -132,36 +135,47 @@
                        required/>
             </div>
         </div>
-        <div style="clear:both; text-align:left;margin-top: 50px">
-			    <p style="color: #0069a8;">* зірочкою позначені обов’язкові поля</p>
-        </div>
-        <div style="text-align:center">
+
+        <div style="text-align:center;clear:both;margin-top:20px">
             <button class="send-form" ng-click="submit()" >
                 НАДІСЛАТИ ПОВІДОМЛЕННЯ
             </button>
        </div>
 
-        <div ng-switch on="status">
-            <div ng-switch-when="sending">
-                <p>
-                    <div class="progress progress-striped active">
-                        <div class="progress-bar"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-                            <span class="sr-only"></span>
-                        </div>
-                    </div>
-                </p>
-            </div>
-            <div ng-switch-when="success">
-                <h3 class="well">Ваше повідомлення зареєстровано, протягом <strong>трьох діб</strong> надана інформація буде проходити премодерацію, під час якої ми визначимо, які саме норми законодавства порушено. У разі, якщо ваше повідомлення не містить порушення прав студентів або викладачів, воно не потрапить до бази Profrights.org.
+            <modal-dialog show='modalShown'>
+              <div ng-switch on="status">
+                          <div ng-switch-when="sending">
+                              <p>
+                                  <div class="progress progress-striped active">
+                                      <div class="progress-bar"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                          <span class="sr-only"></span>
+                                      </div>
+                                  </div>
+                              </p>
+                          </div>
+                          <div ng-switch-when="success">
+                             <div style="text-align:center"><img src="/img/breach-sent.png" /></div>
+                             <div style="font-size:14px">
+                               <p style="text-align:center;font-size:24px"><strong>Підтвердження</strong> реєстраціїї <br>повідомлення</p>
+                               <p class="well">
+               Протягом <strong>3 діб</strong> надана інформація буде проходити премодерацію,
+               під час якої ми визначимо, які саме норми законодавства порушено.</p>
 
-</h3>
-            </div>
-            <div ng-switch-when="error">
-                <h3 class="well">Нажаль, сталася помилка, спробуйте ще раз.</h3>
-            </div>
-            <div ng-switch-default>
-            </div>
-        </div>
+               <p>У разі, якщо ваше повідомлення не містить порушення прав
+               студентів або викладачів, воно не потрапить до бази Profrights.org.
+               Вас поінформують про те, чи прийнято повідомлення на вказану
+               електронну адресу.</p>
+
+               <p><strong>Нагадуємо, Profrights.org не поширює інформацію з обмеженим доступом!</strong>
+               </p></div>
+                          </div>
+                          <div ng-switch-when="error">
+                              <h3 class="well">На жаль, сталася помилка, спробуйте ще раз.</h3>
+                          </div>
+                          <div ng-switch-default>
+                          </div>
+                      </div>
+          </modal-dialog>
 
     </form>
 
