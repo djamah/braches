@@ -20,7 +20,7 @@ app
         location.href = '/';
       };
     },
-    template: "<div class='ng-modal' ng-show='show'><div class='ng-modal-overlay'></div><div class='ng-modal-dialog' ng-style='dialogStyle'><div class='ng-modal-close' ng-click='hideModal()'><img src='/img/controls.png' /></div><div class='ng-modal-dialog-content' ng-transclude></div></div></div>"
+    template: "<div class='ng-modal' ng-show='show'><div class='ng-modal-overlay' ng-click='hideModal()'></div><div class='ng-modal-dialog' ng-style='dialogStyle'><div class='ng-modal-close' ng-click='hideModal()'><img src='/img/controls.png' /></div><div class='ng-modal-dialog-content' ng-transclude></div></div></div>"
   };
 })
     .directive('fileModel', ['$parse', function ($parse) {
