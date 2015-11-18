@@ -10,30 +10,31 @@
 <p><strong>Зареєстровано порушень: <span style="color: #2aa2ff;">{{filteredList.length}}</span></strong></p>
             <table class="table table-striped table-hover">
               <colgroup>
-  <col style="width:4%">
+  <col style="width:3%">
   <col style="width:11%">
-  <col style="width:19%">
+  <col style="width:18%">
   <col style="width:7%">
   <col style="width:12%">
   <col style="width:17%">
-  <col style="width:30%">
+  <col style="width:29%">
+  <col style="width:3%">
 </colgroup>
                 <thead>
                 <tr>
-                    <th> </th>
+                    <th>Виправ-<br />лено?</th>
                     <th>Область / Місто</th>
                     <th>ВНЗ</th>
                     <th>Власність</th>
                     <th>Факультет (інститут), кафедра</th>
                     <th>Тематика</th>
                     <th>Опис факту<br />порушення прав</th>
+                    <th>Роз-<br />крити</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr ng-repeat="item in (filteredList = (list | filter: filters.searchCityFilter | filter: filters.searchOwnerFilter | filter: filters.searchNationalFilter | filter: filters.searchResearchFilter| filter: filters.searchSubjectFilter| filter: filters.searchFixedFilter))"
-                    ng-click="read_more($index)"
-                    ng-class="{success:item.fixed}" style="cursor:pointer">
-                    <td>
+                    ng-class="{success:item.fixed}" >
+                    <td style="text-align:center">
                         <div>
                             <span>
                                 <i ng-show="item.fixed" class="fa fa-check-circle-o fa-lg"></i>
@@ -82,6 +83,10 @@
                     <span ng-show="item.display">
                         {{item.description}}
                     </span>
+                    </td>
+
+                    <td style="cursor:pointer;text-align:center" ng-click="read_more()">
+                      <i style="color: #0069a8;" ng-class="item.display? 'fa fa-2x fa-angle-double-up': 'fa fa-2x fa-angle-double-down'"></i>
                     </td>
                 </tr>
                 </tbody>

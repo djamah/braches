@@ -69,7 +69,7 @@ app
             });
         $scope.options = options;
         
-        $scope.read_more = function(index){
+        $scope.read_more = function(){
 			if (typeof(this.item.display)==="undefined"){
 				this.item.display=false
 			}
