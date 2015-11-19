@@ -5,7 +5,7 @@ module.exports = function(req, res){
         var mailgun = require('mailgun-js')({apiKey: api_key, domain: domain});
         var data = {
           from: 'profrights <postmaster@profrights.org>',
-          to: "estadniy@gmail.com",
+          to: "profrights.org@gmail.com",
           subject: "Профрайтс: Повідомлення від користувача "+req.body.name,
           html: "<p>"+req.body.message+"<p><p>Мейл: "+req.body.email+"</p>"
         };

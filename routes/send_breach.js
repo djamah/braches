@@ -23,6 +23,7 @@ module.exports = function (req, res) {
     breach.date = new Date();
     breach.publish = false;
     breach.fixed = false;
+    breach.state = 0;
     breach.save(function (err, item) {
         if (err) {
             console.log(err, 'errrr');

@@ -6,7 +6,7 @@ module.exports = function(req, res){
         res.redirect('/');
     }
     res.render('admin/list', {
-        partials: {filter: 'partials/filter'},
+        partials: {filter: 'partials/filter_admin'},
         title: 'breaches',
         admin: adminStatus,
         currentPage:{list:true}

@@ -19,7 +19,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="item in list | filter: filters.searchCityFilter | filter: filters.searchOwnerFilter | filter: filters.searchNationalFilter | filter: filters.searchResearchFilter| filter: filters.searchSubjectFilter| filter: filters.searchFixedFilter"
+                <tr ng-repeat="item in list | filter: filters.stateFilter | filter: filters.searchCityFilter | filter: filters.searchOwnerFilter | filter: filters.searchNationalFilter | filter: filters.searchResearchFilter| filter: filters.searchSubjectFilter| filter: filters.searchFixedFilter"
                     ng-click="read_more()"
                     ng-class="{publish: item.state===1, success: item.fixed, decline: item.state===2}">
                     <td>
@@ -86,11 +86,4 @@
 <%={{ }}=%>
 <script>
     var isAdmin = true;
-</script>
-<script>
-    $(function () {
-        $('body').tooltip({
-            selector: "[data-toggle=tooltip]"
-        });
-    });
 </script>

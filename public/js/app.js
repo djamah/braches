@@ -117,6 +117,15 @@ app
                     } else return true;
                 } else return true;
             },
+            stateFilter: function(item) {
+				if($scope.f && $scope.f.state && ($scope.f.state.accepted || $scope.f.state.declined || $scope.f.state.none )){
+                    switch (item.state){
+                        case 1: if($scope.f.state.accepted) return true; break;
+                        case 2: if($scope.f.state.declined) return true; break;
+                        case 0: if($scope.f.state.none) return true; break;
+                    }
+				} else return true
+			},
             searchSubjectFilter: function(item){
 //                console.log('searchSubjectFilter');
                 if($scope.f){

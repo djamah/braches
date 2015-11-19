@@ -1,0 +1,80 @@
+{{=<% %>=}}
+<div ng-class="{
+        'bounceInRight': viewOptions.activeTab === 'map',
+        'bounceInLeft': viewOptions.activeTab !== 'map',
+        'filter-left': viewOptions.activeTab === 'map'
+    }"
+     class="container well animated">
+     <div class="filter-row" >
+       <div class="filter-wrapper wrapper">
+           <div class="filter-left-top" style="width:100%">
+             <img style="vertical-align:middle;padding-right:10px" src="/img/arrow.png" />
+             <select chosen
+                   class="chosen-select"
+                   ng-model="f.city"
+                   style="width: 32%;"
+                   ng-options="c for c in options.cities"
+                   data-placeholder="Місто/область"
+                   multiple>
+             </select>
+             <select chosen
+                   multiple
+                   ng-model="f.subject"
+                   style="width: 32%"
+                   ng-options="c for c in options.subjects"
+                   data-placeholder="Тематика">
+               <option></option>
+             </select>
+               <span class="small-input">
+                 <input ng-model="f.state.accepted" class="input-inline" type="checkbox" id="id_accepted"/>
+                 <label for="id_accepted" style="padding-left:5px">прийняті</label>
+               </span>
+               <span class="small-input">
+                 <input ng-model="f.state.declined" class="input-inline" type="checkbox" id="id_declined"/>
+                 <label for="id_declined" style="padding-left:5px">відхилені</label>
+               </span>
+               <span class="small-input">
+                 <input ng-model="f.state.none" class="input-inline" type="checkbox" id="id_none"/>
+                 <label for="id_none" style="padding-left:5px">ніякі</label>
+               </span>
+           </div>
+           <div class="filter-left-bottom" style="width:100%;margin-top: 10px">
+             <div class="vlasnist" style="display:inline-block; float:left; width:38%">
+               <strong>Власність ВНЗ</strong><br >
+               <span class="small-input">
+                   <input class="input-inline" ng-model="f.owner.gov" type="checkbox" name="level" value="gov" id="id_owner_gov"/>
+                   <label for="id_owner_gov">державний</label>
+               </span>
+               <span class="small-input">
+                   <input class="input-inline" ng-model="f.owner.com" type="checkbox" name="level" value="com" id="id_owner_com"/>
+                   <label for="id_owner_com">комунальний</label>
+               </span>
+               <span class="small-input">
+                   <input class="input-inline" ng-model="f.owner.private" type="checkbox" name="level" value="private" id="id_owner_private"/>
+                   <label for="id_owner_private">приватний</label>
+               </span>
+             </div>
+             <div class="statoos" style="display:inline-block; float:left;width:35%">
+               <strong>Статус</strong><br />
+               <span class="small-input">
+                   <input class="input-inline" ng-model="f.national" type="checkbox" id="id_national"/>
+                   <label for="id_national">національний</label>
+               </span>
+               <span class="small-input">
+                   <input class="input-inline" ng-model="f.research" type="checkbox" id="id_research"/>
+                   <label for="id_research">дослідницький
+                   </label>
+               </span>
+             </div>
+             <div cstyle="display:inline-block; float:left">
+               <strong>Поточний статус</strong><br/>
+               <span class="small-input">
+                 <input ng-model="f.fixed" class="input-inline" type="checkbox" id="id_fixed"/>
+                 <label for="id_fixed" style="padding-left:5px">виправлено</label>
+               </span>
+             </div>
+           </div>
+       </div>
+     </div>
+</div>
+<%={{ }}=%>

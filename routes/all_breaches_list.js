@@ -5,12 +5,12 @@ module.exports = function(req, res){
         var adminStatus = req.user.level === 1;
 
     if(adminStatus){
-        Breach.find({}, function(err, data){
+        Breach.find({}).sort("-date").exec(function(err, data){
             res.json(data);
         })
     } else {
         if(1){
-            Breach.find({state: 1}, function(err, data){//
+            Breach.find({state: 1}).sort("-date").exec(function(err, data){//
                 res.json(data);
             });
         } else {
