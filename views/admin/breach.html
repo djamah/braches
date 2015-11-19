@@ -11,7 +11,11 @@
             <p>
                 <textarea name="" id="description" cols="100" rows="10">{{item.description}}</textarea>
             </p>
+            <p>
+                {{item.full_description}}
+            </p>
             <p class="author_name"><i>{{item.position}}, {{item.city}}</i></p>
+            <p>{{item.email}}</p>
         </div>
         <div>
             {{#item.fixed}}
