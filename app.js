@@ -77,6 +77,7 @@ app.get('/about', routes.about);
 app.get('/content', routes.content.all_content);
 //app.get('/clarification', routes.content.clarification_category);
 app.get('/content/:id', routes.content.content_item);
+app.post('/content_list', routes.content.all_content_list);
 
 app.get('/all_breaches', routes.all_breaches);
 app.post('/all_breaches_list', routes.all_breaches_list);

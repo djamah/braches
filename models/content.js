@@ -3,7 +3,7 @@ var db = require('./config').db;
 var contentSchema = db.Schema({
     title: String,
     content: String,
-    date: String,
+    date: Date,
     publish: Boolean,
     visual: String,
     preview: String,

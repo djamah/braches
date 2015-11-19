@@ -62,6 +62,20 @@ app
                 $scope.count = data.length;
          });
 })
+    .controller('contentListCtrl', function($scope, $http, $location){
+		  $http.post('/content_list', {})
+            .success(function(data){
+                $scope.latest = data[0];
+                $scope.posts = data.slice(1,data.length-1);
+                var chosens = [];
+                data.forEach(function(item){
+                  if(item.visual === 'expand'){
+                    chosens.push(item)
+                  } 
+                });
+                $scope.chosens = chosens;
+            });
+	})
     .controller('breachesListCtrl', function($scope, $http, $location){
         $http.post('/all_breaches_list', {})
             .success(function(data){
