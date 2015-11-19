@@ -10,7 +10,7 @@ module.exports = function(req, res){
         })
     } else {
 
-            Content.find({publish: true}).sort("date").exec(function(err, data){
+            Content.find({publish: true}).sort("-date").exec(function(err, data){
 
                 res.json(data);
             });
