@@ -12,7 +12,7 @@
                 <textarea name="" id="description" cols="100" rows="10">{{item.description}}</textarea>
             </p>
             <p>
-                {{item.full_description}}
+                <textarea name="" id="fulldescription" cols="100" rows="10">{{item.full_description}}</textarea>
             </p>
             <p class="author_name"><i>{{item.position}}, {{item.city}}</i></p>
             <p>{{item.email}}</p>
@@ -103,6 +103,7 @@
                 id: $('.breach_item').attr('id'),
                 subject: $('#subject').val(),
                 description: $('#description').val(),
+                full_description: $('#fulldescription').val(),
                 publish: $('#publish').is(':checked'),
                 national: $('#national').is(':checked'),
                 research: $('#research').is(':checked'),
