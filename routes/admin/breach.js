@@ -9,7 +9,7 @@ module.exports = function(req, res){
     }
     Breach.find({_id: req.param('id')}, function(err, item){
         res.render('admin/breach', {
-            title: 'braches',
+            title: 'breaches',
             item: item[0],
 
             item_gov: (item[0].owner === 'gov'),
