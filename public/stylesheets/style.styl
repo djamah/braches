@@ -62,7 +62,13 @@ header.front a
   margin 0
   padding-left 0
   display flex
+  display -webkit-flex
+  display: -webkit-box
+  display: -ms-flexbox
+  display: -webkit-flex
   justify-content space-between
+  -webkit-justify-content space-between
+  -ms-justify-content space-between
 .top-menu>li
   float left
 .top-menu>li:first-child
@@ -163,8 +169,16 @@ footer
   letter-spacing 3px
 .row-of-supporters, .footer-bottom
   display flex
+  display -webkit-flex
+  display -webkit-box
+  display -ms-flexbox
+  display -webkit-flex
   justify-content space-between
+  -webkit-justify-content space-between
+  -ms-justify-content space-between
   align-items center
+  -webkit-align-items center
+  -ms-align-items center
 .to-deets
   cursor pointer
 p.to-deets
@@ -378,6 +392,22 @@ h2.how-title
   font-size 13px
   border-radius 3px
   display inline-block
+  cursor pointer
+  border none
+.red-button
+  color white
+  text-decoration none
+  background-color #F08080
+  padding 10px 60px
+  font-size 13px
+  border-radius 3px
+  display inline-block
+  cursor pointer
+  border none
+.red-button:disabled, .green-button:disabled
+  cursor default
+  background-color #666
+
 .center-block
   margin-top 30px
 table
@@ -480,7 +510,10 @@ form[name="questionForm"] span
   text-decoration underline
   text-decoration-style dashed
   cursor pointer
-
+.breach_item textarea
+  padding 5px
+.breach_item input[type="checkbox"]
+  vertical-align:middle
 
 .ng-modal-overlay
   position:fixed;
@@ -528,6 +561,18 @@ form[name="questionForm"] span
         border-left: 8px solid lightgreen
       td:last-child
         border-right: 8px solid lightgreen
+.login
+  margin-top 20px
+.login-title
+  text-align center
+.login-body
+  display flex
+  justify-content center
+.login .form-group
+  text-align center
+  margin 15px 0
+.item-part
+  margin-top 15px
 
 
 @media only screen and (max-width: 1455px)

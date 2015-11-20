@@ -1,11 +1,10 @@
 <div class="container">
     <article class="well breach_item" id="{{item.id}}">
-        <a href="/admin/list" class="glyphicon glyphicon-arrow-left"></a>
-        <!--<h5>{{item.subject}}</h5>-->
-        <a class="btn btn-lg btn-danger center-block" id="remove">Видалити</a>
-        <a class="btn btn-lg btn-success center-block" id="update">Оновити</a>
+        <a href="/admin/list" class="fa fa-arrow-left"></a>
+        <a style="margin-left:10px" class="red-button" id="remove">Видалити</a>
+        <a style="margin-left:10px" class="green-button" id="update">Оновити</a>
         <h5>
-            <input class="expand" id="subject" type="text" value="{{item.subject}}"/>
+            Тематика: <input style="margin-left:20px" class="expand" id="subject" type="text" value="{{item.subject}}"/>
         </h5>
         <div class="post">
             <p>
@@ -24,39 +23,38 @@
             {{^item.fixed}}
             <input type="checkbox" id="fixed"/>
             {{/item.fixed}}
-            <label for="fixed">Порушення виправлено</label>
+            <label style="padding-left:10px" for="fixed">Порушення виправлено</label>
         </div>
         <h5>Додаткові матеріали</h5>
         <div class="post">
-            <a class="file_link" href="{{item.file}}" target="_blank"><i class="glyphicon glyphicon-paperclip"></i>{{item.file}}</a>
+            <a class="file_link" href="{{item.file}}" target="_blank"><i class="fa fa-paperclip"></i>{{item.file}}</a>
         </div>
         <div class="separator"></div>
-        <div class="description row">
-            <div class="col-lg-4">
+        <div class="item-part">
+            <div>
                 <span>{{item.university.name}}</span>
             </div>
-            <div class="col-lg-4">
+            <div>
                 <span>{{item.department}}</span>,
                 <span>{{item.faculty}}</span>
             </div>
-            <div class="col-lg-4">
-
-                <div>
+         </div>
+         <div class="item-part">
                     <span>Форма власності:
                         {{#item_gov}}
-                            <span>державний<!--2--></span>
+                            <span>державний</span>
                         {{/item_gov}}
                         {{#item_com}}
-                            <span>комунальний<!--3--></span>
+                            <span>комунальний</span>
                         {{/item_com}}
                         {{#item_private}}
-                            <span>приватний<!--4--></span>
+                            <span>приватний</span>
                         {{/item_private}}
                     </span>
-                </div>
-                <div>
+          </div>
+          <div class="item-part">
                     <span>
-                        <label for="national">статус національного:</label>
+                        <label style="padding-right:10px" for="national">статус національного:</label>
                         {{#item_national}}
                             <input id="national" type="checkbox" checked/>
                         {{/item_national}}
@@ -64,10 +62,10 @@
                             <input id="national" type="checkbox"/>
                         {{/item_national}}
                     </span>
-                </div>
-                <div>
+          </div>
+          <div class="item-part">
                     <span>
-                        <label for="research">статус дослідницького:</label>
+                        <label style="padding-right:10px" for="research">статус дослідницького:</label>
                         {{#item_research}}
                             <input id="research" type="checkbox" checked/>
                         {{/item_research}}
@@ -75,22 +73,20 @@
                             <input id="research" type="checkbox"/>
                         {{/item_research}}
                     </span>
-                </div>
-            </div>
-        </div>
-        <div>
+          </div>
+        <div class="item-part">
 	      {{#item_accepted}}
-          <a class="btn btn-lg btn-success" disabled id="accept">Прийняти</a>
+          <button class="green-button" disabled id="accept">Прийняти</button>
           {{/item_accepted}}
           {{^item_accepted}}
-          <a class="btn btn-lg btn-success" id="accept">Прийняти</a>
+          <button class="green-button" id="accept">Прийняти</button>
           {{/item_accepted}}
 
           {{#item_declined}}
-          <a class="btn btn-lg btn-danger" disabled style="float:right" id="decline">Відхилити</a>
+          <button class="red-button"  style="margin-left:20px" id="decline">Відхилити</button>
           {{/item_declined}}
           {{^item_declined}}
-          <a class="btn btn-lg btn-danger" style="float:right" id="decline">Відхилити</a>
+          <button class="red-button" style="margin-left:20px" id="decline">Відхилити</button>
           {{/item_declined}}
         </div>
     </article>
