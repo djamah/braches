@@ -360,7 +360,9 @@ app
                         if($scope.filters.searchNationalFilter($scope.list[j])){
                             if($scope.filters.searchResearchFilter($scope.list[j])){
                                 if($scope.filters.searchSubjectFilter($scope.list[j])){
-                                    filteredData.push($scope.list[j]);
+									if($scope.filters.searchFixedFilter($scope.list[j])){
+                                      filteredData.push($scope.list[j]);
+                                    }
                                 }
                             }
                         }
