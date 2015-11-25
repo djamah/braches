@@ -5,12 +5,13 @@
   <div style="clear:both; text-align:left;margin-top: 10px">
     <p style="color: #0069a8;font-weight:700">* зірочкою позначені обов’язкові поля</p>
   </div>
-  <form name="breachForm" ng-controller="breachFormCtrl" class="form-horizontal well">
+  <form name="breachForm" ng-controller="breachFormCtrl" class="form-horizontal well" novalidate>
     <div class="form-group" >
       <div class="hello">
         <select
            chosen
            ng-model="form.city"
+           name = 'city'
            ng-options="c for c in options.cities"
            class="form-control"
            data-placeholder="Область/місто *"
@@ -18,18 +19,20 @@
            required>
            <option></option>
          </select>
+           <p ng-show="breachForm.city.$invalid && submitted" class="err">Це обов'язкове поле</p>
        </div>
        <div ng-init="form.university = {}">
-         <select
+         <select ng-class="{'ng-invalid' : breachForm.university.$invalid}"
              chosen
              ng-model="form.university"
+             name = "university"
              ng-options="c.name for c in options.city[form.city]"
              class="form-control"
              data-placeholder="Вищий навчальний заклад *"
-             style="width: 95%;"
-             required>
+             style="width: 95%;">
              <option></option>
         </select>
+          <p ng-show="breachForm.university.$invalid && submitted" class="err">Це обов'язкове поле</p>
       </div>
     </div>
     <div class="form-group">
@@ -108,13 +111,17 @@
                 <textarea ng-model="form.description"
                           style="width: 97%;"
                           class="form-control"
+                          name = 'description'
                           placeholder="Короткий опис (буде доступний користувачам сайту Profrights) *"
                           required></textarea>
+                <p ng-show="breachForm.description.$invalid && submitted" class="err text-err">Це обов'язкове поле</p>
                 <textarea ng-model="form.full_description"
                           style="width: 97%;"
+                          name = "full_description"
                           placeholder="Повний опис (усі деталі та файли доступні лише адміністраторам сайту) *"
                           class="form-control"
                           required></textarea>
+                <p ng-show="breachForm.full_description.$invalid && submitted" class="err text-err">Це обов'язкове поле</p>
         </div>
         <div class="form-row" style="text-align:left;margin:10px 0">
             <label id="f-label" for="file" style="color: #535556;font-size:14px; cursor:pointer" ><span>Додати файл (pdf, doc, jpeg, tiff)</span>
@@ -129,10 +136,12 @@
             <div class="email">
                 <input ng-model="form.email"
                        type="email"
+                       name="email"
                        class="form-control"
                        style="width: 97%;"
                        placeholder="Електронна пошта (публікуватись не буде) *"
                        required/>
+                <p ng-show="breachForm.email.$invalid && submitted" class="err">Введіть справжній емейл</p>
             </div>
         </div>
         <p style="clear:both;font-size:14px">
@@ -140,9 +149,11 @@
           якщо нам знадобиться додаткова інформація, аби підтвердити достовірність повідомлення. Також на неї прийде підтвердження публікації повідомлення</p>
 
         <div style="text-align:center;clear:both;margin-top:20px">
+            <p style="font-size: 20px" ng-show="breachForm.$invalid && submitted" class="err">Перевірте правильність заповнення форми</p>
             <button class="send-form" ng-click="submit()" >
                 НАДІСЛАТИ ПОВІДОМЛЕННЯ
             </button>
+
        </div>
 
             <modal-dialog show='modalShown'>
@@ -173,7 +184,7 @@
                </p></div>
                           </div>
                           <div ng-switch-when="error">
-                              <h3 class="well">На жаль, сталася помилка, спробуйте ще раз.</h3>
+                              <h3 class="well">На жаль, сталася невідома помилка, спробуйте ще раз. Якщо проблема не зникне, напишіть нам про це</h3>
                           </div>
                           <div ng-switch-default>
                           </div>

@@ -318,9 +318,9 @@ h2.how-title
   margin 10px 0
   padding 7px
   border 1px solid #ccc
-.form-row textarea:first-child
+.form-row textarea[name="description"]
   height 90px
-.form-row textarea:last-child
+.form-row textarea[name="full_description"]
   height 150px
 .file-upload input
   display none
@@ -581,7 +581,16 @@ form[name="questionForm"] span
   margin 15px 0
 .item-part
   margin-top 15px
-
+.err
+  font-weight 700
+  color #741938
+  margin-top 5px
+.text-err
+  margin-top -5px
+.ng-submitted select.ng-invalid + div.chosen-container
+  border 1px solid #741938
+.ng-submitted .ng-invalid, .ng-submitted input.ng-invalid
+  border 1px solid #741938
 
 @media only screen and (max-width: 1455px)
   .reg_main-button

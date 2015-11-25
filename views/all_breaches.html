@@ -32,7 +32,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="item in (filteredList = (list | filter: filters.searchCityFilter | filter: filters.searchOwnerFilter | filter: filters.searchNationalFilter | filter: filters.searchResearchFilter| filter: filters.searchSubjectFilter| filter: filters.searchFixedFilter))"
+                <tr ng-repeat="item in ( filteredList = (list | filter: filters.searchCityFilter | filter: filters.searchOwnerFilter | filter: filters.searchNationalFilter | filter: filters.searchResearchFilter| filter: filters.searchSubjectFilter| filter: filters.searchFixedFilter))"
                     ng-class="{success:item.fixed}" >
                     <td style="text-align:center">
                         <div>

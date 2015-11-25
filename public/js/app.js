@@ -190,6 +190,10 @@ app
             return res;
         };
         $scope.submit = function(){
+			$scope.submitted = true;
+			if (typeof($scope.form.university.name)==='undefined') {
+				$scope.breachForm.university.$invalid = true
+			}
             if($scope.breachForm.$valid){
                 $scope.form.owner = $scope.getOwner();
                 $scope.form.national = ($scope.form.national === 'true');
@@ -233,7 +237,7 @@ app
                 }
 
 
-            }
+            } 
         };
     })
     .controller('mapCtrl', function($scope){
