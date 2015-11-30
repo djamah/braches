@@ -416,7 +416,7 @@ app
 
    .controller('listAllCtrl', function($scope){
         
-        $scope.pageSize = 5;
+        $scope.pageSize = 20;
         
         $scope.filteredData = $scope.list;
 

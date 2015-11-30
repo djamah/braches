@@ -11,8 +11,9 @@
   <strong>Зареєстровано порушень: <span style="color: #2aa2ff;">{{filteredData.length}}</span></strong>
   <strong style="float:right">Показати:
     <select id="pagesize" ng-model="pageSize" convert-to-number chosen>
-      <option value = "1">1</option>
-      <option value = "5">5</option>
+      <option value = "20">20</option>
+      <option value = "50">50</option>
+      <option value = "100">100</option>
       <option value = "{{filteredData.length}}">Усі</option>
     </select>
   </strong>
@@ -113,5 +114,5 @@
     $("#pagesize").chosen({
     disable_search: true,
   });
-  $('#pagesize').val('5').trigger('chosen:updated');
+  $('#pagesize').val('20').trigger('chosen:updated');
 </script>
