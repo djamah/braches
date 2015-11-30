@@ -47,25 +47,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(app.router);
 
-//app.use('/uploads', express.static(__dirname + "/uploads"));
 
-
-//app.use(multer({
-//    dest: './public/uploads/',
-//    rename: function (fieldname, filename) {
-//        return filename+Date.now();
-//    },
-//    onFileUploadStart: function (file) {
-//        console.log('start file up');
-//    },
-//    onFileUploadComplete: function (file) {
-//        console.log('end file up');
-//    }
-//}));
-
-//app.set('uploads', __dirname + '/public/uploads');
-
-// development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }

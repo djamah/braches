@@ -1,5 +1,5 @@
 
-var app = angular.module('app', ['localytics.directives', 'angles', 'ngFileUpload']);
+var app = angular.module('app', ['localytics.directives', 'angles', 'ngFileUpload', 'angularUtils.directives.dirPagination']);
 
 app
   .directive('modalDialog',  function() {
@@ -414,3 +414,44 @@ app
 
     })    
 
+   .controller('listAllCtrl', function($scope){
+        
+        $scope.pageSize = 5;
+        
+        $scope.filteredData = $scope.list;
+
+        $scope.$watch('f.city', toFilter);
+        $scope.$watch('f.level.second', toFilter);
+        $scope.$watch('f.level.third', toFilter);
+        $scope.$watch('f.level.fourth', toFilter);
+        $scope.$watch('f.national', toFilter);
+        $scope.$watch('f.research', toFilter);
+        $scope.$watch('f.subject', toFilter);
+        $scope.$watch('f.fixed', toFilter);
+        $scope.$watch('f.state', toFilter);
+        $scope.$watch('list', toFilter);
+
+        function toFilter(){
+            var filteredData = [];
+
+            for(var j in $scope.list){
+                if($scope.filters.searchCityFilter($scope.list[j])){
+                    if($scope.filters.searchOwnerFilter($scope.list[j])){
+                        if($scope.filters.searchNationalFilter($scope.list[j])){
+                            if($scope.filters.searchResearchFilter($scope.list[j])){
+                                if($scope.filters.searchSubjectFilter($scope.list[j])){
+									if($scope.filters.searchFixedFilter($scope.list[j])){
+                                      filteredData.push($scope.list[j]);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            $scope.filteredData = filteredData;
+
+        }
+
+    })    

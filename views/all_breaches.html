@@ -6,8 +6,18 @@
 
 {{=<% %>=}}
 
-        <section class="center-block wrapper">
-<p><strong>Зареєстровано порушень: <span style="color: #2aa2ff;">{{filteredList.length}}</span></strong></p>
+        <section class="center-block wrapper" ng-controller="listAllCtrl">
+<p>
+  <strong>Зареєстровано порушень: <span style="color: #2aa2ff;">{{filteredData.length}}</span></strong>
+  <strong style="float:right">Показати:
+    <select id="pagesize" ng-model="pageSize" convert-to-number chosen>
+      <option value = "1">1</option>
+      <option value = "5">5</option>
+      <option value = "{{filteredData.length}}">Усі</option>
+    </select>
+  </strong>
+</p>
+
             <table class="table table-striped table-hover">
               <colgroup>
   <col style="width:3%">
@@ -32,7 +42,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="item in ( filteredList = (list | filter: filters.searchCityFilter | filter: filters.searchOwnerFilter | filter: filters.searchNationalFilter | filter: filters.searchResearchFilter| filter: filters.searchSubjectFilter| filter: filters.searchFixedFilter))"
+                <tr dir-paginate="item in filteredData | itemsPerPage: pageSize"
                     ng-class="{success:item.fixed}" >
                     <td style="text-align:center">
                         <div>
@@ -91,18 +101,17 @@
                 </tr>
                 </tbody>
             </table>
+            <dir-pagination-controls template-url="dirPagination.tpl.html"></dir-pagination-controls>
         </section>
     </div>
 </div>
 
 <%={{ }}=%>
 <script>
+
     var isAdmin = false;
-</script>
-<script>
-    $(function () {
-        $('body').tooltip({
-            selector: "[data-toggle=tooltip]"
-        });
-    });
+    $("#pagesize").chosen({
+    disable_search: true,
+  });
+  $('#pagesize').val('5').trigger('chosen:updated');
 </script>
