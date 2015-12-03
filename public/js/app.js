@@ -23,6 +23,16 @@ app
     template: "<div class='ng-modal' ng-show='show'><div class='ng-modal-overlay' ng-click='hideModal()'></div><div class='ng-modal-dialog' ng-style='dialogStyle'><div class='ng-modal-close' ng-click='hideModal()'><img src='/img/controls.png' /></div><div class='ng-modal-dialog-content' ng-transclude></div></div></div>"
   };
 })
+   .directive('barChart', function() {
+	   function link(scope, element, attrs){
+		   element.text(scope.test)
+	   }
+	
+       return {
+         restrict: 'EA',
+         link: link
+       }
+  })
     .directive('fileModel', ['$parse', function ($parse) {
         return {
             restrict: 'A',
@@ -66,7 +76,7 @@ app
 		  $http.post('/content_list', {})
             .success(function(data){
                 $scope.latest = data[0];
-                $scope.posts = data.slice(1,data.length-1);
+                $scope.posts = data.slice(1,data.length);
                 var chosens = [];
                 data.forEach(function(item){
                   if(item.visual === 'expand'){
@@ -342,6 +352,7 @@ app
         console.log('graphicsCtrl init');
 
         $scope.filteredData = $scope.list;
+        
         $scope.optionsRegions = {
             animation: true
         };
@@ -357,7 +368,7 @@ app
 
         function toFilter(){
             var filteredData = [];
-
+            
             for(var j in $scope.list){
                 if($scope.filters.searchCityFilter($scope.list[j])){
                     if($scope.filters.searchOwnerFilter($scope.list[j])){
@@ -378,6 +389,7 @@ app
 
             renderChartReg();
         }
+        
         function in_array(value, name, array){
             for(var i = 0; i < array.length; i++){
                 if(array[i][name] === value) return i;
