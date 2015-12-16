@@ -23,19 +23,17 @@
 
             <ul class="nav nav-tabs" role="tablist"><!--lust line--></ul>
             <div id="map" style="width: 100%;"></div>
-<div style="clear:both"></div>
+            <div style="clear:both"></div>
         </div>
 
         <div ng-switch-default ng-controller="graphicsCtrl">
 
             <div class="wrapper" style="text-align:center">
-					<p style="padding:30px 0; position:relative; z-index:-100"><strong>Зареєстровано порушень: <span style="color: #2aa2ff;" ng-bind="filteredData.length"></span></strong></p>
-                <div class="chart-regions-container" style="text-align:left;position:relative;z-index:-100">
 
-                    <div >
-                        <canvas piechart legend=true options="optionsRegions" data="chartReg" height="300" width=""></canvas>
-                    </div>
-
+					      <p style="padding:30px 0; position:relative; z-index:-100">
+                  <strong>Зареєстровано порушень: <span style="color: #2aa2ff;" ng-bind="filteredData.length"></span></strong>
+                </p>
+                <div data="chartReg" barchart id="chart-regions-container" style="text-align:left;position:relative">
                 </div>
                 <div style="clear:both"></div>
             </div>

@@ -116,7 +116,6 @@ app
                 } else return true;
             },
             searchCityFilter: function(item){
-//                console.log('searchCityFilter');
                 if($scope.f){
                     if( !$.isEmptyObject($scope.f.city) ){
                         for(var i = 0; i < $scope.f.city.length; i++){
@@ -137,7 +136,6 @@ app
 				} else return true
 			},
             searchSubjectFilter: function(item){
-//                console.log('searchSubjectFilter');
                 if($scope.f){
                     if( !$.isEmptyObject($scope.f.subject) ){
                         for(var i = 0; i < $scope.f.subject.length; i++){
@@ -162,7 +160,6 @@ app
                 } else return true;
             },
             searchNationalFilter: function(item){
-//                console.log('searchNationalFilter');
                 if($scope.f && $scope.f.national){
                     if( item.national ){
                         return true;
@@ -170,7 +167,6 @@ app
                 } else return true;
             },
             searchResearchFilter: function(item){
-//                console.log('searchResearchFilter');
                 if($scope.f && $scope.f.research){
                     if( item.research ){
                         return true;
@@ -259,9 +255,9 @@ app
         var clusterer;
 
         $scope.$watch('f.city', rePaint);
-        $scope.$watch('f.owner.second', rePaint);
-        $scope.$watch('f.owner.third', rePaint);
-        $scope.$watch('f.owner.fourth', rePaint);
+        $scope.$watch('f.owner.gov', rePaint);
+        $scope.$watch('f.owner.com', rePaint);
+        $scope.$watch('f.owner.private', rePaint);
         $scope.$watch('f.national', rePaint);
         $scope.$watch('f.research', rePaint);
         $scope.$watch('f.subject', rePaint);
@@ -357,9 +353,9 @@ app
             animation: true
         };
         $scope.$watch('f.city', toFilter);
-        $scope.$watch('f.level.second', toFilter);
-        $scope.$watch('f.level.third', toFilter);
-        $scope.$watch('f.level.fourth', toFilter);
+        $scope.$watch('f.owner.gov', toFilter);
+        $scope.$watch('f.owner.com', toFilter);
+        $scope.$watch('f.owner.private', toFilter);
         $scope.$watch('f.national', toFilter);
         $scope.$watch('f.research', toFilter);
         $scope.$watch('f.subject', toFilter);
@@ -389,40 +385,12 @@ app
 
             renderChartReg();
         }
-        
-        function in_array(value, name, array){
-            for(var i = 0; i < array.length; i++){
-                if(array[i][name] === value) return i;
-            }
-            return false;
-        }
-        function getRandomColor() {
-            var letters = '0123456789ABCDEF'.split('');
-            var color = '#';
-            for (var i = 0; i < 6; i++ ) {
-                color += letters[Math.floor(Math.random() * 16)];
-            }
-            return color;
-        }
         function renderChartReg(){
-            $('.pie-legend').remove();
-            var dataRegions = [];
-            for(var i in $scope.filteredData){
-                var index = in_array($scope.filteredData[i].city, 'label', dataRegions);
-                if(index===false){
-                    dataRegions.push({
-                        label: $scope.filteredData[i].city,
-                        value: 1
-                    });
-                } else {
-                    dataRegions[index].value++;
-                }
-            }
-            for(var i in dataRegions){
-                dataRegions[i].color = getRandomColor();
-            }
-            $scope.chartReg = dataRegions;
+            $scope.chartReg = $scope.filteredData;
+
         };
+        
+        
 
     })    
 
@@ -433,9 +401,9 @@ app
         $scope.filteredData = $scope.list;
 
         $scope.$watch('f.city', toFilter);
-        $scope.$watch('f.level.second', toFilter);
-        $scope.$watch('f.level.third', toFilter);
-        $scope.$watch('f.level.fourth', toFilter);
+        $scope.$watch('f.owner.gov', toFilter);
+        $scope.$watch('f.owner.private', toFilter);
+        $scope.$watch('f.owner.com', toFilter);
         $scope.$watch('f.national', toFilter);
         $scope.$watch('f.research', toFilter);
         $scope.$watch('f.subject', toFilter);

@@ -12,6 +12,7 @@ module.exports = function(req, res){
         if(1){
             Breach.find({state: 1}).sort("-date").exec(function(err, data){//
                 res.json(data);
+                console.log(data);
             });
         } else {
         }
