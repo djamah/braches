@@ -9,10 +9,10 @@
      </div>
      <ul class="tablist" role="tablist">
          <li ng-class="{active: viewOptions.activeTab === 'map'}">
-             <a class="info-switch"  ng-click="viewOptions.activeTab = 'map'" href="#"><img src="/img/diag.png" />Карта</a>
+             <a class="info-switch"  ng-click="viewOptions.activeTab = 'map'" href="#"><img src="/img/map.png" />Карта</a>
          </li>
          <li ng-class="{active: viewOptions.activeTab !== 'map'}">
-             <a class="info-switch" style="margin-left:10px" ng-click="viewOptions.activeTab = ''" href="#"><img src="/img/map.png" />Діаграми</a>
+             <a class="info-switch" style="margin-left:10px" ng-click="viewOptions.activeTab = ''" href="#"><img src="/img/diag.png" />Діаграми</a>
          </li>
      </ul>
     <div style="position: relative; clear:both" ng-switch="viewOptions.activeTab">
@@ -33,7 +33,10 @@
 					      <p style="padding:30px 0; position:relative; z-index:-100">
                   <strong>Зареєстровано порушень: <span style="color: #2aa2ff;" ng-bind="filteredData.length"></span></strong>
                 </p>
-                <div data="chartReg" barchart id="chart-regions-container" style="text-align:left;position:relative">
+                <div class="chart-regions-container" style="text-align:left;position:relative">
+
+                      <svg class="bchart" barchart data="chartReg" height="300" style="width:100%"></svg>
+
                 </div>
                 <div style="clear:both"></div>
             </div>
