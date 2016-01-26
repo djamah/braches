@@ -7,7 +7,6 @@
 var Content = require('../models/content');
 
 module.exports = function(req, res){
-    console.log(req.user);
     if(req.user)
         var adminStatus = req.user.level === 1;
 

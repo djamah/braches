@@ -6,7 +6,6 @@ module.exports = function(req, res){
         var adminStatus = req.user.level === 1;
 
     Breach.find({_id: req.param('id')}, function(err, item){//publish: true
-        console.log(item);
         res.render('breach', {
             title: "Profrights",
             admin: adminStatus,

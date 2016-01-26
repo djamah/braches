@@ -8,7 +8,6 @@ module.exports = function(req, res){
         Report.find({checked: false}, function(err, data){
 
             data.forEach(function(record) {
-				console.log(record);
 				
 				if (record.accepted) { record.checked = true; record.save() }	
 				else if ( record.wrong ) { record.checked = true; record.save() }

@@ -19,6 +19,6 @@ module.exports = function(req, res){
 
         res.json({status: 'ok'});
         console.log('ok');
-        console.log(data);
+
     })
 };

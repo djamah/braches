@@ -19,8 +19,7 @@ module.exports = function(req, res){
         if (err) throw err;
 
         res.json({status: 'ok'});
-        console.log('ok');
-        console.log(data);
+
         
         var api_key = 'key-f12bbfd36a3aa991e1fb33419d68f7fc';
         var domain = 'profrights.org';
