@@ -30,7 +30,8 @@ app.set('views', './views');
 app.set('view engine', 'html');
 app.set('layout', 'layout');
 app.engine('html', require('hogan-express'));
-
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());
@@ -46,8 +47,7 @@ app.use(express.session({ secret: 'keyboard cat' }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(app.router);
-app.use(bodyParser.json({limit: '50mb'}));
-app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+
 
 
 if ('development' == app.get('env')) {
