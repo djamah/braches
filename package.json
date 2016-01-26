@@ -15,6 +15,7 @@
     "passport": "*",
     "passport-local": "*",
     "require-directory": "~1.2.0",
-    "stylus": "*"
+    "stylus": "*",
+    "body-parser": "*"
   }
 }

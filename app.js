@@ -12,6 +12,7 @@ var Mailgun = require('mailgun-js');
 var api_key = 'key-f12bbfd36a3aa991e1fb33419d68f7fc';
 var domain = 'sandbox63b10041169a4ec5b323d3b87877596b.mailgun.org';
 var from_who = 'sandbox <postmaster@sandbox63b10041169a4ec5b323d3b87877596b.mailgun.org>';
+var bodyParser = require('body-parser');
 
 var http = require('http');
 var path = require('path');
@@ -40,12 +41,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 //app.use(express.static(path.join(__dirname, 'upl+*oads')));
 
 app.use(express.cookieParser());
-app.use(express.bodyParser());
 app.use(express.session({ secret: 'keyboard cat' }));
 
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(app.router);
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 
 
 if ('development' == app.get('env')) {
