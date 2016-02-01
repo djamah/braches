@@ -34,7 +34,7 @@
         <p style="font-size:10px;letter-spacing:2px;margin-top:0">ПОПУЛЯРНІ СТАТТІ</p>
 
         <section ng-repeat="chosen in chosens" style="border-bottom: 1px solid #eee;margin-top:30px">
-          <img width="100%" ng-src="{{chosen.preview_img}}" alt="img"/>
+          <a href="/content/{{chosen._id}}"><img width="100%" ng-src="{{chosen.preview_img}}" alt="img"/></a>
           <a href="/content/{{chosen._id}}"><p style="font-size:14px;color:#333">{{chosen.title}}</p></a>
         </section>
 
