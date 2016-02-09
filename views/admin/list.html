@@ -22,7 +22,7 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="item in list | filter: filters.stateFilter | filter: filters.searchCityFilter | filter: filters.searchOwnerFilter | filter: filters.searchNationalFilter | filter: filters.searchResearchFilter| filter: filters.searchSubjectFilter| filter: filters.searchFixedFilter"
-                    ng-click="read_more()"
+
                     ng-class="{publish: item.state===1, success: item.fixed, decline: item.state===2}">
                     <td>
                         <div>
@@ -31,13 +31,13 @@
                             </span>
                         </div>
                     </td>
-                    <td class="post_town"><span>{{item.city}}</span></td>
+                    <td class="post_town"><a href="/admin/breach/{{item._id}}"><span>{{item.city}}</span></a></td>
                     <td class="post_university">
-                        <span data-toggle="tooltip"
+                        <a href="/admin/breach/{{item._id}}"><span data-toggle="tooltip"
                               data-placement="top"
                               title="{{ item.university.name }}">
                             {{ item.university.name.substr(0,25) }}<span ng-show="!item.univetsity.length < 25">...</span>
-                        </span>
+                        </span></a>
                     </td>
                     <td class="post_level">
                         <span ng-show="item.owner==='gov'">держ.</span>
@@ -74,9 +74,9 @@
                         </span>
                     </td>
                     <td class="post_description">
-                    <span>
+                    <a href="/admin/breach/{{item._id}}"><span>
                         {{item.description.substr(0,30)}}<span ng-show="item.description.length > 30">...</span>
-                    </span>
+                    </span></a>
                     </td>
                     <td class="post_date" style="font-size:10px">{{item.date | date:'short'}}</td>
                     <td class="email" style="font-size:10px">{{item.email}}</td>
