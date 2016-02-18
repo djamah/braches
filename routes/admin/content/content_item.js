@@ -10,7 +10,7 @@ module.exports = function(req, res){
     }
     if(req.param('id')==='new'){
         res.render('admin/content/item', {
-            title: '',
+            title: 'Content',
             admin: adminStatus,
             currentPage: {content:true},
             partials: {filter: 'partials/filter'},
@@ -20,7 +20,7 @@ module.exports = function(req, res){
         Content.find({_id: req.param('id')}, function(err, items){
             console.log(items);
             res.render('admin/content/item', {
-                title: '',
+                title: 'Content',
                 admin: adminStatus,
                 currentPage:{content:true},
                 partials: {filter: 'partials/filter'},

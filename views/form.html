@@ -150,9 +150,17 @@
 
         <div style="text-align:center;clear:both;margin-top:20px">
             <p style="font-size: 20px" ng-show="breachForm.$invalid && submitted" class="err">Перевірте правильність заповнення форми</p>
-            <button class="send-form" ng-click="submit()" >
+            <button class="send-form" ng-click="submit()" data-ng-hide="loading">
                 НАДІСЛАТИ ПОВІДОМЛЕННЯ
             </button>
+
+
+ <div style="text-align:center;font-size:20px" data-ng-show="loading">
+ <p>Надсилаю...</p>
+ <i class="fa fa-spinner fa-spin fa-3x"></i>
+ </div>
+
+
 
        </div>
 

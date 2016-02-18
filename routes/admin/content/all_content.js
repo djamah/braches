@@ -17,7 +17,7 @@ module.exports = function(req, res){
             }
         });
         res.render('admin/content/all_content', {
-            title: '',
+            title: 'Content',
             admin: adminStatus,
             currentPage:{content:true},
             partials: {filter: 'partials/filter'},

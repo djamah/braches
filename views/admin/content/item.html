@@ -1,17 +1,6 @@
 <div class="wrapper content single" style="margin-top:20px">
     <input id="preview_img" placeholder="url заглавної картинки" type="text" value="{{item.preview_img}}"/>
 
-    <select style="margin-left:20px" id="visual">
-        <option value="">-відображення-</option>
-        <option value="expand"
-                {{#isExpand}}selected="selected"{{/isExpand}}>
-            Виділити
-        </option>
-    </select>
-    <label style="margin-left:20px" for="show_main_page">Виводити на головну</label>
-    <input style="margin-left:10px" type="checkbox" id="show_main_page"
-           {{#item.show_main_page}}checked="checked"{{/item.show_main_page}}/>
-
     <label style="margin-left:20px" for="publish">Опублікувати</label>
     <input style="margin-left:10px" type="checkbox" id="publish"
            {{#item.publish}}checked="checked"{{/item.publish}} />

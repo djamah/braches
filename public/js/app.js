@@ -8,8 +8,8 @@ app
     scope: {
       show: '='
     },
-    replace: true, 
-    transclude: true, 
+    replace: true,
+    transclude: true,
     link: function(scope, element, attrs) {
       scope.dialogStyle = {};
       if (attrs.width)
@@ -27,7 +27,7 @@ app
 	   function link(scope, element, attrs){
 		   element.text(scope.test)
 	   }
-	
+
        return {
          restrict: 'EA',
          link: link
@@ -52,7 +52,7 @@ app
         $http.post('/admin/all_reports_list', {})
             .success(function(data){
                 $scope.reports = data;
-            });	
+            });
          $scope.updrpt = function(val, index) {
 			 $http.post('/admin/update_report', { id: val[0], accepted: !val[1], wrong: true });
 			 $scope.reports[index].wrong = true
@@ -61,7 +61,7 @@ app
 			 $http.post('/admin/clear_reports', {})
 			    .success(function(data){
                 $scope.reports = [];
-            });	
+            });
 		 }
 
 })
@@ -81,7 +81,7 @@ app
                 data.forEach(function(item){
                   if(item.visual === 'expand'){
                     chosens.push(item)
-                  } 
+                  }
                 });
                 $scope.chosens = chosens;
             });
@@ -92,7 +92,7 @@ app
                 $scope.list = data;
             });
         $scope.options = options;
-        
+
         $scope.read_more = function(){
 			if (typeof(this.item.display)==="undefined"){
 				this.item.display=false
@@ -175,7 +175,7 @@ app
             }
         }
     })
-    
+
     .controller('questionCtrl', function($scope, $http){
 		$scope.submit = function(){
 			console.log("Hello")
@@ -184,7 +184,8 @@ app
 
     .controller('breachFormCtrl', function($scope, $http){
 		  $scope.modalShown = false;
-   $scope.options = options;
+      $scope.loading = false ;
+      $scope.options = options;
         $scope.getOwner = function(){
             var res = '';
             for(var i in options.city[$scope.form.city]){
@@ -196,56 +197,56 @@ app
             return res;
         };
         $scope.submit = function(){
-			$scope.submitted = true;
-			if (typeof($scope.form.university.name)==='undefined') {
-				$scope.breachForm.university.$invalid = true
-			}
-            if($scope.breachForm.$valid){
-                $scope.form.owner = $scope.getOwner();
-                $scope.form.national = ($scope.form.national === 'true');
-                $scope.form.research = ($scope.form.research === 'true');
-                console.log($scope.form);
+          $scope.loading = true ;
+			    $scope.submitted = true;
+			    if (typeof($scope.form.university.name)==='undefined') {
+			    	$scope.breachForm.university.$invalid = true
+			    }
+          if($scope.breachForm.$valid){
+            $scope.form.owner = $scope.getOwner();
+            $scope.form.national = ($scope.form.national === 'true');
+            $scope.form.research = ($scope.form.research === 'true');
+            var fd = new FormData();
+            fd.append('form', JSON.stringify($scope.form));
 
-                var fd = new FormData();
-                fd.append('form', JSON.stringify($scope.form));
-
-                if($scope.File){
-                    console.log($scope.File,'$scope.File')
-
-                    fd.append('file', $scope.File);
-
-                    $http.post('send_breach', fd, {
-                        transformRequest: angular.identity,
-                        headers: {'Content-Type': undefined}
-                    })
-                        .success(function(){
-							$scope.status = "success";
-                            $scope.modalShown = !$scope.modalShown;
-                        })
-                        .error(function(){
-							$scope.status = "error"
-							$scope.modalShown = !$scope.modalShown;
-                        });
-                } else {
-                    $http.post('send_breach', fd, {
-                        transformRequest: angular.identity,
-                        headers: {'Content-Type': undefined}
-                    })
-                        .success(function(data){
-							$scope.status = "success";
-                            $scope.modalShown = !$scope.modalShown;
-                        })
-                        .error(function(){
-                            $scope.status = 'error';
-                            $scope.modalShown = !$scope.modalShown;
-                        });
-                    $scope.status = 'sending';
-                }
+            if($scope.File){
+              fd.append('file', $scope.File);
+              $http.post('send_breach', fd, {
+                transformRequest: angular.identity,
+                   headers: {'Content-Type': undefined}
+              })
+              .success(function(){
+							  $scope.status = "success";
+                $scope.modalShown = !$scope.modalShown;
+                $scope.loading = false ;
+              })
+              .error(function(){
+							  $scope.status = "error";
+                $scope.loading = false ;
+							  $scope.modalShown = !$scope.modalShown;
+              });
+            } else {
+              $http.post('send_breach', fd, {
+                transformRequest: angular.identity,
+                  headers: {'Content-Type': undefined}
+              })
+              .success(function(data){
+							  $scope.status = "success";
+                $scope.loading = false ;
+                $scope.modalShown = !$scope.modalShown;
+              })
+              .error(function(){
+                $scope.status = 'error';
+                $scope.loading = false ;
+                $scope.modalShown = !$scope.modalShown;
+              });
+              $scope.status = 'sending';
+            }
 
 
-            } 
-        };
-    })
+        }
+    };
+})
     .controller('mapCtrl', function($scope){
         console.log('mapCtrl init');
 
@@ -321,7 +322,7 @@ app
                     }
                 }
             }
-            
+
             $scope.filteredData = filteredData;
 
             var geoObjects = [];
@@ -348,7 +349,7 @@ app
         console.log('graphicsCtrl init');
 
         $scope.filteredData = $scope.list;
-        
+
         $scope.optionsRegions = {
             animation: true
         };
@@ -364,7 +365,7 @@ app
 
         function toFilter(){
             var filteredData = [];
-            
+
             for(var j in $scope.list){
                 if($scope.filters.searchCityFilter($scope.list[j])){
                     if($scope.filters.searchOwnerFilter($scope.list[j])){
@@ -389,15 +390,15 @@ app
             $scope.chartReg = $scope.filteredData;
 
         };
-        
-        
 
-    })    
+
+
+    })
 
    .controller('listAllCtrl', function($scope){
-        
+
         $scope.pageSize = 20;
-        
+
         $scope.filteredData = $scope.list;
 
         $scope.$watch('f.city', toFilter);
@@ -434,4 +435,4 @@ app
 
         }
 
-    })    
+    })
