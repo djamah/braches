@@ -155,10 +155,7 @@
             </button>
 
 
- <div style="text-align:center;font-size:20px" data-ng-show="loading">
- <p>Надсилаю...</p>
- <i class="fa fa-spinner fa-spin fa-3x"></i>
- </div>
+
 
 
 
@@ -168,11 +165,8 @@
               <div ng-switch on="status">
                           <div ng-switch-when="sending">
                               <p>
-                                  <div class="progress progress-striped active">
-                                      <div class="progress-bar"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-                                          <span class="sr-only"></span>
-                                      </div>
-                                  </div>
+                                <p>Надсилаю...</p>
+                                <i class="fa fa-spinner fa-spin fa-3x"></i>
                               </p>
                           </div>
                           <div ng-switch-when="success">

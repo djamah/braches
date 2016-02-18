@@ -197,7 +197,9 @@ app
             return res;
         };
         $scope.submit = function(){
-          $scope.loading = true ;
+          $scope.modalShown = !$scope.modalShown;
+        //  $scope.loading = true ;
+        $scope.status = 'sending';
 			    $scope.submitted = true;
 			    if (typeof($scope.form.university.name)==='undefined') {
 			    	$scope.breachForm.university.$invalid = true
@@ -217,13 +219,13 @@ app
               })
               .success(function(){
 							  $scope.status = "success";
-                $scope.modalShown = !$scope.modalShown;
+                //$scope.modalShown = !$scope.modalShown;
                 $scope.loading = false ;
               })
               .error(function(){
 							  $scope.status = "error";
                 $scope.loading = false ;
-							  $scope.modalShown = !$scope.modalShown;
+							  //$scope.modalShown = !$scope.modalShown;
               });
             } else {
               $http.post('send_breach', fd, {
@@ -233,14 +235,14 @@ app
               .success(function(data){
 							  $scope.status = "success";
                 $scope.loading = false ;
-                $scope.modalShown = !$scope.modalShown;
+                //$scope.modalShown = !$scope.modalShown;
               })
               .error(function(){
                 $scope.status = 'error';
                 $scope.loading = false ;
-                $scope.modalShown = !$scope.modalShown;
+                //$scope.modalShown = !$scope.modalShown;
               });
-              $scope.status = 'sending';
+
             }
 
 
