@@ -198,7 +198,9 @@ app
         };
         $scope.submit = function(){
           $scope.modalShown = !$scope.modalShown;
-        //  $scope.loading = true ;
+          console.log($scope.modalShown)
+          $scope.loading = true ;
+          console.log($scope.loading)
         $scope.status = 'sending';
 			    $scope.submitted = true;
 			    if (typeof($scope.form.university.name)==='undefined') {
